@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 
 import CategoryMeuList from "./CategoryMeuList";
 import MenuPopup from "./MenuPopup";
+import Logo from "../ui/Logo";
+import { IoMenu } from "react-icons/io5";
+import { MdHideImage } from "react-icons/md";
+import { IoClose } from "react-icons/io5";
+import darkLogo from '../../assets/logo/logo-dark.png'
+import lightLogo from '../../assets/logo/logo-light.png'
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
+  const [activeHamburMenu, setActiveHamburMenu] = useState(false);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   let [currentUser, setCurrentuser] = useState({
     name: "Mohit",
     isSeller: false,
     profile:
-      "https://imgs.search.brave.com/SwiDO9sr6G4hLK41pGqoqGP_7kxs13FFhRqzFbfF4XQ/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTM0/NDMyMzUyOC9waG90/by9zaG90LW9mLWEt/eW91bmctYnVzaW5l/c3NtYW4td29ya2lu/Zy1vbi1hLWNvbXB1/dGVyLWluLWFuLW9m/ZmljZS5qcGc_cz02/MTJ4NjEyJnc9MCZr/PTIwJmM9NjJJX3B4/ZExfZ3VQZmpXSzA1/VXlKbzIxWVNNQ29f/aDB5bnNjNm5IWmgz/bz0",
+      "https://imgs.search.brave.com/5RcKrrip-z_mPPhPY02HEF1QyDhPBbNGNkzZb_viqyY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9jdXRlLWJveS1p/bWFnZV82NzYwOTIt/NzQ2MS5qcGc_c2Vt/dD1haXNfaHlicmlk",
   }); // get from the store.
 
   const changeBg = () => {
@@ -33,61 +41,111 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav
+    <header
       className={`${
-        active ? "bg-[#f0f0f0] text-blue-950 sticky top-0" : "bg-blue-950"
-      }  transition-all duration-500`}
+        active || pathname !== "/"
+          ? "bg-[#fbf5f5] text-blue-950 "
+          : "bg-slate-950 text-blue-50"
+      }  transition-all duration-300 sticky top-0 z-20`}
     >
-      <div className="max-w-screen-xl flex justify-between items-center mx-auto p-4">
-        <h2 className="font-logo text-2xl">
-          GigSpark
-          <span className="bg-[#e8af13] h-2 w-2 rounded-sm inline-block ml-1"></span>
-        </h2>
-        <div className="flex gap-3 items-center relative">
-          <ul className="flex gap-3 *:font-primary *:tracking-tighter *:font-semibold">
-            <li>GigSpark Business</li>
-            <li>Explore</li>
-            {!currentUser?.isSeller && <li>Become a Seller</li>}
-          </ul>
-          {currentUser ? (
+      <nav className="px-4 bg-inherit text-inherit">
+        <div className="max-w-screen-xl bg-inherit text-inherit flex justify-between items-center mx-auto">
+          <div
+            className={`border border-black md:hidden block text-3xl  ${
+              activeHamburMenu &&
+              "bg-gray-700/70 w-full h-dvh absolute top-0 left-0 z-[2] p-6"
+            }`}
+            onClick={() => setActiveHamburMenu(!activeHamburMenu)}
+          >
             <div
-              className="flex gap-2 items-center justify-center cursor-pointer px-2.5 py-1.5"
-              onClick={() => setOpenMenu(!openMenu)}
+              className={`border border-black text-3xl relative z-[20] ml-auto w-fit`}
+              onClick={() => setActiveHamburMenu(!activeHamburMenu)}
             >
-              <span className="h-6 w-6 rounded-full inline-block overflow-hidden">
-                <img
-                  src={currentUser?.profile}
-                  alt={currentUser.name}
-                  className="w-full h-full object-cover"
-                />
-              </span>
-              <span className="font-semibold">{currentUser.name}</span>
+              {!activeHamburMenu ? <IoMenu /> : <IoClose />}
             </div>
-          ) : (
-          <>
-            <span className="font-primary tracking-tighter font-semibold mr-3">Sign in</span>
-            <button
-              className={`rounded-md border-2  px-4 py-1.5 font-bold  ${
-                active
-                ? " border-blue-700 text-blue-700 hover:bg-blue-900 hover:text-blue-100"
-                : "border-blue-100 text-blue-100 hover:bg-[#fbfbfb] hover:text-blue-900 transition-all duration-300"
-              }`}
+          </div>
+          <Logo src={active || pathname !== "/" ? lightLogo : darkLogo} />
+          <div
+            className={`flex gap-3 items-center ${
+              active || pathname !== "/" ? "text-slate-600" : "text-slate-200"
+            } ${
+              activeHamburMenu &&
+              "absolute top-0 left-0 flex-col w-full max-w-[400px] bg-inherit h-dvh p-6 z-[2] items-stretch"
+            }`}
+          >
+            <ul
+              className={`gap-3 *:font-primary *:tracking-tighter ${
+                !activeHamburMenu
+                  ? "hidden"
+                  : "*:tracking-wider *:p-2 space-y-2 *:text-xl"
+              } md:flex`}
+            >
+              <li>GigSpark Business</li>
+              <li>Explore</li>
+              {!currentUser?.isSeller && <li>Become a Seller</li>}
+            </ul>
+            {currentUser ? (
+              <div
+                className={`flex gap-2 items-center cursor-pointer px-2.5 py-2 relative ${
+                  activeHamburMenu ? "justify-start" : "justify-center"
+                }`}
+                onClick={() => setOpenMenu(!openMenu)}
               >
-              Join
-            </button>
+                <span className="h-6 w-6 rounded-full inline-block overflow-hidden border border-blue-950">
+                  <img
+                    src={currentUser?.profile}
+                    alt={currentUser.name}
+                    className="w-full h-full object-cover"
+                  />
+                </span>
+                <span
+                  className={`${
+                    active || pathname !== "/"
+                      ? "text-blue-950"
+                      : "text-blue-50"
+                  }
+                  ${!activeHamburMenu && "hidden"} min-[400px]:block font-bold`}
+                >
+                  {currentUser.name}
+                </span>
+                {currentUser && openMenu && (
+                  <MenuPopup
+                    handleLogoutUser={handleLogoutUser}
+                    setOpenMenu={setOpenMenu}
+                  />
+                )}
+              </div>
+            ) : (
+              <>
+                <Link
+                  to={"/auth/signin"}
+                  className={`font-primary tracking-tighter font-semibold mr-3 sm:block ${
+                    !activeHamburMenu ? "hidden " : "pl-2"
+                  }`}
+                >
+                  Sign in
+                </Link>
+                <Link
+                  to={"/auth/signup"}
+                  className={`${
+                    activeHamburMenu &&
+                    "border-none text-start text-lg pl-2 font-bold"
+                  } rounded-md sm:border-2 px-1 sm:px-3 py-1 sm:font-bold  ${
+                    active || pathname !== "/"
+                      ? " border-blue-700 text-blue-700 hover:bg-blue-900 hover:text-blue-100"
+                      : "border-blue-100 text-blue-100 hover:bg-[#fbfbfb] hover:text-blue-900 transition-all duration-300"
+                  }`}
+                >
+                  Join
+                </Link>
               </>
-          )}
-          {currentUser && openMenu && (
-            <MenuPopup
-              handleLogoutUser={handleLogoutUser}
-              setOpenMenu={setOpenMenu}
-            />
-          )}
+            )}
+          </div>
         </div>
-      </div>
 
-      {active && <CategoryMeuList />}
-    </nav>
+        {(active || pathname !== "/") && <CategoryMeuList />}
+      </nav>
+    </header>
   );
 };
 
