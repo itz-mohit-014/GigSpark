@@ -7,27 +7,27 @@ import { MdOutlineTimer } from "react-icons/md";
 
 const ServiceCard = ({ data }) => {
   const [open, setOpen] = useState(false);
-  const { price, title, description, includeItems } = data;
+  const { price, serviceTitle, serviceDescription, features, deliveryTime, revisions } = data;
   // deliverdTime, revisions,
   return (
     <div className="static top-0 lg:ml-auto lg:max-w-sm w-full min-w-[320px] bg-white border border-gray-300 rounded-sm  p-6 font-primary space-y-2">
       <div className="flex items-center justify-between space-x-2 pb-2 mt-3">
-        <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
+        <h3 className="text-lg font-semibold text-gray-800">{serviceTitle}</h3>
         <p className="text-xl font-bold text-gray-900">₹{price}</p>
       </div>
-      <p className="text-base text-gray-500 font-medium">{description}</p>
+      <p className="text-base text-gray-500 font-medium">{serviceDescription}</p>
 
       <div className="flex items-center justify-between space-x-2">
-        {data?.deliverdTime && (
+        {deliveryTime && (
           <div className="flex items-center font-semibold text-base text-gray-600">
             <MdOutlineTimer className="text-xl mr-1" />
-            {data?.deliverdTime}-day delivery
+            {deliveryTime}-day delivery
           </div>
         )}
-        {data?.revisions && (
+        {revisions && (
           <div className="flex items-center font-semibold text-base text-gray-600">
             <GrPowerCycle className="text-xl mr-1" />
-            {data?.revisions} Revision
+            {revisions} Revision
           </div>
         )}
       </div>
@@ -47,7 +47,7 @@ const ServiceCard = ({ data }) => {
         </p>
         {open && (
           <ul className="list-disc list-inside space-y-2 text-sm mb-4 pt-2 pl-4">
-            {includeItems.map((text, index) => (
+            {features.map((text, index) => (
               <li
                 key={index}
                 className="list-none text-sm font-medium text-gray-500"

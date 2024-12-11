@@ -12,19 +12,19 @@ const GigsCard = React.memo(({ card, index, hovered, setHovered }) => (
     )}
   >
     <img
-      src={card.img}
-      alt={card.title}
+      src={card?.coverPicture?.url}
+      alt={card?.name}
       className="object-cover h-full w-full"
     />
 
     {hovered !== index && (
       <p className="absolute bottom-0 left-0 w-full p-2 font-normal text-base text-gray-200 bg-gradient-to-b from-gray-700/0 to-gray-950/90">
-        {card.title}
+        {card?.name}
       </p>
     )}
     <Link
-      to={`/gigs/${card.title.split(" ").join("-").toLowerCase()}?source=${
-        card.id
+      to={`/gigs/${card?.name.split(" ").join("-").toLowerCase()}?source=${
+        card._id
       }`}
     >
       <div
@@ -35,9 +35,9 @@ const GigsCard = React.memo(({ card, index, hovered, setHovered }) => (
       >
         <div className="text absolute top-2 left-4 z-10">
           {" "}
-          <p className="font-normal text-xs text-gray-200">{card.desc}</p>
+          <p className="font-normal text-xs text-gray-200">{card?.description}</p>
           <h1 className="font-semibold text-xl md:text-2xl text-gray-100">
-            {card.title}
+            {card?.name}
           </h1>
         </div>
       </div>

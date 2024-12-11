@@ -1,4 +1,6 @@
+
 import { Category } from "../models/category.model.js";
+import { Gig } from "../models/gig.model.js";
 import ApiError from "../utils/ApiError.js";
 import ApiResponse from "../utils/ApiResponse.js";
 import AsyncHandler from "../utils/AsyncHandler.js";
@@ -18,11 +20,25 @@ const getAllCategories = AsyncHandler(async (req, res) => {
 
 const getSingleCategory = AsyncHandler(async (req, res) => {
   const { id } = req.params;
-  const category = await Category.findById(id);
-  if (!category) throw new ApiError(404, "Category not found.");
+  const currentCategory = await Category.findById(id)
+  .populate({
+    path:"allGigs",
+    populate:[
+      { 
+        path: 'author', 
+        select:"firstName lastName profile" 
+      },
+      { 
+        path: 'services', 
+        select:"price" 
+       }
+    ]
+  });
+  if (!currentCategory) throw new ApiError(404, "Category not found.");
+
   return res
     .status(200)
-    .json(new ApiResponse(200, category, "Category fetched successfully"));
+    .json(new ApiResponse(200, currentCategory, "Category fetched successfully"));
 });
 
 const addNewCategory = AsyncHandler(async (req, res) => {

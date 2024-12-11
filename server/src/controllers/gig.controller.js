@@ -1,3 +1,4 @@
+import { Category } from "../models/category.model.js";
 import { Gig } from "../models/gig.model.js";
 import { GigService } from "../models/gigService.model.js";
 import ApiError from "../utils/ApiError.js";
@@ -10,7 +11,16 @@ import {
 
 const getGigDetails = AsyncHandler(async (req, res) => {
   const { id } = req.params;
-  const gigDetails = await Gig.findById(id);
+  const gigDetails = await Gig.findById(id)
+  .populate("services")
+  .populate({
+    path:"author",
+    select:"-password -refreshToken"
+  })
+  .populate({
+    path:"category",
+    select:"name"
+  });
   if (!gigDetails)
     throw new ApiError(404, "This gig may be deleted or move to another page.");
 
@@ -78,6 +88,10 @@ const addNewGig = AsyncHandler(async (req, res) => {
 
   const newGig = await Gig.create(gigDetails);
   if (!newGig) throw new ApiError(402, "Gig srevice details missing");
+
+  const currentCat = await Category.findByIdAndUpdate(newGig?.category)
+  currentCat.allGigs.push(newGig?._id);
+  await currentCat.save();
 
   return res
     .status(200)
@@ -225,6 +239,11 @@ const deleteImageFromGig = AsyncHandler(async (req, res) => {
 
 });
 
+const getAllGigs = AsyncHandler(async(req, res) => {
+  const allGigs = await Gig.find();
+  return res.status(200).json(new ApiResponse(200, allGigs, "Fetch all gigs successfully."))
+})
+
 export {
   getGigDetails,
   addNewGig,
@@ -233,4 +252,5 @@ export {
   updateGigImages,
   deleteGig,
   deleteImageFromGig,
+  getAllGigs
 };

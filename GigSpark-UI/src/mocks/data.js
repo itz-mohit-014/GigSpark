@@ -66,113 +66,155 @@ export const categoryCardsData = [
 ];
 
 export const projectsData = [
+  // {
+  //   id: "proj-001",
+  //   img: "https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  //   username: "Anna Bell",
+  //   userProfile:
+  //     "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  //   category: { name: "Ai Artist", id: "cat-001" },
+  //   desc: "I will design responsive web and mobile applications.",
+  //   price: 75,
+  //   star: 4.8,
+  //   ratingCount: 200,
+  //   createdAt: "2024-11-12T10:00:00Z",
+  // },
+  // {
+  //   id: "proj-002",
+  //   img: "https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  //   userProfile:
+  //     "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  //   category: { id: "cat-002", name: "Logo Design" },
+  //   username: "Morton Green",
+  //   desc: "I will create professional and modern logos for your brand.",
+  //   price: 50,
+  //   star: 4.6,
+  //   ratingCount: 180,
+  //   createdAt: "2024-11-11T08:30:00Z",
+  // },
+  // {
+  //   id: "proj-003",
+  //   img: "https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  //   userProfile:
+  //     "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  //   category: { id: "cat-008", name: "Illustration" },
+  //   username: "Emmett Potter",
+  //   desc: "I will create eye-catching animated GIFs for your projects.",
+  //   price: 40,
+  //   star: 4.7,
+  //   ratingCount: 250,
+  //   createdAt: "2024-11-10T09:15:00Z",
+  // },
+  // {
+  //   id: "proj-004",
+  //   img: "https://images.pexels.com/photos/4348404/pexels-photo-4348404.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  //   userProfile:
+  //     "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  //   category: { id: "cat-006", name: "Social Media" },
+  //   username: "Freddie Johnston",
+  //   desc: "I will design unique and attractive packaging for your products.",
+  //   price: 60,
+  //   star: 4.9,
+  //   ratingCount: 300,
+  //   createdAt: "2024-11-09T12:45:00Z",
+  // },
+  // {
+  //   id: "proj-005",
+  //   img: "https://images.pexels.com/photos/4458554/pexels-photo-4458554.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  //   userProfile:
+  //     "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  //   category: { id: "cat-005", name: "Video Explainer" },
+  //   username: "Audrey Richards",
+  //   desc: "I will design stunning social media posts and ads.",
+  //   price: 45,
+  //   star: 4.5,
+  //   ratingCount: 220,
+  //   createdAt: "2024-11-08T14:00:00Z",
+  // },
+  // {
+  //   id: "proj-006",
+  //   img: "https://images.pexels.com/photos/4465831/pexels-photo-4465831.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  //   userProfile:
+  //     "https://images.pexels.com/photos/1036627/pexels-photo-1036627.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  //   category: { id: "cat-004", name: "Voice Over" },
+  //   username: "Dalton Hudson",
+  //   desc: "I will create custom illustrations tailored to your needs.",
+  //   price: 70,
+  //   star: 4.9,
+  //   ratingCount: 275,
+  //   createdAt: "2024-11-07T18:30:00Z",
+  // },
+  // {
+  //   id: "proj-007",
+  //   img: "https://images.pexels.com/photos/6077368/pexels-photo-6077368.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  //   userProfile:
+  //     "https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  //   category: { id: "cat-007", name: "SEO" },
+  //   username: "Hannah Dougherty",
+  //   desc: "I will design captivating book covers and layouts.",
+  //   price: 55,
+  //   star: 4.8,
+  //   ratingCount: 190,
+  //   createdAt: "2024-11-06T16:20:00Z",
+  // },
   {
     id: "proj-001",
-    img: "https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    username: "Anna Bell",
-    userProfile:
-      "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    category: { name: "Ai Artist", id: "cat-001" },
-    desc: "I will design responsive web and mobile applications.",
-    price: 75,
-    star: 4.8,
-    ratingCount: 200,
-    createdAt: "2024-11-12T10:00:00Z",
-  },
-  {
-    id: "proj-002",
-    img: "https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    userProfile:
-      "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    category: { id: "cat-002", name: "Logo Design" },
-    username: "Morton Green",
-    desc: "I will create professional and modern logos for your brand.",
-    price: 50,
-    star: 4.6,
-    ratingCount: 180,
-    createdAt: "2024-11-11T08:30:00Z",
-  },
-  {
-    id: "proj-003",
-    img: "https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    userProfile:
-      "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    category: { id: "cat-008", name: "Illustration" },
-    username: "Emmett Potter",
-    desc: "I will create eye-catching animated GIFs for your projects.",
-    price: 40,
-    star: 4.7,
-    ratingCount: 250,
-    createdAt: "2024-11-10T09:15:00Z",
-  },
-  {
-    id: "proj-004",
-    img: "https://images.pexels.com/photos/4348404/pexels-photo-4348404.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    userProfile:
-      "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    category: { id: "cat-006", name: "Social Media" },
-    username: "Freddie Johnston",
-    desc: "I will design unique and attractive packaging for your products.",
-    price: 60,
-    star: 4.9,
-    ratingCount: 300,
-    createdAt: "2024-11-09T12:45:00Z",
-  },
-  {
-    id: "proj-005",
-    img: "https://images.pexels.com/photos/4458554/pexels-photo-4458554.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    userProfile:
-      "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    category: { id: "cat-005", name: "Video Explainer" },
-    username: "Audrey Richards",
-    desc: "I will design stunning social media posts and ads.",
-    price: 45,
-    star: 4.5,
-    ratingCount: 220,
-    createdAt: "2024-11-08T14:00:00Z",
-  },
-  {
-    id: "proj-006",
-    img: "https://images.pexels.com/photos/4465831/pexels-photo-4465831.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    userProfile:
-      "https://images.pexels.com/photos/1036627/pexels-photo-1036627.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    category: { id: "cat-004", name: "Voice Over" },
-    username: "Dalton Hudson",
-    desc: "I will create custom illustrations tailored to your needs.",
-    price: 70,
-    star: 4.9,
-    ratingCount: 275,
-    createdAt: "2024-11-07T18:30:00Z",
-  },
-  {
-    id: "proj-007",
-    img: "https://images.pexels.com/photos/6077368/pexels-photo-6077368.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    userProfile:
-      "https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    category: { id: "cat-007", name: "SEO" },
-    username: "Hannah Dougherty",
-    desc: "I will design captivating book covers and layouts.",
-    price: 55,
-    star: 4.8,
-    ratingCount: 190,
-    createdAt: "2024-11-06T16:20:00Z",
-  },
-  {
-    id: "proj-008",
-    img: "https://images.pexels.com/photos/4065876/pexels-photo-4065876.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    userProfile:
-      "https://images.pexels.com/photos/1680175/pexels-photo-1680175.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    heading:
+    "Add talent to AI by creating artistic visuals using advanced tools.",
+    desc: `Looking for a web developer with extensive experience and proven expertise? Look no further!
+    With 4+ years of experience, I specialize in Python frameworks like Django, Flask, and FastAPI.
+    Let's have a chat and build something great together.`,
+    keyword: [
+      "python developer",
+      "full stack web developer",
+      "javascript",],
+      images: [
+        "https://images.pexels.com/photos/4065876/pexels-photo-4065876.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "https://images.pexels.com/photos/580151/pexels-photo-580151.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/375291080/original/1bd8e41a9fa599e71af66e5438b7b13fb8bcf538/be-your-python-django-database-flask-mysql-developer.jpg",
+        "https://fiverr-res.cloudinary.com/images/w_1260,q_auto,f_auto,pg_1/v1/attachments/delivery/asset/72a082c1d12bc608aeab1533936c7b9a-1715235398/Deployment%20Steps/be-your-python-django-database-flask-mysql-developer",
+      ],
+      tags: {
+        experties: [
+          "Algorithms & Data structures",
+          "Debugging",
+          "Performance"
+        ],
+      },
+      services: {
+        price: 22148,
+        title: "1 Social Media",
+        description:
+          "Complete management and build with growth of 1 social media network for 10 days",
+        deliverdTime: "10",
+        revisions: "",
+        includeItems: [
+          "1 platform",
+          "Page/channel evaluation",
+          "Content creation",
+          "7 days",
+          "Schedule posts",
+          "Reporting",
+          "Action plan",
+          "Engagement with followers",
+        ],
+      },
     category: { id: "cat-003", name: "WordPress" },
-    username: "Ward Brewer",
-    desc: "I will create digital marketing strategies to boost your business.",
-    price: 65,
-    star: 4.7,
-    ratingCount: 230,
+    rating: {
+      star: 4.7,
+      ratingCount: 230,
+    },
+    user: {
+      userProfile:
+      "https://images.pexels.com/photos/1680175/pexels-photo-1680175.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      username: "Ward Brewer",
+    },
     createdAt: "2024-11-05T10:10:00Z",
   },
 ];
 
-export const gigsData = [
+export const gigsData = 
+[
   {
     id: "gig-001",
     heading:

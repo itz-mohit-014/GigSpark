@@ -5,26 +5,38 @@ import { Input } from "../ui/input";
 import { FcGoogle } from "react-icons/fc";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { showAuthenticatePage } from "../../slices/showLoginForm.slice";
+import { BottomGradient, LabelInputContainer } from "./InputBoxUtils";
+import { User } from "../../services/api";
+import Loading from "../ui/Loading";
+import { signin_signup } from "../../services/authApi";
 
 export default function SignupForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const {
-    register,
-    handleSubmit,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
-  const handleSignUp = (data) => {
-    try {
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+  const dispatch = useDispatch();
+  const isLoading = useSelector((store) => store?.showAuthForm?.isLoading);
+
+  const handleSignUp = async (data) => {
+    const newUserData = { ...data };
+
+    newUserData.profile = {
+      public_id: newUserData.firstName,
+      url: PROFILE_IMAGE(newUserData.firstName, newUserData.lastName),
+    };
+
+    dispatch(signin_signup(newUserData, "Creating Account...", User?.CREATE_ACCOUNT));
+  };
+
+  const loadSignInForm = () => {
+    dispatch(showAuthenticatePage("login"));
   };
 
   return (
-    <div className="max-w-md w-full mx-auto rounded-none max-md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
+    <div className="max-w-xl w-full mx-auto p-8 shadow-input bg-white dark:bg-black">
       <h2 className="font-bold text-2xl text-neutral-800 dark:text-neutral-200">
         Create your account
       </h2>
@@ -34,21 +46,21 @@ export default function SignupForm() {
       <form className="my-5" onSubmit={handleSubmit(handleSignUp)}>
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>
-            <Label htmlFor="firstname">First name</Label>
+            <Label htmlFor="firstName">First name</Label>
             <Input
-              id="firstname"
+              id="firstName"
               placeholder="John"
               type="text"
-              {...register("firstname", { required: true })}
+              {...register("firstName", { required: true })}
             />
           </LabelInputContainer>
           <LabelInputContainer>
-            <Label htmlFor="lastname">Last name</Label>
+            <Label htmlFor="lastName">Last name</Label>
             <Input
-              id="lastname"
+              id="lastName"
               placeholder="Doe"
               type="text"
-              {...register("lastname", { required: true })}
+              {...register("lastName", { required: true })}
             />
           </LabelInputContainer>
         </div>
@@ -62,10 +74,8 @@ export default function SignupForm() {
               required: true,
             })}
           />
-         
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
-        
           <Label htmlFor="password">Password</Label>
           <Input
             id="password"
@@ -79,14 +89,18 @@ export default function SignupForm() {
           >
             {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
           </div>
-        
         </LabelInputContainer>
 
         <button
-          className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+          className="bg-gradient-to-br flex items-center justify-center relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] disabled:cursor-not-allowed"
           type="submit"
+          disabled={isLoading}
         >
-          Sign up &rarr;
+          {isLoading ? (
+            <Loading className={"my-auto"} />
+          ) : (
+            <span>Sign up &rarr;</span>
+          )}
           <BottomGradient />
         </button>
 
@@ -104,30 +118,13 @@ export default function SignupForm() {
       </form>
       <p className="text-center font-medium text-gray-500 text-sm font-primary">
         Already have an account?{" "}
-        <Link
-          to={"/auth/signin"}
+        <button
+          onClick={loadSignInForm}
           className="font-bold text-gray-700 hover:text-gray-900"
         >
           Sign In
-        </Link>
+        </button>
       </p>
     </div>
   );
 }
-
-const BottomGradient = () => {
-  return (
-    <>
-      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-      <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
-    </>
-  );
-};
-
-const LabelInputContainer = ({ children, className }) => {
-  return (
-    <div className={`relative flex flex-col space-y-2 w-full ${className}`}>
-      {children}
-    </div>
-  );
-};

@@ -11,7 +11,6 @@ import { Upload } from "../middleware/multer.js";
 
 const categoryRoutes = Router();
 
-// categoryRoutes.route("/new").post(() => {})
 categoryRoutes.route("/").get(getAllCategories);
 categoryRoutes
 .route("/:id")

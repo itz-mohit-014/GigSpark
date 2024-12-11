@@ -7,14 +7,11 @@ import Gig from "../pages/gig/Gig";
 import Orders from "../pages/orders/Orders";
 import Chats from "../pages/chats/Chats";
 import Message from "../pages/message/Message";
-import AuthLayout from "../pages/auth/AuthLayout";
 import ScrollToTop from "../components/scrollToTop/ScrollToTop";
 
 const Home = lazy(() => import("../pages/home/Home"));
 const AddNewGig = lazy(() => import("../pages/addNewGig/AddNewGig"));
 const AllGigs = lazy(() => import("../pages/allGigs/AllGigs"))  ;
-const SignInForm = lazy(() => import("../components/forms/SignInForm"));
-const SignUpForm = lazy(() => import("../components/forms/SignUpForm"));
 
 const RootLayout = () => {
   return (
@@ -63,21 +60,7 @@ const router = createBrowserRouter(
         {
           path: "add-new-gig",
           element: <Suspense fallback={<h1>Loading...</h1>}>  <AddNewGig  /> </Suspense>,
-        },
-        {
-          path: "/auth",
-          element: <AuthLayout />,
-          children: [
-            {
-              path: "signin",
-              element: <Suspense fallback={<h1>Loading...</h1>}> <SignInForm/> </Suspense>,
-            },
-            {
-              path: "signup",
-              element: <Suspense fallback={<h1>Loading...</h1>}> <SignUpForm/> </Suspense>,
-            },
-          ],
-        },
+        }
       ],
     },
     {

@@ -8,10 +8,9 @@ export function Slide({Item, data, cardLimit}) {
   return (
     <CarouselContent className={"mx-6"}>
         {data.map((card, index) => (
-          <CarouselItem key={card.id} className={cardLimit}>
+          <CarouselItem key={card._id} className={cardLimit}>
             {/* card */}
             <Item
-              key={card.id}
               card={card}
               index={index}
               hovered={hovered}

@@ -3,9 +3,11 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 const GigDetails = ({ details }) => {
   const [showMore, setShowMore] = useState(false);
-  const { category, desc, heading, id, images, keyword, rating, tags, user } =
-    details;
   const [currentImg, setCurrentImg] = useState(0);
+  const { category, description, title, _id, keywords, rating, tags, author } =
+    details;
+
+  const images = [details?.coverPicture, ...details?.images ];
 
   const handleNextImg =() => {
     if(currentImg === images.length -1)  setCurrentImg(0)
@@ -20,11 +22,20 @@ const GigDetails = ({ details }) => {
   return (
     <div>
       <h3 className="font-semibold text-xl md:text-2xl my-3">About this Gig</h3>
-      <p> {showMore ? desc : desc.slice(0, 400).concat("...")} </p>
-      {keyword.length > 0 && showMore && (
+
+      {/* <div className="mt-4 p-2 bg-gray-200 rounded-md">
+        <h3 className="font-semibold mb-2">Editor Content:</h3>
+        <div
+          className="p-2 border rounded-md bg-white"
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      </div> */}
+
+      <p> {showMore ? description : description.slice(0, 400).concat("...")} </p>
+      {keywords.length > 0 && showMore && (
         <p>
           <span className="font-bold text-base mr-2">Keyword:</span>
-          <span> {keyword.join(", ")} </span>
+          <span> {keywords.join(", ")} </span>
         </p>
       )}
       <button
@@ -36,6 +47,7 @@ const GigDetails = ({ details }) => {
 
       <ul className="my-2 space-y-1">
         {Object.entries(tags).map((tagCat, index) => {
+          if(tagCat[0] === "_id") return;
           return (
             <li key={index}>
               <b className="mr-2 capitalize">{tagCat[0]}:</b>
@@ -49,7 +61,7 @@ const GigDetails = ({ details }) => {
         <div className="relative w-full flex items-center justify-center">
           <img
             className="rounded-t-lg object-cover w-full aspect-video border-4 border-gray-100"
-            src={images[currentImg]}
+            src={images[currentImg]?.url}
             alt="product image"
           />
           <button onClick={handlePrevImg} className={`absolute top-1/2 -left-4 -translate-y-1/2 p-2 rounded-full shadow-md border backdrop-blur-md active:scale-95 ${images.length <= 1 ? "hidden" :"block"}`}>
@@ -70,7 +82,7 @@ const GigDetails = ({ details }) => {
                 className={`object-cover w-full aspect-video ${
                   index === currentImg ? "opacity-100" : "opacity-25"
                 }`}
-                src={images[index]}
+                src={images[index]?.url}
                 alt="product image"
               />
             </div>

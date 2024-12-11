@@ -23,7 +23,7 @@ userRoutes.route("/profileImage?").get(generateUserProfileByName);
 userRoutes.route("/regenrate-tokens").post(regenerateTokens);
 
 // private routes
-userRoutes.route("/logout").post(verifyToken, logout);
+userRoutes.route("/logout").get(verifyToken, logout);
 userRoutes.route("/change-password").post(verifyToken, changePassword);
 userRoutes.route("/update-profile").post(verifyToken, Upload.single("profile"), uploadProfile);
 userRoutes.route("/:id")

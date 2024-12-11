@@ -11,7 +11,7 @@ const ProjectCard = ({ card }) => {
       <div className="relative overflow-hidden rounded-2xl transition duration-200 group bg-white hover:shadow-2xl border border-zinc-300 ">
         <div className="w-full bg-gray-300 rounded-tr-lg rounded-tl-lg overflow-hidden xl:aspect-w-16 xl:aspect-h-10 relative z-[1]">
           <Image
-            src={card.img}
+            src={card.images[0]}
             alt="thumbnail"
             layout="fill"
             objectFit="cover"
@@ -24,7 +24,7 @@ const ProjectCard = ({ card }) => {
         <div className="flex gap-2 flex-col flex-wrap p-4 relative bg-inherit group overflow-hidden">
           <div className={"flex gap-4 items-center"}>
             <img
-              src={card.userProfile}
+              src={card.user?.userProfile}
               alt="user"
               className="h-8 w-8 rounded-full object-cover"
             />
@@ -32,7 +32,7 @@ const ProjectCard = ({ card }) => {
               <h2 className="font-semibold text-base text-gray-900">
                 {card.category.name}
               </h2>
-              <h3 className="text-xs text-teal-900">{card.username}</h3>
+              <h3 className="text-xs text-teal-900">{card.user?.username}</h3>
             </div>
           </div>
           <div className="w-full h-full absolute left-0 p-4 bg-inherit transition-all duration-200 top-full group-hover:top-0">

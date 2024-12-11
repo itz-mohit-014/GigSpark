@@ -6,6 +6,7 @@ import { categoryCardsData, gigsData } from "../../mocks/data"; // moc data
 import useUrlParse from "../../hooks/useURLParse";
 import { useSetRecommendation } from "../../hooks/useSortMethods";
 import { useLocation } from "react-router-dom";
+import { getCurrentCategoryWithAllGigs } from "../../utils/category";
 
 const AllGigs = () => {
   const query = useUrlParse();
@@ -15,21 +16,27 @@ const AllGigs = () => {
   const [GigCards, setGigCards] = useState(AllGigCards);
   const [categoryInfo, setCategoryInfo] = useState(null);
 
+  const getCategoryWithGigs = async () => {
+    const categoryData = await getCurrentCategoryWithAllGigs(id);
+    console.log(categoryData);
+    setCategoryInfo(categoryData);
+    setAllGigCards(categoryData?.allGigs);
+    setGigCards(categoryData?.allGigs)
+    // setAllGigCards(useSetRecommendation(categoryData?.allGigs));
+  };
   useEffect(() => {
-    const data = categoryCardsData.find((item) => item.id === id);
-    setCategoryInfo(data);
-    setAllGigCards(useSetRecommendation(gigsData));
-  }, [ pathname ]);
+    getCategoryWithGigs();
+  }, [pathname]);
 
-  if (AllGigCards.length <= 0) return <p>Loading...</p>;
+  if (!categoryInfo) return <p>Loading.. Shimmer Ui</p>;
 
   return (
     <section className="max-w-screen-xl p-4 pt-10 px-8 mx-auto bg-gray-50 pb-28">
       <Breadcrumbs
-        links={[{ text: "category" }, { text: categoryInfo?.title }]}
+        links={[{ text: "category" }, { text: categoryInfo?.name }]}
       />
       <h1 className="font-semibold text-3xl font-primary mt-6 capitalize">
-        {categoryInfo?.title}
+        {categoryInfo?.name}
       </h1>
       <p className="text-base text-blue-900/70 mt-0.5">
         {categoryInfo?.detailedDescription}
@@ -39,7 +46,7 @@ const AllGigs = () => {
         {GigCards.length <= 0 ? (
           <p>Sorry no Gig's Available... </p>
         ) : (
-          GigCards.map((card, index) => <GigCard data={card} key={index} />)
+          GigCards.map((card) => <GigCard data={card} key={card?._id} />)
         )}
       </div>
     </section>

@@ -1,21 +1,23 @@
 export const useSetRecommendation = (arr) => {
-  // return arr;
-  const highestRated = arr
-    .filter((item) => item?.rating?.star >= 3.5)
-    .reduce((prev, next) => {
-      return prev?.rating?.ratingCount > next?.rating?.ratingCount
-        ? prev
-        : next;
-    }, arr[0]?.rating?.ratingCount);
+  return arr;
+  // const highestRated = arr
+  //   .filter((item) => item?.rating?.star >= 3.5)
+  //   .reduce((prev, next) => {
+  //     return prev?.rating?.ratingCount > next?.rating?.ratingCount
+  //       ? prev
+  //       : next;
+  //   }, arr[0]?.rating?.ratingCount);
 
-  const arrayWithRecommendation = arr.map((item) => {
-    item.id === highestRated.id
-      ? (item.isRecommended = true)
-      : (item.isRecommended = false);
-    return item;
-  });
+  //   console.log(highestRated)
 
-  return arrayWithRecommendation;
+  // const arrayWithRecommendation = arr.map((item) => {
+  //   item._id === highestRated._id
+  //     ? (item.isRecommended = true)
+  //     : (item.isRecommended = false);
+  //   return item;
+  // });
+
+  // return arrayWithRecommendation;
 };
 
 export const useSortedByRecommendation = (arr) => {

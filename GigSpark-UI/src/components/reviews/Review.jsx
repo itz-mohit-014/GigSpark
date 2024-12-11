@@ -11,7 +11,7 @@ import { dummyUserInfo } from "../../mocks/data";
 // AVERAGE = 5∗fiveStar + 4∗fourStar + 3∗threeStar + 2∗twoStar + 1∗oneStar / (totalReview)
 
 const Review = ({ rating }) => {
-  const { ratingCount, star: avgRating } = rating;
+  const { starNumber, totalStar } = rating;
   const [reviewSearch, serReveiwSearch] = useState("")
   const user = dummyUserInfo; // for testing..
 
@@ -22,19 +22,19 @@ const Review = ({ rating }) => {
         <div className="mb-6">
           <div className="flex justify-between items-center gap-3">
             <p className="text-gray-700 font-semibold">
-              {ratingCount} reviews for this Gig
+              {totalStar} reviews for this Gig
             </p>
             <div className="flex items-center justify-end gap-1 text-yellow-500">
               <div className="flex items-center space-x-1 rtl:space-x-reverse">
                 {Array(5)
                   .fill(null)
                   .map((_, index) => {
-                    const isLast = Math.round(avgRating) === index + 1;
+                    const isLast = Math.round(starNumber) === index + 1;
                     return (
                       <StarSvg
                         key={index}
-                        rating={avgRating}
-                        isFill={Math.round(avgRating) >= index + 1}
+                        rating={starNumber}
+                        isFill={Math.round(starNumber) >= index + 1}
                         isLast={isLast}
                         size={"w-4 h-4"}
                       />
@@ -42,7 +42,7 @@ const Review = ({ rating }) => {
                   })}
               </div>
               <p className="text-sm font-bold text-gray-800">
-                {avgRating.toFixed(1)}
+                {Number(totalStar).toFixed(1)}
               </p>
             </div>
           </div>

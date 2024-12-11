@@ -7,11 +7,14 @@ import {
   updateGigDetails,
   updateGigImages,
   updateGigServicesDetails,
+  getAllGigs
 } from "../controllers/gig.controller.js";
 import { verifyToken } from "../middleware/auth.middleware.js";
 import { Upload } from "../middleware/multer.js";
 
 export const gigRoutes = Router();
+
+gigRoutes.route("/").get(getAllGigs)
 
 gigRoutes
   .route("/:id")

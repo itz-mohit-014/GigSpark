@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 import CategoryMeuList from "./CategoryMeuList";
 import MenuPopup from "./MenuPopup";
 import Logo from "../ui/Logo";
-import { IoMenu } from "react-icons/io5";
-import { MdHideImage } from "react-icons/md";
+
 import { IoClose } from "react-icons/io5";
-import darkLogo from '../../assets/logo/logo-dark.png'
-import lightLogo from '../../assets/logo/logo-light.png'
+import { IoMenu } from "react-icons/io5";
+
+import darkLogo from "../../assets/logo/logo-dark.png";
+import lightLogo from "../../assets/logo/logo-light.png";
+
+import { showAuthenticatePage } from "../../slices/showLoginForm.slice";
+import { logout } from "../../services/authApi";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
@@ -16,21 +21,19 @@ const Navbar = () => {
   const [activeHamburMenu, setActiveHamburMenu] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
-  let [currentUser, setCurrentuser] = useState({
-    name: "Mohit",
-    isSeller: false,
-    profile:
-      "https://imgs.search.brave.com/5RcKrrip-z_mPPhPY02HEF1QyDhPBbNGNkzZb_viqyY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9jdXRlLWJveS1p/bWFnZV82NzYwOTIt/NzQ2MS5qcGc_c2Vt/dD1haXNfaHlicmlk",
-  }); // get from the store.
+  const dispatch = useDispatch();
+  const currentUser = useSelector((store) => store.user.user);
 
   const changeBg = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
   };
 
-  const handleLogoutUser = (e) => {
-    setCurrentuser(null); // reset the user.
-    navigate("/");
+  const handleLogoutUser = async (e) => {
+    dispatch(logout(navigate));
+  };
+
+  const handleShowAuthPage = (formName) => {
+    dispatch(showAuthenticatePage(formName));
   };
 
   useEffect(() => {
@@ -93,8 +96,8 @@ const Navbar = () => {
               >
                 <span className="h-6 w-6 rounded-full inline-block overflow-hidden border border-blue-950">
                   <img
-                    src={currentUser?.profile}
-                    alt={currentUser.name}
+                    src={currentUser?.profile?.url}
+                    alt={currentUser.firstName}
                     className="w-full h-full object-cover"
                   />
                 </span>
@@ -104,9 +107,11 @@ const Navbar = () => {
                       ? "text-blue-950"
                       : "text-blue-50"
                   }
-                  ${!activeHamburMenu && "hidden"} min-[400px]:block font-bold`}
+                  ${
+                    !activeHamburMenu && "hidden"
+                  } min-[400px]:block font-bold capitalize`}
                 >
-                  {currentUser.name}
+                  {currentUser.firstName}
                 </span>
                 {currentUser && openMenu && (
                   <MenuPopup
@@ -117,16 +122,16 @@ const Navbar = () => {
               </div>
             ) : (
               <>
-                <Link
-                  to={"/auth/signin"}
+                <button
+                  onClick={() => handleShowAuthPage("login")}
                   className={`font-primary tracking-tighter font-semibold mr-3 sm:block ${
                     !activeHamburMenu ? "hidden " : "pl-2"
                   }`}
                 >
                   Sign in
-                </Link>
-                <Link
-                  to={"/auth/signup"}
+                </button>
+                <button
+                  onClick={() => handleShowAuthPage("signup")}
                   className={`${
                     activeHamburMenu &&
                     "border-none text-start text-lg pl-2 font-bold"
@@ -137,7 +142,7 @@ const Navbar = () => {
                   }`}
                 >
                   Join
-                </Link>
+                </button>
               </>
             )}
           </div>
