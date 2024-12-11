@@ -12,7 +12,7 @@ export default function Marquee({
       {...props}
       className={cn(
         "group flex overflow-hidden [--duration:40s] [--gap:3rem] p-2 [gap:var(--gap)]",
-        className,
+        className
       )}
     >
       {Array(repeat)
@@ -20,9 +20,12 @@ export default function Marquee({
         .map((_, i) => (
           <div
             key={i}
-            className={cn("flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row", {
-              "group-hover:[animation-play-state:paused]": pauseOnHover,
-            })}
+            className={cn(
+              "flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row",
+              {
+                "group-hover:[animation-play-state:paused]": pauseOnHover,
+              }
+            )}
           >
             {children}
           </div>
