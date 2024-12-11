@@ -4,7 +4,7 @@
 import { forwardRef } from "react";
 import { Root } from "@radix-ui/react-label";
 
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 
 const Label = forwardRef(({ className, ...props }, ref) => (
   <Root

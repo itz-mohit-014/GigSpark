@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 import Marquee from "../ui/marquee";
 import BrandsLogo from "./BrandsLogo";
 

@@ -3,7 +3,7 @@ import {
   Carousel,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
+} from "../ui/Carousel.jsx"
 
 import { Slide } from "./Slide";
 

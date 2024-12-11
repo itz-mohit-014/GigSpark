@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { CarouselContent, CarouselItem } from "../ui/Carousel";
 
 export function Slide({Item, data, cardLimit}) {
   const [hovered, setHovered] = useState(null);

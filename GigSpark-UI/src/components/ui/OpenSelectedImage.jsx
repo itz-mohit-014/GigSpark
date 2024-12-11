@@ -1,7 +1,7 @@
 import { IoCloseSharp } from "react-icons/io5";
 import { FaTrashAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 
 const ViewSelectedFile = ({ file, setFiles }) => {
   const [imagePreview, setImagePreview] = useState(null);

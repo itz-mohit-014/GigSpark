@@ -1,5 +1,5 @@
 import React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 import { Link } from "react-router-dom";
 
 const GigsCard = React.memo(({ card, index, hovered, setHovered }) => (
