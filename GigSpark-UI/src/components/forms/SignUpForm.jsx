@@ -19,7 +19,7 @@ export default function SignupForm() {
 
   const dispatch = useDispatch();
   const isLoading = useSelector((store) => store?.showAuthForm?.isLoading);
-
+  const {PROFILE_IMAGE} = User;
   const handleSignUp = async (data) => {
     const newUserData = { ...data };
 
