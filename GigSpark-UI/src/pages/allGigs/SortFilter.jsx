@@ -106,8 +106,6 @@ const SortFilter = ({ AllGigCards, setGigCards }) => {
           Sort by:{" "}
         </span>
         <select
-          name=""
-          id=""
           defaultValue={sortMethod}
           onChange={handleSorting}
           className="border-2 border-blue-950 py-1 px-3 rounded-md bg-blue-50 text-slate-800 font-medium">

@@ -1,5 +1,6 @@
 import LinkEl from "../ui/Link";
 import { useSelector } from 'react-redux'
+import CategoryMenuListShimmerUi from "../ui/shimmerUI/CategoryMenuList";
 
 const CategoryMeuList = () => {
   const allCategory = useSelector((state) => state.category);
@@ -10,7 +11,7 @@ const CategoryMeuList = () => {
       <div className="max-w-screen-xl mx-auto px-4 py-2 relative">
         <ul className="flex gap-5 justify-between text-gray-400 text-sm whitespace-nowrap px-8 overflow-x-auto scrollbar-hidden">
         { allCategory.length  <= 0 
-        ? <p>Shimer ui...</p>  
+        ? <CategoryMenuListShimmerUi/>  
           : allCategory.map(( category ) => (
             <LinkEl
               key={category._id}

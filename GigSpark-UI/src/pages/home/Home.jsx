@@ -7,16 +7,21 @@ import { projectsData } from "../../mocks/data";
 import ProjectCard from "../../components/projects/ProjectCard";
 import GigsCard from "../../components/popularGigsCard/GigsCard";
 import { useSelector } from "react-redux";
+import CategoryCardShimmerUI from "../../components/ui/shimmerUI/CategoryCard";
 
 const Home = () => {
-  const AllCategories = useSelector(store => store?.category)
+  const AllCategories = useSelector((store) => store?.category);
 
   return (
     <main className="space-y-16">
       <Hero />
-      { AllCategories.length <= 0 
-      ? (
-        <p>Shimmer UI will be shown</p>
+      {AllCategories.length <= 0 ? (
+        <Slider
+          title={<p className="h-6 rounded-full w-60 bg-gray-300 animate-pulse"></p>}
+          Item={CategoryCardShimmerUI}
+          data={Array(8).fill(0)}
+          cardLimit={"sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"}
+        />
       ) : (
         <Slider
           title={"Popular services"}
@@ -34,7 +39,6 @@ const Home = () => {
         data={projectsData}
         cardLimit={"basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"}
       />
-
     </main>
   );
 };

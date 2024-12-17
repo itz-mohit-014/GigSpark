@@ -10,6 +10,7 @@ import LikeButton from "../../components/ui/LikeButton";
 import Faqs from "../../components/faq's/FaqsContainer";
 import UserShortProfileCard from "../../components/gig/UserShortProfileCard";
 import { fetchGig } from "../../utils/gig";
+import GigShimmerUi from "../../components/ui/shimmerUI/Gig";
 
 const Gig = () => {
   const { id } = useParams();
@@ -17,7 +18,7 @@ const Gig = () => {
 
   const fetGigDetails = async () => {
     const currentGig  = await fetchGig(id);
-    setGigDetails(currentGig)
+    // setGigDetails(currentGig)
     console.log(currentGig);
   };
 
@@ -25,7 +26,7 @@ const Gig = () => {
     fetGigDetails();
   }, []);
 
-  if (!gigDetails) return <p> Loading... </p>;
+  if (!gigDetails) return <GigShimmerUi/>;
 
   const {
     title,
@@ -40,7 +41,7 @@ const Gig = () => {
       <div className="px-4 pt-20 relative max-w-screen-xl mx-auto flex flex-col lg:flex-row justify-between items-start gap-12">
         <div className="absolute top-0 left-0 w-full px-4">
           <Breadcrumbs
-            children={<LikeButton />}
+            children={<LikeButton className="bg-blue-200"/>}
             links={[
               {
                 text: category?.name,

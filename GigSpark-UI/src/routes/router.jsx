@@ -9,6 +9,7 @@ import Chats from "../pages/chats/Chats";
 import Message from "../pages/message/Message";
 import ScrollToTop from "../components/scrollToTop/ScrollToTop";
 import ProtectedRoute from "../components/protected/ProtectedRoute";
+import PageLoader from "../components/ui/PageLoader";
 
 const Home = lazy(() => import("../pages/home/Home"));
 const AddNewGig = lazy(() => import("../pages/addNewGig/AddNewGig"));
@@ -33,18 +34,16 @@ const router = createBrowserRouter(
         {
           path: "/",
           element: (
-            <Suspense fallback={<h1>Loading...</h1>}>
-              {" "}
-              <Home />{" "}
+            <Suspense fallback={<PageLoader />}>
+              <Home />
             </Suspense>
           ),
         },
         {
           path: "gigs/:name",
           element: (
-            <Suspense fallback={<h1>Loading...</h1>}>
-              {" "}
-              <AllGigs />{" "}
+            <Suspense fallback={<PageLoader/>}>
+              <AllGigs />
             </Suspense>
           ),
         },
@@ -74,9 +73,8 @@ const router = createBrowserRouter(
             {
               path: "add-new-gig",
               element: (
-                <Suspense fallback={<h1>Loading...</h1>}>
-                  {" "}
-                  <AddNewGig />{" "}
+                <Suspense fallback={<PageLoader/>}>
+                  <AddNewGig />
                 </Suspense>
               ),
             },
