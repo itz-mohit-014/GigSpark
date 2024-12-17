@@ -2,47 +2,43 @@ import React, { useState } from "react";
 import { LabelInputContainer } from "./InputBoxUtils";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { IoCloseSharp, IoGitMerge, IoLogoEdge } from "react-icons/io5";
+import { IoCloseSharp } from "react-icons/io5";
 import { FileUpload } from "../ui/FileUpload";
 import DropdownList from "../ui/DropdownList";
 import { useSelector } from "react-redux";
 import RichTextEditor from "../addNewGig/GigDetailsBox";
 
-const NewGigForm = ({ gigDetails, setGigDetails }) => {
-
-  const [keywords, setKeywords] = useState([]);
+const NewGigForm = ({
+  register,
+  setValue,
+  errors,
+  getValues,
+  removeKeyword,
+  removeImages,
+  removeCoverPicture,
+  appendKeyword,
+}) => {
+  const gigDetails = getValues();
+  const [keywords, setKeywords] = useState(gigDetails?.keywords || []);
   const [keywordInput, setKeywordInput] = useState("");
   const allCategory = useSelector((store) => store.category);
 
-  const handleUpdateKeywordList = () => {
-    let textArr = keywordInput.split(",");
-    textArr = textArr.filter((word) => word.trim() !== "");
-    setKeywords((prev) => [...prev, ...textArr]);
-    setKeywordInput("");
-  };
-
-  const handleRemoveTag = (text, i) => {
-    const updateKeywordList = keywords.filter(
-      (word, idx) => word !== text && i !== idx
-    );
+  const handleRemoveTag = (index) => {
+    const updateKeywordList = keywords.filter((_, i) => i !== index);
     setKeywords(updateKeywordList);
+    removeKeyword(index);
   };
 
-  const handleTagValueByInput = (text) => {
+  const handleUpdateKeywordList = (text) => {
     if (text.includes(",")) {
       let textArr = keywordInput.split(",");
       textArr = textArr.filter((word) => word.trim() !== "");
       setKeywords((prev) => [...prev, ...textArr]);
       setKeywordInput("");
+      appendKeyword(...textArr);
     } else {
       setKeywordInput(text);
     }
-  };
-
-  const handleFormValues = (e, field) => {
-    const updateGigDetails = {...gigDetails};
-    updateGigDetails[field] = e.target.value;
-    setGigDetails(updateGigDetails);
   };
 
   return (
@@ -64,12 +60,16 @@ const NewGigForm = ({ gigDetails, setGigDetails }) => {
             placeholder="Enter gig title"
             type="text"
             className={"text-lg p-4 bg-gray-50"}
-            value={gigDetails?.title}
-            onChange={(e) => handleFormValues(e, "title")}
+            {...register("title", {
+              required: true,
+            })}
           />
+          {
+            errors.title && <p className="text-red-500 text-sm">Title is required*</p> 
+          }
         </LabelInputContainer>
 
-        <RichTextEditor handleFormValues={handleFormValues} gigDetails={gigDetails} />
+        <RichTextEditor setValue={setValue} value={gigDetails?.description} />
 
         <LabelInputContainer className={"space-y-1"}>
           <Label
@@ -91,11 +91,12 @@ const NewGigForm = ({ gigDetails, setGigDetails }) => {
               placeholder="Enter keywords here..."
               type="text"
               value={keywordInput}
-              onChange={(e) => handleTagValueByInput(e.target.value)}
+              onChange={(e) => handleUpdateKeywordList(e.target.value)}
               className={"text-lg p-4 bg-gray-50 "}
             />
             <button
-              onClick={handleUpdateKeywordList}
+              type="button"
+              onClick={() => handleUpdateKeywordList(keywordInput + ",")}
               disabled={!keywordInput}
               className="rounded-md border-2 border-gray-300 px-3 sm:px-8 font-medium bg-gray-950 text-gray-100 active:scale-95 max-w-fit disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300 transition-all disabled:active:scale-100"
             >
@@ -114,7 +115,7 @@ const NewGigForm = ({ gigDetails, setGigDetails }) => {
                   </span>
                   <IoCloseSharp
                     className="text-[#EF476F] cursor-pointer p-1 text-xl -mt-1.5"
-                    onClick={() => handleRemoveTag(word, i)}
+                    onClick={() => handleRemoveTag(i)}
                   />
                 </div>
               ))}
@@ -124,24 +125,35 @@ const NewGigForm = ({ gigDetails, setGigDetails }) => {
         <DropdownList
           lists={allCategory}
           label={"Category"}
-          gigDetails={gigDetails}
-          handleFormValues={handleFormValues}
+          value={gigDetails?.category}
+          setValue={setValue}
         />
 
         <FileUpload
           multiple={false}
-          label={"Upload cover image"}
+          label={
+            <>
+              Upload cover image
+              <span className="text-[#EF476F]"> *</span>
+            </>
+          }
           maxLength={1}
           selectedFileColumn={1}
-          onChange={(e) => handleFormValues(e, "coverPicture")}
+          remove={removeCoverPicture}
+          setValue={setValue}
+          name={"coverPicture"}
+          value={gigDetails?.coverPicture || []}
         />
 
         <FileUpload
           multiple={true}
           maxLength={5}
-          label={"Upload multiple images (maximum 5)"}
+          label={<>Upload multiple images (maximum 5)</>}
           selectedFileColumn={2}
-          onChange={(e) => handleFormValues(e, "coverPicture")}
+          remove={removeImages}
+          setValue={setValue}
+          name={"images"}
+          value={gigDetails?.images || []}
         />
       </div>
     </div>

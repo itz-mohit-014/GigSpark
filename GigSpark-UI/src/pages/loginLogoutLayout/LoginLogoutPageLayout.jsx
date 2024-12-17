@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React, { lazy, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LoginLogoutFormImage from "./LoginLogoutFormImage";
 import { hideAuthenticatePage } from "../../slices/showLoginForm.slice";
@@ -17,6 +17,13 @@ const AuthLayout = () => {
   const handlePreventCloseForm = (e) => {
     e.stopPropagation();
   };
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [])
 
   return (
     <div

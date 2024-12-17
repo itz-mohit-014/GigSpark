@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Label } from "./label";
 import { LabelInputContainer } from "../forms/InputBoxUtils";
 import {
@@ -10,7 +10,13 @@ import {
   SelectValue,
 } from "./select";
 
-const DropdownList = ({ lists, label, gigDetails, handleFormValues }) => {
+const DropdownList = ({ lists, label, setValue, value }) => {
+  const [selectValue, setSelectedValue] = useState(value);
+
+  const handleSelectCotegory = (id) => {
+    setSelectedValue(id);
+    setValue("category", id);
+  };
 
   return (
     <LabelInputContainer>
@@ -24,8 +30,8 @@ const DropdownList = ({ lists, label, gigDetails, handleFormValues }) => {
         htmlFor={label}
         className={"text-lg text-gray-500"}
       />
-      <Select value={gigDetails?.category} onValueChange={(e) => handleFormValues(e, "category")}>
-        <SelectTrigger className="w-full">
+      <Select onValueChange={handleSelectCotegory} value={selectValue}>
+        <SelectTrigger className="w-full border-gray-300 shadow-input border-2 text-base">
           <SelectValue placeholder="Select a category" />
         </SelectTrigger>
         <SelectContent>

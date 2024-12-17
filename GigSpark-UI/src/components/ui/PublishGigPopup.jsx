@@ -1,20 +1,28 @@
-import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { setCurrentStep } from "../../slices/formSteps";
 import { useDispatch } from "react-redux";
 
-const PublishGigPopup = () => {
+const PublishGigPopup = ({reset}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onClose = () => {
-    navigate(-1);
+    reset();
     onUpdate();
+    navigate(-1)
   };
 
   const onUpdate = () => {
     dispatch(setCurrentStep(1));
   };
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = "auto"
+    }
+  }, [])
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">

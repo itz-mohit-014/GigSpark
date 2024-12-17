@@ -3,7 +3,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { cn } from "../../lib/utils";
 
-const ViewSelectedFile = ({ file, setFiles }) => {
+const ViewSelectedFile = ({ file, setFiles, idx, remove }) => {
   const [imagePreview, setImagePreview] = useState(null);
 
   const handleImagePreview = (file) => {
@@ -16,7 +16,8 @@ const ViewSelectedFile = ({ file, setFiles }) => {
   };
 
   const handleRemoveFile = () => {
-    setFiles((prev) => prev.filter((item) => item?.name !== file?.name));
+    setFiles((prev) => prev.filter((_, currentIndex) => currentIndex !== idx));
+    remove(idx);
   };
 
   useEffect(() => {

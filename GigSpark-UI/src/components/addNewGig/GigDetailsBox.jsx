@@ -4,7 +4,10 @@ import "react-quill/dist/quill.snow.css";
 import { LabelInputContainer } from "../forms/InputBoxUtils";
 import { Label } from "../ui/label";
 
-const RichTextEditor = ({handleFormValues, gigDetails}) => {
+const RichTextEditor = ({ setValue, value }) => {
+  const handleGigDescription = (value) => {
+    setValue("description", value);
+  };
 
   return (
     <LabelInputContainer className={"space-y-0"}>
@@ -18,20 +21,35 @@ const RichTextEditor = ({handleFormValues, gigDetails}) => {
         }
       />
       <ReactQuill
-        value={gigDetails?.description}
-        onChange={(e) => handleFormValues(e, "description")}
+        value={value}
+        onChange={handleGigDescription}
         theme="snow"
         placeholder="Enter Gig full details here..."
-        className="mb-4 bg-white rounded-md"
+        className="mb-4"
       />
       <style>
-        {` /* basic style for the text area */
-          .ql-editor {
-            min-height: 12rem;
-            font-size:1rem;
-            color: #6b7280 ;
+        {`
+          .ql-container.ql-snow {
+            border:2px solid #ccc;
+            border-bottom-right-radius:8px;
+            border-bottom-left-radius:8px;
+            }
+            .ql-toolbar.ql-snow {
+              border:2px solid #ccc;
+              border-top-right-radius:8px;
+              border-top-left-radius:8px;
+              // overflow-x:auto;
           }
-        `}
+           .ql-editor {
+              min-height:8rem;
+              color:#6b7280;
+              font-size:1rem;
+            }
+              .ql-editor.ql-blank::before{
+                font-style:normal;
+                 color:rgba(0, 0, 0, 0.4);
+              }
+          `}
       </style>
     </LabelInputContainer>
   );

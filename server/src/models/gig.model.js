@@ -30,7 +30,7 @@ const gigSchema = new Schema(
     },
     tags: {
       type: { experties: [String] },
-      required: true,
+      // required: true,
     },
     services: {
       type: Schema.Types.ObjectId,

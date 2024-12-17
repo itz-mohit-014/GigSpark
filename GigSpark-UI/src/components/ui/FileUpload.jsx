@@ -3,21 +3,22 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import ViewSelectedFile from "./OpenSelectedImage";
 
 export const FileUpload = ({
-  onChange,
   multiple,
   label,
   maxLength,
   selectedFileColumn,
-  gigDetails,
-  handleFormValues,
+  remove,
+  name,
+  setValue,
+  value
 }) => {
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState(value || []);
   const fileInputRef = useRef(null);
 
   const handleFileChange = (newFiles) => {
     const updateFiles = [...files, ...newFiles].slice(-maxLength);
     setFiles(updateFiles);
-    onChange && onChange(newFiles);
+    setValue(name, updateFiles);
   };
 
   const handleClick = () => {
@@ -25,10 +26,10 @@ export const FileUpload = ({
   };
 
   return (
-    <div className="border-2 py-2 border-dashed dark:bg-black border-neutral-300 dark:border-neutral-800 rounded-lg">
+    <div className="border-2 pt-2  border-dashed dark:bg-black border-neutral-300 dark:border-neutral-800 rounded-lg">
       <div
         onClick={handleClick}
-        className="p-1.5 group/file block rounded-lg cursor-pointer w-full relative overflow-hidden text-gray-500"
+        className="p-1.5 pb-3 group/file block rounded-lg cursor-pointer w-full relative overflow-hidden text-gray-500"
       >
         <input
           ref={fileInputRef}
@@ -38,7 +39,6 @@ export const FileUpload = ({
           className="absolute bg-red-500 w-full h-full top-0 left-0 hidden"
           multiple={multiple}
           max={"5"}
-          
         />
         <FaCloudUploadAlt className="text-2xl mx-3 inline-block" />
         <span className="text-sm font-medium">{label}</span>
@@ -46,7 +46,7 @@ export const FileUpload = ({
 
       {files.length > 0 && (
         <div
-          className={`relative w-full mx-auto p-2 ${
+          className={`relative w-full mx-auto p-2 border-t-2 border-gray-300 border-dashed ${
             files.length > 0 &&
             `md:grid grid-cols-${selectedFileColumn} row-auto gap-3`
           }`}
@@ -57,6 +57,7 @@ export const FileUpload = ({
               key={`file-${idx}`}
               idx={idx}
               setFiles={setFiles}
+              remove={remove}
             />
           ))}
         </div>

@@ -4,8 +4,12 @@ import {
   hideAuthenticatePage,
 } from "../slices/showLoginForm.slice";
 import axios from "axios";
-import { deleteCurrentUser, setCurrentUser } from "../slices/user.slice";
-import { removeItemFromLocalstorage, setItemsToLocalStorage } from "./localStorage";
+import { deleteCurrentUser, expireSessionTimeout, setCurrentUser, updateSessionTimeout } from "../slices/user.slice";
+import {
+  getItemsFromLocalStorage,
+  removeItemFromLocalstorage,
+  setItemsToLocalStorage,
+} from "./localStorage";
 import { User } from "./api.js";
 
 const signin_signup = (data, loadingText, requestUrl) => {
@@ -18,9 +22,11 @@ const signin_signup = (data, loadingText, requestUrl) => {
       });
       const result = response?.data;
       console.log(result);
+      const tokenExpiry = new Date().getTime() + (24 * 60 * 60 * 1000);
       if (result?.statusCode === 200) {
         dispatch(setCurrentUser(result?.data));
         setItemsToLocalStorage("user", result?.data);
+        setItemsToLocalStorage("sessionTimeout", tokenExpiry);
         dispatch(hideAuthenticatePage());
       }
       toast.success(result.message, { id: toastId });
@@ -34,17 +40,21 @@ const signin_signup = (data, loadingText, requestUrl) => {
   };
 };
 
-// data, loadingText, requestUrl,
-
 const logout = (navigate) => {
   return async (dispatch) => {
     const toastId = toast.loading("logging out...");
     try {
-      const response = await axios.get(User?.LOGOUT, { withCredentials: true });
+      const token = await getItemsFromLocalStorage("token");
+
+      const response = await axios.get(User?.LOGOUT, {
+        withCredentials: true,
+      });
+
       const result = response?.data;
       if (result?.statusCode === 200) {
         dispatch(deleteCurrentUser());
         removeItemFromLocalstorage("user");
+        removeItemFromLocalstorage("sessionTimeout");
       }
       toast.success(result.message, { id: toastId });
       navigate("/");
@@ -55,4 +65,26 @@ const logout = (navigate) => {
   };
 };
 
-export { signin_signup, logout };
+const setAndValidateUser = () => {
+    return async ( dispatch ) => {
+      const currentUser = await getItemsFromLocalStorage("user")
+      const sessionTimeout = await getItemsFromLocalStorage("sessionTimeout")
+
+      const currentTime = new Date().getTime();
+      if(!currentUser || !sessionTimeout || currentTime > sessionTimeout){
+        // expired token
+        removeItemFromLocalstorage("user");
+        removeItemFromLocalstorage("sessionTimeout");
+        dispatch(deleteCurrentUser())
+        dispatch(expireSessionTimeout())
+      }else{
+        dispatch(setCurrentUser(currentUser));
+        dispatch(updateSessionTimeout(sessionTimeout));
+      }      
+
+    } 
+}
+
+
+
+export { signin_signup, logout, setAndValidateUser };

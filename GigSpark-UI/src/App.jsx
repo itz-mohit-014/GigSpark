@@ -6,6 +6,7 @@ import AuthLayout from "./pages/loginLogoutLayout/LoginLogoutPageLayout.jsx";
 import { Toaster } from 'react-hot-toast'
 import { useEffect } from "react";
 import { fetchAllCategory } from "./utils/category.js";
+import { setAndValidateUser } from "./services/authApi.js";
 
 const App = () => {
   const { pathname } = useLocation();
@@ -14,6 +15,7 @@ const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchAllCategory())
+    dispatch(setAndValidateUser())
   }, [])
 
   return (

@@ -4,32 +4,27 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { IoTrashBin } from "react-icons/io5";
 
-const NewGigServices = () => {
-  const [features, setFeatures] = useState([]);
-  const [featuresList, setFeaturesList] = useState("");
-
-  const handleUpdateFeaturesList = () => {
-    let textArr = features.split(",");
-    textArr = textArr.filter((word) => word.trim() !== "");
-    setFeaturesList((prev) => [...prev, ...textArr]);
-    setFeatures("");
-  };
-
-  const handleRemoveFeature = (text, i) => {
-    const updateKeywordList = featuresList.filter(
-      (word, idx) => word !== text && i !== idx
-    );
+const NewGigServices = ({ setValue, register, remove, getValues, append }) => {
+  const gigDetails = getValues();
+  const [feature, setFeature] = useState("");
+  const [featuresList, setFeaturesList] = useState(gigDetails?.services?.features || []);
+  const handleRemoveFeature = (index) => {
+    const updateKeywordList = featuresList.filter((_, idx) => idx !== index);
     setFeaturesList(updateKeywordList);
+    remove(index);
   };
 
-  const handleFeatureValueByInput = (text) => {
+  const handleUpdateFeaturesList = (text) => {
     if (text.includes(",")) {
-      let textArr = features.split(",");
+      let textArr = feature.split(",");
       textArr = textArr.filter((word) => word.trim() !== "");
-      setFeaturesList((prev) => [...prev, ...textArr]);
-      setFeatures("");
+      const updatedFeatureList = [...featuresList, ...textArr];
+      setFeaturesList(updatedFeatureList);
+      append(...textArr);
+      // setValue("services.features", updatedFeatureList);
+      setFeature("");
     } else {
-      setFeatures(text);
+      setFeature(text);
     }
   };
 
@@ -51,6 +46,7 @@ const NewGigServices = () => {
           placeholder="Enter gig service title"
           type="text"
           className={"text-lg p-4 bg-gray-50"}
+          {...register("services.serviceTitle", { required: true })}
         />
       </LabelInputContainer>
       <LabelInputContainer className={"space-y-0"}>
@@ -69,6 +65,7 @@ const NewGigServices = () => {
           placeholder="Enter gig service description"
           type="text"
           className={"text-lg p-4 bg-gray-50"}
+          {...register("services.serviceDescription", { required: true })}
         />
       </LabelInputContainer>
       <LabelInputContainer className={"space-y-0"}>
@@ -87,6 +84,7 @@ const NewGigServices = () => {
           placeholder="Enter gig price"
           type="number"
           className={"text-lg p-4 bg-gray-50"}
+          {...register("services.price", { required: true })}
         />
       </LabelInputContainer>
       <LabelInputContainer className={"space-y-0"}>
@@ -105,6 +103,7 @@ const NewGigServices = () => {
           placeholder="Enter gig delivery time in days"
           type="number"
           className={"text-lg p-4 bg-gray-50"}
+          {...register("services.deliveryTime", { required: true })}
         />
       </LabelInputContainer>
       <LabelInputContainer className={"space-y-0"}>
@@ -116,8 +115,9 @@ const NewGigServices = () => {
         <Input
           id="revisions"
           placeholder="Enter gig revisions"
-          type="number"
           className={"text-lg p-4 bg-gray-50"}
+          {...register("services.revisions", { required: true })}
+          type="number"
         />
       </LabelInputContainer>
       <LabelInputContainer className={"space-y-1"}>
@@ -139,13 +139,14 @@ const NewGigServices = () => {
             id="features"
             placeholder="Enter features list here..."
             type="text"
-            value={features}
-            onChange={(e) => handleFeatureValueByInput(e.target.value)}
+            value={feature}
+            onChange={(e) => handleUpdateFeaturesList(e.target.value)}
             className={"text-lg p-4 bg-gray-50 "}
           />
           <button
-            onClick={handleUpdateFeaturesList}
-            disabled={!features}
+            type="button"
+            onClick={() => handleUpdateFeaturesList(feature+",")}
+            disabled={!feature}
             className="rounded-md border-2 border-gray-300 px-3 sm:px-8 font-medium bg-gray-950 text-gray-100 active:scale-95 max-w-fit disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300 transition-all disabled:active:scale-100"
           >
             Add
@@ -162,10 +163,13 @@ const NewGigServices = () => {
                 key={i}
                 className=" text-neutral-600 dark:text-white capitalize flex"
               >
-                <span className="flex-1"> {i + 1}. {word} </span>
+                <span className="flex-1">
+                  {" "}
+                  {i + 1}. {word}{" "}
+                </span>
                 <IoTrashBin
                   className="text-[#ef4747] cursor-pointer p-1.5 text-3xl inline-block self-end"
-                  onClick={() => handleRemoveFeature(word, i)}
+                  onClick={() => handleRemoveFeature(i)}
                 />
               </p>
             ))}

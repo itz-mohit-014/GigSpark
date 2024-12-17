@@ -8,10 +8,11 @@ import Orders from "../pages/orders/Orders";
 import Chats from "../pages/chats/Chats";
 import Message from "../pages/message/Message";
 import ScrollToTop from "../components/scrollToTop/ScrollToTop";
+import ProtectedRoute from "../components/protected/ProtectedRoute";
 
 const Home = lazy(() => import("../pages/home/Home"));
 const AddNewGig = lazy(() => import("../pages/addNewGig/AddNewGig"));
-const AllGigs = lazy(() => import("../pages/allGigs/AllGigs"))  ;
+const AllGigs = lazy(() => import("../pages/allGigs/AllGigs"));
 
 const RootLayout = () => {
   return (
@@ -31,36 +32,56 @@ const router = createBrowserRouter(
       children: [
         {
           path: "/",
-          element: <Suspense fallback={<h1>Loading...</h1> }> <Home /> </Suspense>,
+          element: (
+            <Suspense fallback={<h1>Loading...</h1>}>
+              {" "}
+              <Home />{" "}
+            </Suspense>
+          ),
         },
         {
           path: "gigs/:name",
-          element: <Suspense fallback={<h1>Loading...</h1>}> <AllGigs /> </Suspense>,
-        },
-        {
-          path: "myGigs",
-          element: <MyGigs />,
+          element: (
+            <Suspense fallback={<h1>Loading...</h1>}>
+              {" "}
+              <AllGigs />{" "}
+            </Suspense>
+          ),
         },
         {
           path: "gig/:id",
           element: <Gig />,
         },
         {
-          path: "orders",
-          element: <Orders />,
+          element: <ProtectedRoute />,
+          children: [
+            {
+              path: "myGigs",
+              element: <MyGigs />,
+            },
+            {
+              path: "orders",
+              element: <Orders />,
+            },
+            {
+              path: "messages",
+              element: <Chats />,
+            },
+            {
+              path: "message/:chatId",
+              element: <Message />,
+            },
+            {
+              path: "add-new-gig",
+              element: (
+                <Suspense fallback={<h1>Loading...</h1>}>
+                  {" "}
+                  <AddNewGig />{" "}
+                </Suspense>
+              ),
+            },
+          ],
         },
-        {
-          path: "messages",
-          element: <Chats />,
-        },
-        {
-          path: "message/:chatId",
-          element: <Message />,
-        },
-        {
-          path: "add-new-gig",
-          element: <Suspense fallback={<h1>Loading...</h1>}>  <AddNewGig  /> </Suspense>,
-        }
       ],
     },
     {
@@ -68,7 +89,8 @@ const router = createBrowserRouter(
       element: <NotFound />,
     },
   ],
-  { // safe for future updates
+  {
+    // safe for future updates
     future: {
       v7_relativeSplatPath: true,
       v7_startTransition: true,

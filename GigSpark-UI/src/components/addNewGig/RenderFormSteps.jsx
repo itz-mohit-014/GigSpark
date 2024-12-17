@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCircleCheck } from "react-icons/fa6";
 import NewGigForm from "../forms/NewGigForm";
@@ -6,26 +6,11 @@ import NewGigServices from "../forms/NewGigServices";
 import PublishGigPopup from "../ui/PublishGigPopup";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { setCurrentStep } from "../../slices/formSteps";
+import { useFieldArray, useForm } from "react-hook-form";
+import { createNewGig } from "../../utils/gig";
 
 const RenderSteps = () => {
   const currentStep = useSelector((store) => store.currentFormStep);
-  const [gigDetails, setGigDetails] = useState({
-    title: "",
-    description: "",
-    keywords: [],
-    coverPicture: "",
-    images: [],
-    category: "",
-  });
-
-  const [gigServiceDetails, setGigServiceDetails] = useState({
-    serviceTitle: "",
-    serviceDescription: "",
-    price: "",
-    deliveryTime: "",
-    revisions: 0,
-    features: [],
-  });
 
   const dispatch = useDispatch();
   const formSteps = [
@@ -38,19 +23,70 @@ const RenderSteps = () => {
     if (step < 1) step = 1;
     else if (step > 3) step = 3;
     dispatch(setCurrentStep(step));
-    console.log(gigDetails)
   };
 
-  const handleCreateNewGig = () => {
-    e.preventDefault();
-    console.log({ ...gigDetails, ...gigServiceDetails });
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    getValues,
+    control,
+    formState: { errors },
+  } = useForm();
+
+  const { remove: removeKeyword,  append: appendKeyword } = useFieldArray({
+    control,
+    name: "keywords",
+  });
+
+  const { remove: removeCoverPicture, append: appendCoverPicture } = useFieldArray({
+    control,
+    name: "coverPicture",
+  });
+
+  const { remove: removeImages, append: appendImages } = useFieldArray({ control, name: "images" });
+
+  const { remove: removeFeatures, append: appendFeatures } = useFieldArray({
+    control,
+    name: "services.features",
+  });
+
+  const handleCreateNewGig = async (data) => {
+    const formData = new FormData();
+
+    const appendArrayField = (key) => {
+      if( data[key]?.length){
+        data[key].forEach((file) => {
+          formData.append(`${key}`, file); 
+        });
+      }
+    }
+
+    Object.keys(data).forEach((key) => {
+      if(key === "coverPicture" || key === "images"){
+        appendArrayField(key)
+      } else if(key === "keywords" || key === "services"){
+        const value = JSON.stringify(data[key]);
+        formData.append(key, value)
+      } 
+      else{
+        formData.append(key, data[key])
+      }
+    })
+
+    const response = await createNewGig(formData);
+    console.log(response);
   };
 
   return (
     <div className="w-full">
       <div className="w-full flex p-6 px-10">
         {formSteps.map((step) => (
-          <div className="flex flex-col items-center gap-2 relative flex-1">
+          <div
+            className="flex flex-col items-center gap-2 relative flex-1"
+            key={step.id}
+          >
             <div className="h-10 w-10 bg-white relative z-10">
               {currentStep > step.id ? (
                 <FaCircleCheck className="text-green-600 text-xl w-10 h-10" />
@@ -90,18 +126,36 @@ const RenderSteps = () => {
         ))}
       </div>
       <div className="border-[2px] border-gray-200 rounded-lg p-6 shadow-xl">
-        <form onSubmit={(e) => handleCreateNewGig(e)}>
+        <form onSubmit={handleSubmit(handleCreateNewGig)}>
           {currentStep === 1 && (
-            <NewGigForm gigDetails={gigDetails} setGigDetails={setGigDetails} />
+            <NewGigForm
+              register={register}
+              setValue={setValue}
+              errors={errors}
+              getValues={getValues}
+              removeImages={removeImages}
+              appendImages={appendImages}
+              removeKeyword={removeKeyword}
+              appendKeyword={appendKeyword}
+              removeCoverPicture={removeCoverPicture}
+              appendCoverPicture={appendCoverPicture}
+            />
           )}
           {currentStep === 2 && (
             <NewGigServices
-              gigServiceDetails={gigServiceDetails}
-              setGigServiceDetails={setGigServiceDetails}
+              getValues={getValues}
+              register={register}
+              setValue={setValue}
+              errors={errors}
+              remove={removeFeatures}
+              append={appendFeatures}
             />
           )}
-          {currentStep === 3 && <PublishGigPopup />}
+          {currentStep === 3 && (
+            <PublishGigPopup getValues={getValues} reset={reset} />
+          )}
         </form>
+{currentStep !== 3 &&
         <div className="flex gap-2 py-8">
           <button
             className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition relative disabled:bg-gray-500 disabled:text-gray-300 disabled:cursor-not-allowed"
@@ -120,6 +174,7 @@ const RenderSteps = () => {
             <FaArrowRightLong className="inline-block text-xl ml-2" />
           </button>
         </div>
+        }
       </div>
     </div>
   );
