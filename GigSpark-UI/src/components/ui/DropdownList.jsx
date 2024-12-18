@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "./select";
 
-const DropdownList = ({ lists, label, setValue, value }) => {
+const DropdownList = ({ lists, label, setValue, value, errors }) => {
   const [selectValue, setSelectedValue] = useState(value);
 
   const handleSelectCotegory = (id) => {
@@ -44,6 +44,9 @@ const DropdownList = ({ lists, label, setValue, value }) => {
           </SelectGroup>
         </SelectContent>
       </Select>
+      {errors?.category && (
+        <p className="text-red-500 text-sm capitalize">{errors.category?.message}*</p>
+      )}
     </LabelInputContainer>
   );
 };

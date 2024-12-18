@@ -4,11 +4,19 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { IoTrashBin } from "react-icons/io5";
 
-const NewGigServices = ({ setValue, register, remove, getValues, append }) => {
+const ErrorSpan = ({message}) => {
+  return   <p className="text-red-500 text-sm capitalize">
+   {message}*
+</p>
+}
+
+const NewGigServices = ({ register, remove, getValues, append, errors }) => {
   const gigDetails = getValues();
   const [feature, setFeature] = useState("");
-  
-  const [featuresList, setFeaturesList] = useState(gigDetails?.services?.features || []);
+
+  const [featuresList, setFeaturesList] = useState(
+    gigDetails?.services?.features || []
+  );
 
   const handleRemoveFeature = (index) => {
     const updateKeywordList = featuresList.filter((_, idx) => idx !== index);
@@ -51,6 +59,7 @@ const NewGigServices = ({ setValue, register, remove, getValues, append }) => {
           className={"text-lg p-4 bg-gray-50"}
           {...register("services.serviceTitle", { required: true })}
         />
+        {errors?.services?.serviceTitle && <ErrorSpan message={"Service Title is required"}/>}
       </LabelInputContainer>
       <LabelInputContainer className={"space-y-0"}>
         <Label
@@ -70,6 +79,7 @@ const NewGigServices = ({ setValue, register, remove, getValues, append }) => {
           className={"text-lg p-4 bg-gray-50"}
           {...register("services.serviceDescription", { required: true })}
         />
+        {errors?.services?.serviceDescription && <ErrorSpan message={"Service Description is required"}/>}
       </LabelInputContainer>
       <LabelInputContainer className={"space-y-0"}>
         <Label
@@ -89,6 +99,7 @@ const NewGigServices = ({ setValue, register, remove, getValues, append }) => {
           className={"text-lg p-4 bg-gray-50"}
           {...register("services.price", { required: true })}
         />
+        {errors?.services?.price && <ErrorSpan message={"Price is required"}/>}
       </LabelInputContainer>
       <LabelInputContainer className={"space-y-0"}>
         <Label
@@ -108,6 +119,7 @@ const NewGigServices = ({ setValue, register, remove, getValues, append }) => {
           className={"text-lg p-4 bg-gray-50"}
           {...register("services.deliveryTime", { required: true })}
         />
+        {errors?.services?.deliveryTime && <ErrorSpan message={"Delivery Time is required"}/>}
       </LabelInputContainer>
       <LabelInputContainer className={"space-y-0"}>
         <Label
@@ -122,6 +134,7 @@ const NewGigServices = ({ setValue, register, remove, getValues, append }) => {
           {...register("services.revisions", { required: true })}
           type="number"
         />
+        {errors?.services?.revisions && <ErrorSpan message={"Revisions is required"}/>}
       </LabelInputContainer>
       <LabelInputContainer className={"space-y-1"}>
         <Label
@@ -148,7 +161,7 @@ const NewGigServices = ({ setValue, register, remove, getValues, append }) => {
           />
           <button
             type="button"
-            onClick={() => handleUpdateFeaturesList(feature+",")}
+            onClick={() => handleUpdateFeaturesList(feature + ",")}
             disabled={!feature}
             className="rounded-md border-2 border-gray-300 px-3 sm:px-8 font-medium bg-gray-950 text-gray-100 active:scale-95 max-w-fit disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300 transition-all disabled:active:scale-100"
           >
@@ -177,6 +190,7 @@ const NewGigServices = ({ setValue, register, remove, getValues, append }) => {
               </p>
             ))}
         </div>
+        {errors?.services?.features && <ErrorSpan message={"Features is required"}/>}
       </LabelInputContainer>
     </div>
   );

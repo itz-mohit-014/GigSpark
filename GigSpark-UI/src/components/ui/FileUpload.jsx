@@ -10,7 +10,8 @@ export const FileUpload = ({
   remove,
   name,
   setValue,
-  value
+  value,
+  errors,
 }) => {
   const [files, setFiles] = useState(value || []);
   const fileInputRef = useRef(null);
@@ -26,11 +27,12 @@ export const FileUpload = ({
   };
 
   return (
+    <>
     <div className="border-2 pt-2  border-dashed dark:bg-black border-neutral-300 dark:border-neutral-800 rounded-lg">
       <div
         onClick={handleClick}
         className="p-1.5 pb-3 group/file block rounded-lg cursor-pointer w-full relative overflow-hidden text-gray-500"
-      >
+        >
         <input
           ref={fileInputRef}
           id="file-upload-handle"
@@ -39,7 +41,7 @@ export const FileUpload = ({
           className="absolute bg-red-500 w-full h-full top-0 left-0 hidden"
           multiple={multiple}
           max={"5"}
-        />
+          />
         <FaCloudUploadAlt className="text-2xl mx-3 inline-block" />
         <span className="text-sm font-medium">{label}</span>
       </div>
@@ -50,10 +52,10 @@ export const FileUpload = ({
             files.length > 0 &&
             `md:grid grid-cols-${selectedFileColumn} row-auto gap-3`
           }`}
-        >
+          >
           {files.map((file, idx) => (
             <ViewSelectedFile
-              file={file}
+            file={file}
               key={`file-${idx}`}
               idx={idx}
               setFiles={setFiles}
@@ -62,6 +64,13 @@ export const FileUpload = ({
           ))}
         </div>
       )}
+
     </div>
+      {errors?.[name] && (
+        <p className="text-red-500 text-sm capitalize">
+          {errors?.[name]?.message}*
+        </p>
+      )}
+      </>
   );
 };

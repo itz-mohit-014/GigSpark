@@ -18,8 +18,9 @@ const AllGigs = () => {
   const [categoryInfo, setCategoryInfo] = useState(null);
 
   const getCategoryWithGigs = async () => {
-    const categoryData = await getCurrentCategoryWithAllGigs(id);
-  
+    const response = await getCurrentCategoryWithAllGigs(id);
+    const categoryData = response?.data;
+
     setCategoryInfo(categoryData);
     setAllGigCards(categoryData?.allGigs);
     setGigCards(categoryData?.allGigs);

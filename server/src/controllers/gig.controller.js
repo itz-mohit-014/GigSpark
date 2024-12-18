@@ -12,15 +12,15 @@ import {
 const getGigDetails = AsyncHandler(async (req, res) => {
   const { id } = req.params;
   const gigDetails = await Gig.findById(id)
-  .populate("services")
-  .populate({
-    path:"author",
-    select:"-password -refreshToken"
-  })
-  .populate({
-    path:"category",
-    select:"name"
-  });
+    .populate("services")
+    .populate({
+      path: "author",
+      select: "-password -refreshToken",
+    })
+    .populate({
+      path: "category",
+      select: "name",
+    });
   if (!gigDetails)
     throw new ApiError(404, "This gig may be deleted or move to another page.");
 
@@ -89,7 +89,7 @@ const addNewGig = AsyncHandler(async (req, res) => {
   const newGig = await Gig.create(gigDetails);
   if (!newGig) throw new ApiError(402, "Gig srevice details missing");
 
-  const currentCat = await Category.findByIdAndUpdate(newGig?.category)
+  const currentCat = await Category.findByIdAndUpdate(newGig?.category);
   currentCat.allGigs.push(newGig?._id);
   await currentCat.save();
 
@@ -213,36 +213,40 @@ const deleteImageFromGig = AsyncHandler(async (req, res) => {
   if (!gigDetails) throw new ApiError(404, "Gig not found.");
 
   const images = gigDetails?.images;
-  if(images.length <= 0) 
-    throw new ApiError(404, "Gig can't have images")
-  
-  const imageToBeDeleted = images.find(img => img.public_id === imageId);
-  if(!imageToBeDeleted) 
-    throw new ApiError(404, "Image not found")
+  if (images.length <= 0) throw new ApiError(404, "Gig can't have images");
+
+  const imageToBeDeleted = images.find((img) => img.public_id === imageId);
+  if (!imageToBeDeleted) throw new ApiError(404, "Image not found");
   console.log(imageToBeDeleted);
 
-  const restImages = images.filter(img => img.public_id !== imageId);
+  const restImages = images.filter((img) => img.public_id !== imageId);
 
-  const updatedGig = await Gig.findByIdAndUpdate({_id:id},{
-    images:restImages
-  }, {new: true})
-  if(!updatedGig) 
-    throw new ApiError(404, "Failed to delete image");
+  const updatedGig = await Gig.findByIdAndUpdate(
+    { _id: id },
+    {
+      images: restImages,
+    },
+    { new: true }
+  );
+  if (!updatedGig) throw new ApiError(404, "Failed to delete image");
 
   const deletedImage = await deleteImageFromCloudinary(imageToBeDeleted);
 
   console.log(deletedImage);
 
-  return res.status(200).json(
-    new ApiResponse(200, updatedGig, "Image deleted successfully")
-  )
-
+  return res
+    .status(200)
+    .json(new ApiResponse(200, updatedGig, "Image deleted successfully"));
 });
 
-const getAllGigs = AsyncHandler(async(req, res) => {
-  const allGigs = await Gig.find();
-  return res.status(200).json(new ApiResponse(200, allGigs, "Fetch all gigs successfully."))
-})
+const getAllGigs = AsyncHandler(async (req, res) => {
+  const filter = { author: req.user?._id };
+  console.log(filter);
+  const allGigs = await Gig.find(filter).populate("services");
+  return res
+    .status(200)
+    .json(new ApiResponse(200, allGigs, "Fetch all gigs successfully."));
+});
 
 export {
   getGigDetails,
@@ -252,5 +256,5 @@ export {
   updateGigImages,
   deleteGig,
   deleteImageFromGig,
-  getAllGigs
+  getAllGigs,
 };

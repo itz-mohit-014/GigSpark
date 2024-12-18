@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import { LabelInputContainer } from "../forms/InputBoxUtils";
 import { Label } from "../ui/label";
 
-const RichTextEditor = ({ setValue, value }) => {
+const RichTextEditor = ({ setValue, value, errors }) => {
   const handleGigDescription = (value) => {
     setValue("description", value);
   };
@@ -40,17 +40,22 @@ const RichTextEditor = ({ setValue, value }) => {
               border-top-left-radius:8px;
               // overflow-x:auto;
           }
-           .ql-editor {
-              min-height:8rem;
-              color:#6b7280;
-              font-size:1rem;
+          .ql-editor {
+            min-height:8rem;
+            color:#6b7280;
+            font-size:1rem;
             }
-              .ql-editor.ql-blank::before{
-                font-style:normal;
-                 color:rgba(0, 0, 0, 0.4);
+            .ql-editor.ql-blank::before{
+              font-style:normal;
+              color:rgba(0, 0, 0, 0.4);
               }
-          `}
+              `}
       </style>
+      {errors?.description && (
+        <p className="text-red-500 text-sm capitalize">
+          {errors?.description?.message}*
+        </p>
+      )}
     </LabelInputContainer>
   );
 };

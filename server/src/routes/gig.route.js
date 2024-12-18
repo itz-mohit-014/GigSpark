@@ -14,7 +14,7 @@ import { Upload } from "../middleware/multer.js";
 
 export const gigRoutes = Router();
 
-gigRoutes.route("/").get(getAllGigs)
+gigRoutes.route("/").get(verifyToken, getAllGigs)
 
 gigRoutes
   .route("/:id")

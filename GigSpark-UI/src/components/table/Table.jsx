@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-const Table = ({ data, column, bgColor, Row }) => {
-  const [itemList, setItemList] = useState(null);
+const Table = ({ data = [], setData, column, bgColor, Row }) => {
 
-  useEffect(() => {
-    setItemList(data);
-  }, []);
-
-  if (!itemList) return;
-
+  console.log(data)
+  
   return (
     <div >
       <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
@@ -22,16 +17,20 @@ const Table = ({ data, column, bgColor, Row }) => {
           </tr>
         </thead>
         <tbody>
-          {itemList.map((rowData, index) => (
+
+          { data?.length > 0 &&
+          data.map((rowData, index) => (
             <Row
-              key={index}
+              key={rowData?._id}
               rowData={rowData}
               bgColor={bgColor}
               index={index}
-              itemList={itemList}
-              setItemList={setItemList}
+              itemList={data}
+              setItemList={setData}
             />
-          ))}
+          ))
+          }
+
         </tbody>
       </table>
     </div>

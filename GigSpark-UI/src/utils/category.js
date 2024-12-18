@@ -11,7 +11,7 @@ const fetchAllCategory = () => async (dispatch) => {
       return;
     }
 
-    dispatch(setAllCategory(response))
+    dispatch(setAllCategory(response?.data))
   };
 
 const getCurrentCategoryWithAllGigs = async (id) => {

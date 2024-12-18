@@ -67,11 +67,11 @@ const NewGigForm = ({
             })}
           />
           {
-            errors.title && <p className="text-red-500 text-sm">Title is required*</p> 
+            errors.title && <p className="text-red-500 text-sm capitalize">{errors.title?.message}*</p> 
           }
         </LabelInputContainer>
 
-        <RichTextEditor setValue={setValue} value={gigDetails?.description} />
+        <RichTextEditor setValue={setValue} value={gigDetails?.description} errors={errors} />
 
         <LabelInputContainer className={"space-y-1"}>
           <Label
@@ -122,6 +122,9 @@ const NewGigForm = ({
                 </div>
               ))}
           </div>
+          {
+            errors?.keywords && <p className="text-red-500 text-sm capitalize">{errors.keywords?.message}*</p> 
+          }
         </LabelInputContainer>
 
         <DropdownList
@@ -129,6 +132,7 @@ const NewGigForm = ({
           label={"Category"}
           value={gigDetails?.category}
           setValue={setValue}
+          errors={errors}
         />
 
         <FileUpload
@@ -144,6 +148,7 @@ const NewGigForm = ({
           remove={removeCoverPicture}
           setValue={setValue}
           name={"coverPicture"}
+          errors={errors}
           value={gigDetails?.coverPicture || []}
         />
 

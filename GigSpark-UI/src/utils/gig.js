@@ -11,7 +11,7 @@ const fetchGig = async (id) => {
     return;
   }
   
-  return response;
+  return response?.data;
 };
 
 const createNewGig = async (data) => {
@@ -29,4 +29,15 @@ const createNewGig = async (data) => {
   return response;
 };
 
-export { fetchGig, createNewGig };
+const fetchMyGig = async (filter) => {
+  const { ALL_GIGS } = Gig;
+  const response = await newRequest("get", ALL_GIGS, filter);
+
+  if (typeof response === "string") {
+    toast.error(response);
+    return;
+  }
+  return response?.data;
+}
+
+export { fetchGig, createNewGig, fetchMyGig };

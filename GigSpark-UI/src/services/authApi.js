@@ -3,7 +3,6 @@ import {
   changeLoadingState,
   hideAuthenticatePage,
 } from "../slices/showLoginForm.slice";
-import axios from "axios";
 import {
   deleteCurrentUser,
   expireSessionTimeout,
@@ -16,37 +15,36 @@ import {
   setItemsToLocalStorage,
 } from "./localStorage";
 import { User } from "./api.js";
+import { newRequest } from "./newRequest.js";
 
 const signin_signup = (data, loadingText, requestUrl) => {
   return async (dispatch) => {
     dispatch(changeLoadingState(true));
     const toastId = toast.loading(loadingText);
     try {
-
-      const response = await axios.post(requestUrl, data, {
-        withCredentials: true,
-      });
-      const result = response?.data;
+      const response = await newRequest("post", requestUrl, data);
+      console.log(response)
             
       const tokenExpiry = new Date().getTime() + 24 * 60 * 60 * 1000;
       
-      if (result?.statusCode === 200) {
-        dispatch(setCurrentUser(result?.data));
+      if ( response?.success ) {
+        dispatch(setCurrentUser(response?.data));
         dispatch(updateSessionTimeout(tokenExpiry));
         
-        setItemsToLocalStorage("user", result?.data);
+        setItemsToLocalStorage("user", response?.data);
         setItemsToLocalStorage("sessionTimeout", tokenExpiry);
         
         dispatch(hideAuthenticatePage());
       }
       
-      toast.success(result.message, { id: toastId });
+      toast.success(response.message, { id: toastId });
       dispatch(changeLoadingState(false));
     
     } catch (error) {
 
-      const errMessage = error?.response?.data?.message || error?.message;
-      toast.error(errMessage, { id: toastId });
+      console.log(error)
+
+      toast.error(error, { id: toastId });
 
       dispatch(deleteCurrentUser());
       dispatch(expireSessionTimeout());
@@ -64,13 +62,10 @@ const logout = (navigate) => {
     const toastId = toast.loading("logging out...");
     try {
 
-      const response = await axios.get(User?.LOGOUT, {
-        withCredentials: true,
-      });
+      const response = await newRequest("get", User?.LOGOUT, null);
+      console.log(response)
 
-      const result = response?.data;
-
-      if (result?.statusCode === 200) {
+      if (response?.success) {
 
         dispatch(deleteCurrentUser());
         dispatch(expireSessionTimeout());
@@ -79,13 +74,11 @@ const logout = (navigate) => {
         removeItemFromLocalstorage("sessionTimeout");
       }
 
-      toast.success(result.message, { id: toastId });
+      toast.success(response?.data, { id: toastId });
       navigate("/");
 
     } catch (error) {
-
-      const errMessage = error?.response?.data?.message || error?.message;
-      toast.error(errMessage, { id: toastId });
+      toast.error(error, { id: toastId });
     }
   };
 };

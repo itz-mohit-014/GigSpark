@@ -1,22 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { gigsData } from "../../mocks/data";
 import Table from "../../components/table/Table";
 import GigsRow from "../../components/myGigs/GigsRow";
 import { useNavigate } from "react-router-dom";
+import { fetchMyGig } from "../../utils/gig";
+import { useSelector } from "react-redux";
 
 const MyGigs = () => {
   const navigate = useNavigate();
-  const columns = [
-    "Image",
-    "Title",
-    "Price",
-    "Order",
-    "Action",
-  ];
+  
+  const [myGigs, setMyGigs] = useState([]);
+  const currentUser = useSelector(store => store.user?.user) 
+
+  const columns = ["Image", "Title", "Price", "Order", "Action"];
 
   const handleAddNewGig = () => {
     navigate("/add-new-gig");
   };
+
+  const fetchAllMyGigs = async () => {
+    const response = await fetchMyGig()
+    console.log(response)
+    setMyGigs(response)
+  };
+
+  useEffect(() => {
+    fetchAllMyGigs();
+  }, []);
 
   return (
     <section className="sm:p-6">
@@ -32,7 +42,8 @@ const MyGigs = () => {
         </div>
         <div className="overflow-x-auto relative">
           <Table
-            data={gigsData}
+            data={myGigs}
+            setData={setMyGigs}
             column={columns}
             Row={GigsRow}
             bgColor={"bg-blue-50"}
