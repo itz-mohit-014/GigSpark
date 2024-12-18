@@ -18,8 +18,7 @@ const Gig = () => {
 
   const fetGigDetails = async () => {
     const currentGig  = await fetchGig(id);
-    // setGigDetails(currentGig)
-    console.log(currentGig);
+    setGigDetails(currentGig)
   };
 
   useEffect(() => {

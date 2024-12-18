@@ -7,7 +7,9 @@ import { IoTrashBin } from "react-icons/io5";
 const NewGigServices = ({ setValue, register, remove, getValues, append }) => {
   const gigDetails = getValues();
   const [feature, setFeature] = useState("");
+  
   const [featuresList, setFeaturesList] = useState(gigDetails?.services?.features || []);
+
   const handleRemoveFeature = (index) => {
     const updateKeywordList = featuresList.filter((_, idx) => idx !== index);
     setFeaturesList(updateKeywordList);
@@ -19,6 +21,7 @@ const NewGigServices = ({ setValue, register, remove, getValues, append }) => {
       let textArr = feature.split(",");
       textArr = textArr.filter((word) => word.trim() !== "");
       const updatedFeatureList = [...featuresList, ...textArr];
+
       setFeaturesList(updatedFeatureList);
       append(...textArr);
       // setValue("services.features", updatedFeatureList);

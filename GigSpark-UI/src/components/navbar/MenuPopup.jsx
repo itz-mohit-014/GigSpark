@@ -14,22 +14,10 @@ const MenuPopup = ({ handleLogoutUser, setOpenMenu }) => {
   };
 
   const linksItem = [
-    {
-      href: "/myGigs",
-      text: "Gig",
-    },
-    {
-      href: "/add-new-gig",
-      text: "Add new Gig",
-    },
-    {
-      href: "/messages",
-      text: "Messages",
-    },
-    {
-      href: "/orders",
-      text: "Orders",
-    },
+    { href: "/myGigs", text: "Gig" },
+    { href: "/add-new-gig", text: "Add new Gig" },
+    { href: "/messages", text: "Messages" },
+    { href: "/orders", text: "Orders" },
   ];
 
   const LinksIcon = [

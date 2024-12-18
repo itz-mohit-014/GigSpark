@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { categoryCardsData } from "../mocks/data";
 
-// const initialState = []
 const initialState = [];
 
 const categorySlice = createSlice({

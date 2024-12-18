@@ -1,14 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { FaSitemap } from "react-icons/fa";
 import { BsFillLightningChargeFill } from "react-icons/bs";
 import RenderSteps from "../../components/addNewGig/RenderFormSteps";
 
 export default function AddNewGig() {
-
-  const [newGigDetails, setNewGigDetails] = useState({
-    
-  })
 
   const gigUploadTips = [
     "Set your gig price or offer it for free.",

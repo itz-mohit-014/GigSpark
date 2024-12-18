@@ -3,7 +3,6 @@ import Breadcrumbs from "../../components/Breadcrumb/Breadcrumb";
 import { IoSend } from "react-icons/io5";
 import { Chats, Users } from "../../mocks/data";
 import { useParams } from "react-router-dom";
-import MessegeInputBox from "../../components/messege/MessegeInputBox";
 
 const Message = () => {
   const { chatId } = useParams();

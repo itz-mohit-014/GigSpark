@@ -10,17 +10,21 @@ import AllGigsShimmerUi from "../../components/ui/shimmerUI/AllGigs";
 const AllGigs = () => {
   const query = useUrlParse();
   const id = query.get("source");
+  
   const { pathname } = useLocation();
+  
   const [AllGigCards, setAllGigCards] = useState([]);
   const [GigCards, setGigCards] = useState(AllGigCards);
   const [categoryInfo, setCategoryInfo] = useState(null);
 
   const getCategoryWithGigs = async () => {
     const categoryData = await getCurrentCategoryWithAllGigs(id);
+  
     setCategoryInfo(categoryData);
     setAllGigCards(categoryData?.allGigs);
     setGigCards(categoryData?.allGigs);
   };
+
   useEffect(() => {
     getCategoryWithGigs();
   }, [pathname]);

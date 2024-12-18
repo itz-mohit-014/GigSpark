@@ -18,7 +18,9 @@ const SortFilter = ({ AllGigCards, setGigCards }) => {
   const handleFilter = () => {
     const { min, max } = budgetFilter;
     if (!min && !max) return;
+
     let updateList = [];
+    
     if (max === "") {
       updateList = AllGigCards.filter((gig) => gig?.services?.price >= +min);
     } else if (min === "") {

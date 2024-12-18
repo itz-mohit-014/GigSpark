@@ -51,7 +51,7 @@ const router = createBrowserRouter(
           path: "gig/:id",
           element: <Gig />,
         },
-        {
+        { path:"/",
           element: <ProtectedRoute />,
           children: [
             {

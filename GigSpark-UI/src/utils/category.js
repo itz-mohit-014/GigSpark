@@ -10,12 +10,14 @@ const fetchAllCategory = () => async (dispatch) => {
       toast.error(response);
       return;
     }
+
     dispatch(setAllCategory(response))
   };
 
 const getCurrentCategoryWithAllGigs = async (id) => {
     const { SINGLE_CATEGORY } = Category;
     const response = await newRequest("get", SINGLE_CATEGORY(id), null);
+    
     if (typeof response === "string") {
       toast.error(response);
       return;

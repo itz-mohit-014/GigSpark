@@ -10,12 +10,15 @@ import { setAndValidateUser } from "./services/authApi.js";
 
 const App = () => {
   const { pathname } = useLocation();
-  const showAuthForm = useSelector((store) => store.showAuthForm?.isAuthenticate);
+  const showAuthForm = useSelector((store) => store.showAuthForm?.showLoginForm);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
+
     dispatch(fetchAllCategory())
     dispatch(setAndValidateUser())
+  
   }, [])
 
   return (

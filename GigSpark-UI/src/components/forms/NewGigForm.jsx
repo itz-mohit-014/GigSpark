@@ -21,6 +21,7 @@ const NewGigForm = ({
   const gigDetails = getValues();
   const [keywords, setKeywords] = useState(gigDetails?.keywords || []);
   const [keywordInput, setKeywordInput] = useState("");
+
   const allCategory = useSelector((store) => store.category);
 
   const handleRemoveTag = (index) => {
@@ -33,6 +34,7 @@ const NewGigForm = ({
     if (text.includes(",")) {
       let textArr = keywordInput.split(",");
       textArr = textArr.filter((word) => word.trim() !== "");
+
       setKeywords((prev) => [...prev, ...textArr]);
       setKeywordInput("");
       appendKeyword(...textArr);

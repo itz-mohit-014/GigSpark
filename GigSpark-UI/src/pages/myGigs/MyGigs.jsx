@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { dummyUserInfo, gigsData } from "../../mocks/data";
+import React from "react";
+import { gigsData } from "../../mocks/data";
 import Table from "../../components/table/Table";
 import GigsRow from "../../components/myGigs/GigsRow";
 import { useNavigate } from "react-router-dom";

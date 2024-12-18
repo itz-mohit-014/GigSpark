@@ -8,7 +8,7 @@ const CategoryMenuListShimmerUi = () => {
       {categoryItems.map((_, index) => (
         <li
         key={index}
-          className="rounded-full h-3 w-24 bg-gray-300 animate-pulse inline-block duration-700 shrink-0"
+          className="rounded-full h-3 w-24 bg-gray-300 animate-pulse inline-block duration-1000 shrink-0"
         />
       ))}
     </>

@@ -19,9 +19,11 @@ const Navbar = () => {
   const [active, setActive] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const [activeHamburMenu, setActiveHamburMenu] = useState(false);
+
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+
   const currentUser = useSelector((store) => store.user.user);
 
   const changeBg = () => {

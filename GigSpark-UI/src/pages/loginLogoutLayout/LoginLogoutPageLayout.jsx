@@ -7,7 +7,7 @@ import SignUpForm from "../../components/forms/SignUpForm";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
 const AuthLayout = () => {
-  const showAuthForm = useSelector((store) => store.showAuthForm?.isAuthenticate);
+  const showAuthForm = useSelector((store) => store.showAuthForm?.showLoginForm);
   const dispatch = useDispatch();
 
   const handleHideForm = () => {

@@ -5,17 +5,22 @@ import { Users } from "../../mocks/data";
 const MessagesRow = ({ rowData, bgColor, index, itemList, setItemList }) => {
 
   const handleMarkReadMessages = (chat, msgId) => {
+
     const Chats = [...itemList];
     const userIndex = Chats.findIndex(user => user.id === chat.id);
+
     if(userIndex === -1) return;
+    
     const message = Chats[userIndex]?.messages.find(msg => msg.id === msgId);
     message.isRead = true;
+    
     setItemList(Chats);
   };
 
   const handleRemainTime = (date) => {
     const sentDate = new Date(date);
     const currentDate = new Date();
+
     const diffYear = currentDate.getFullYear() - sentDate.getFullYear();
     const diffMonth = currentDate.getMonth() - sentDate.getMonth();
     const diffDate = currentDate.getDate() - sentDate.getDate();
@@ -28,6 +33,7 @@ const MessagesRow = ({ rowData, bgColor, index, itemList, setItemList }) => {
     else if (diffHour) return `${diffHour} hour ago`;
     else if (diffMin) return `${diffMin} min ago`;
     else return `just now`;
+    
   };
   //  sender will always in data...
   const sender = Users.find((user) => user.id === rowData.user?.sender);

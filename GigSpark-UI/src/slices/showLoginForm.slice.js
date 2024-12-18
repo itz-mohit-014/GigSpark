@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isAuthenticate: null,
+  showLoginForm: null,
   isLoading: false,
 };
 
@@ -10,10 +10,10 @@ const authenticateSlice = createSlice({
   initialState,
   reducers: {
     showAuthenticatePage: (state, action) => {
-        state.isAuthenticate = action.payload
+        state.showLoginForm = action.payload
     },
     hideAuthenticatePage: (state, action) => {
-        state.isAuthenticate = null
+        state.showLoginForm = null
     },
     changeLoadingState: (state, action) => {
         state.isLoading = action.payload

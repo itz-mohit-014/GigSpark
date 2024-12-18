@@ -6,8 +6,10 @@ export const newRequest = async (method, url, data, options="") => {
       withCredentials: true,
         ...options,
     });
+
     if (response?.status) return response?.data?.data;
   } catch (error) {
+    
     const errMessage = error?.response?.data?.message || error?.message;
     return errMessage;
   }

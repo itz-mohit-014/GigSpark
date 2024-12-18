@@ -5,10 +5,12 @@ import { newRequest } from "../services/newRequest";
 const fetchGig = async (id) => {
   const { SINGLE_GIG } = Gig;
   const response = await newRequest("get", SINGLE_GIG(id), null);
+
   if (typeof response === "string") {
     toast.error(response);
     return;
   }
+  
   return response;
 };
 
@@ -19,6 +21,7 @@ const createNewGig = async (data) => {
       "Content-Type": "multipart/form-data",
     },
   });
+  
   if (typeof response === "string") {
     toast.error(response);
     return;
