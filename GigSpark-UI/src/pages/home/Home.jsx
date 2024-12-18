@@ -15,30 +15,39 @@ const Home = () => {
   return (
     <main className="space-y-16">
       <Hero />
-      {AllCategories.length <= 0 ? (
-        <Slider
-          title={<p className="h-6 rounded-full w-60 bg-gray-300 animate-pulse"></p>}
-          Item={CategoryCardShimmerUI}
-          data={Array(8).fill(0)}
-          cardLimit={"sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"}
-        />
-      ) : (
-        <Slider
-          title={"Popular services"}
-          Item={GigsCard}
-          data={AllCategories}
-          cardLimit={"sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"}
-        />
-      )}
+      <div className="max-w-screen-xl mx-auto p-4 sm:p-6">
+        {AllCategories.length <= 0 ? (
+          <Slider
+            title={
+              <p className="h-6 rounded-full w-60 bg-gray-300 animate-pulse"></p>
+            }
+            Item={CategoryCardShimmerUI}
+            data={Array(8).fill(0)}
+            cardLimit={"sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"}
+            className={"md:px-8 px-6 max-w-screen-xl"}
+          />
+        ) : (
+          <Slider
+            title={"Popular services"}
+            Item={GigsCard}
+            data={AllCategories}
+            cardLimit={"sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"}
+            className={"md:px-8 px-6 max-w-screen-xl"}
+          />
+        )}
+      </div>
       <FeatureSection />
       <BusinessFeatures />
 
-      <Slider
-        title={"Guides to help you grow"}
-        Item={ProjectCard}
-        data={projectsData}
-        cardLimit={"basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"}
-      />
+      <div className="max-w-screen-xl mx-auto">
+        <Slider
+          title={"Guides to help you grow"}
+          Item={ProjectCard}
+          data={projectsData}
+          cardLimit={"basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"}
+          className={"md:px-8 px-6 max-w-screen-xl"}
+        />
+      </div>
     </main>
   );
 };

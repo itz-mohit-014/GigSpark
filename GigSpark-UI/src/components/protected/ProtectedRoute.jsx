@@ -14,9 +14,6 @@ const ProtectedRoute = () => {
 
   const currentUser = useSelector((store) => store.user?.user);
   const sessionExpiry = useSelector((store) => store.user?.sessionTimeout);
-  
-  console.log(currentUser)
-  console.log(sessionExpiry)
 
   const showLoginForm = useSelector(
     (store) => store.showAuthForm?.showLoginForm
@@ -27,7 +24,6 @@ const ProtectedRoute = () => {
     const currentTime = new Date().getTime();
 
       if (!currentUser || !sessionExpiry || currentTime > sessionExpiry) {
-        console.log('run cleanup')
 
         removeItemFromLocalstorage("user");
         removeItemFromLocalstorage("sessionTimeout");

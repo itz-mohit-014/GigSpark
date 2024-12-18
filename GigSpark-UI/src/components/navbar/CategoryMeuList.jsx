@@ -1,6 +1,7 @@
 import LinkEl from "../ui/Link";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 import CategoryMenuListShimmerUi from "../ui/shimmerUI/CategoryMenuList";
+import CategoryCarousel from "../slider/Slider";
 
 const CategoryMeuList = () => {
   const allCategory = useSelector((state) => state.category);
@@ -8,21 +9,32 @@ const CategoryMeuList = () => {
   return (
     <>
       <hr className="w-full border-gray-300" />
-      <div className="max-w-screen-xl mx-auto px-4 py-2 relative">
-        <ul className="flex gap-5 justify-between text-gray-400 text-sm whitespace-nowrap px-8 overflow-x-auto scrollbar-hidden">
-        { allCategory.length  <= 0 
-        ? <CategoryMenuListShimmerUi/>  
-          : allCategory.map(( category ) => (
-            <LinkEl
-              key={category._id}
-              href={`/gigs/${category.name.split(" ").join("-").toLowerCase()}?source=${category._id}`}
-              children={category.name}
-              className="px-2 text-blue-950 font-semibold transition-colors duration-300"
+      <div className="max-w-screen-xl mx-auto relative py-2">
+        <ul className="py-0.5 px-4">
+          {allCategory.length <= 0 ? (
+            <CategoryMenuListShimmerUi />
+          ) : (
+            <CategoryCarousel
+              Item={List}
+              data={allCategory}
+              cardLimit={"basis-auto mr-4 sm:mr-8 lg:mr-12"}
             />
-          ))}
+          )}
         </ul>
       </div>
     </>
+  );
+};
+
+const List = ({ card }) => {
+  return (
+    <LinkEl
+      href={`/gigs/${card.name.split(" ").join("-").toLowerCase()}?source=${
+        card._id
+      }`}
+      children={card.name}
+      className="px-2 text-nowrap text-gray-500 hover:text-gray-900 text-sm font-medium transition-colors duration-300"
+    />
   );
 };
 
