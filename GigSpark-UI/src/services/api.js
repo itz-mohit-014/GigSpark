@@ -25,3 +25,9 @@ export const Gig = {
     UPDATE_GIG_SERVICE : (id) =>  `${BASE_URL}/gig/${id}/update-services`,
     UPDATE_GIG_IMAGES : (id, imageId) =>  `${BASE_URL}/gig/${id}/update-images`,
 }
+
+export const Payment = {
+    GET_MY_ORDERS : BASE_URL + "/orders",
+    CREATE_NEW_ORDER: BASE_URL +"/orders/new" ,
+    VERIFY_PAYMENT: BASE_URL +"/orders/verify"
+}

@@ -24,7 +24,9 @@ const signin_signup = (data, loadingText, requestUrl) => {
     try {
       const response = await newRequest("post", requestUrl, data);
       console.log(response)
-            
+
+      if(typeof response === "string") throw response;
+
       const tokenExpiry = new Date().getTime() + 24 * 60 * 60 * 1000;
       
       if ( response?.success ) {
@@ -64,6 +66,8 @@ const logout = (navigate) => {
 
       const response = await newRequest("get", User?.LOGOUT, null);
       console.log(response)
+
+      if(typeof response === "string") throw response;
 
       if (response?.success) {
 

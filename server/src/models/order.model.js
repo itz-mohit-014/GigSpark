@@ -18,9 +18,9 @@ const orderSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    payment_intent: {
-      type: String,
-      required: true,
+    paymentIntentId: {
+      type: Schema.Types.ObjectId,
+      ref: "Payment",
     },
   },
   { timestamps: true }

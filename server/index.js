@@ -1,4 +1,7 @@
 import dotenv from "dotenv";
+dotenv.config({
+  path:"./.env"
+});
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -6,9 +9,6 @@ import router from "./src/routes/router.js";
 import dbConnection from "./src/db/dbConnection.js";
 import { cloudinaryConfig } from "./src/utils/cloudinary.js";
 
-dotenv.config({
-  path:"./.env"
-});
 
 const app = express();
 const port = process.env.PORT;

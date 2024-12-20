@@ -58,7 +58,7 @@ const Gig = () => {
           <GigDetails details={gigDetails} />
           <div className="lg:hidden block my-6">
             {" "}
-            <ServiceCard data={services} />{" "}
+            <ServiceCard data={services} produceId={gigDetails?._id} />{" "}
           </div>
           <Faqs />
           <Review rating={rating} />

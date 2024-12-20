@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { RiSpeakLine } from "react-icons/ri";
 import { SlLocationPin } from "react-icons/sl";
 import StarRating from "../ui/StarRating";
 import { FiMessageCircle } from "react-icons/fi";
@@ -27,7 +26,7 @@ const UserProfileCard = ({ data, rating }) => {
     headline,
     bio,
   } = userInfo;
-  console.log(userInfo);
+
   const fullName = `${firstName} ${lastName}`;
   return (
     <div className="my-3 border-gray-400 rounded-md py-6">

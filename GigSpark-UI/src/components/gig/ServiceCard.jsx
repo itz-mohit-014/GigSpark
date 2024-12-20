@@ -1,14 +1,23 @@
 import React, { useState } from "react";
+import { useSelector } from 'react-redux'
 // icons
 import { IoIosArrowDown } from "react-icons/io";
 import { GrPowerCycle } from "react-icons/gr";
 import { FaCheck, FaArrowRightLong } from "react-icons/fa6";
 import { MdOutlineTimer } from "react-icons/md";
+import { handlePayment } from "../../utils/placeOrder";
 
-const ServiceCard = ({ data }) => {
+const ServiceCard = ({ data, produceId }) => {
   const [open, setOpen] = useState(false);
   const { price, serviceTitle, serviceDescription, features, deliveryTime, revisions } = data;
-  // deliverdTime, revisions,
+
+  const user = useSelector(store => store?.user?.user)
+  console.log(user, produceId)
+
+  const handleCheckout = () => {
+    handlePayment(produceId, user?.email);
+  }
+
   return (
     <div className="static top-0 lg:ml-auto lg:max-w-sm w-full min-w-[320px] bg-white border border-gray-300 rounded-sm  p-6 font-primary space-y-2">
       <div className="flex items-center justify-between space-x-2 pb-2 mt-3">
@@ -60,7 +69,7 @@ const ServiceCard = ({ data }) => {
         )}
       </div>
 
-      <button className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition relative">
+      <button className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition relative" onClick={handleCheckout}>
         Continue
         <FaArrowRightLong className="inline-block text-xl mr-auto absolute right-4 top-2.5" />
       </button>

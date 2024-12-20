@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { dummyUserInfo, gigsData } from "../../mocks/data";
 import Table from "../../components/table/Table";
 import OrderRow from "../../components/orders/OrderRow";
+import { fetchAllOrder } from "../../utils/placeOrder";
 
 const Orders = () => {
   const columns = [
@@ -12,6 +13,17 @@ const Orders = () => {
     "Contact",
   ];
 
+  const [ orders, setOrders ] = useState([])
+
+  const fetchMyOrders = async() => {
+    const data =await fetchAllOrder();
+    setOrders(data);
+  }
+
+  useEffect(( ) => {
+    fetchMyOrders();
+  }, [])
+
   return (
     <section className="sm:p-6">
       <div className="max-w-screen-xl mx-auto p-6 ">
@@ -20,7 +32,7 @@ const Orders = () => {
         </div>
         <div className="overflow-x-auto">
           <Table
-            data={gigsData}
+            data={orders}
             column={columns}
             Row={OrderRow}
             bgColor={"bg-blue-50"}

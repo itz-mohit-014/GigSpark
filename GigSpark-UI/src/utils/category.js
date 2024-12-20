@@ -10,7 +10,7 @@ const fetchAllCategory = () => async (dispatch) => {
       toast.error(response);
       return;
     }
-
+    toast.success(response?.message)
     dispatch(setAllCategory(response?.data))
   };
 
@@ -22,6 +22,7 @@ const getCurrentCategoryWithAllGigs = async (id) => {
       toast.error(response);
       return;
     }
+    toast.success(response?.message)
     return response
 }
 

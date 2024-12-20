@@ -4,11 +4,14 @@ import Table from "../../components/table/Table";
 import GigsRow from "../../components/myGigs/GigsRow";
 import { useNavigate } from "react-router-dom";
 import { fetchMyGig } from "../../utils/gig";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteCurrentUser, expireSessionTimeout } from "../../slices/user.slice";
+import toast from "react-hot-toast";
 
 const MyGigs = () => {
   const navigate = useNavigate();
-  
+  const dispatch = useDispatch();
+
   const [myGigs, setMyGigs] = useState([]);
   const currentUser = useSelector(store => store.user?.user) 
 
@@ -21,7 +24,12 @@ const MyGigs = () => {
   const fetchAllMyGigs = async () => {
     const response = await fetchMyGig()
     console.log(response)
-    setMyGigs(response)
+    if(typeof response !== 'string'){
+      setMyGigs(response)
+    }else{
+      dispatch(deleteCurrentUser());
+      dispatch(expireSessionTimeout());
+    }
   };
 
   useEffect(() => {

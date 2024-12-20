@@ -49,7 +49,7 @@ const RenderSteps = () => {
         });
 
         console.log(errors);
-        // return;
+        return;
       }
     } else if (step == 3) {
       const emptyField2 = Object.entries(data?.services).filter(
@@ -67,7 +67,7 @@ const RenderSteps = () => {
         });
 
         console.log(errors);
-        // return;
+        return;
       }
     }
 

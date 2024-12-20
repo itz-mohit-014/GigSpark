@@ -5,7 +5,7 @@ import { Slide } from "./Slide";
 
 const CategoryCarousel = ({ title, data, Item, cardLimit, className }) => {
   return (
-    <div className="space-y-16">
+    <div className="space-y-16 w-[calc(100%-16px)]">
       {title && (
         <h1 className="text-3xl md:text-4xl font-secondary">{title}</h1>
       )}

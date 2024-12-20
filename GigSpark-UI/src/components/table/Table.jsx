@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const Table = ({ data = [], setData, column, bgColor, Row }) => {
-
-  console.log(data)
-  
+    
   return (
     <div >
       <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">

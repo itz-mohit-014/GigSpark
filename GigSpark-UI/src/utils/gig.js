@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 import { Gig } from "../services/api";
 import { newRequest } from "../services/newRequest";
+import { removeItemFromLocalstorage } from "../services/localStorage";
 
 const fetchGig = async (id) => {
   const { SINGLE_GIG } = Gig;
@@ -10,7 +11,7 @@ const fetchGig = async (id) => {
     toast.error(response);
     return;
   }
-  
+  toast.success(response?.message);
   return response?.data;
 };
 
@@ -26,6 +27,7 @@ const createNewGig = async (data) => {
     toast.error(response);
     return;
   }
+  toast.success(response?.message);
   return response;
 };
 
@@ -33,10 +35,17 @@ const fetchMyGig = async (filter) => {
   const { ALL_GIGS } = Gig;
   const response = await newRequest("get", ALL_GIGS, filter);
 
+  if ( response === "Unauthorized request" || response === "Invalid Access Token" ) {
+    // reset if token is expired or removed...
+    removeItemFromLocalstorage("user");
+    removeItemFromLocalstorage("sessionTimeout");
+  }
+
   if (typeof response === "string") {
     toast.error(response);
-    return;
+    return response;
   }
+  toast.success(response?.message);
   return response?.data;
 }
 

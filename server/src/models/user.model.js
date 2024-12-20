@@ -56,6 +56,9 @@ const UserSchema = new Schema(
     skills: {
       type: [String],
     },
+    orders:[{
+      
+    }],
     refreshToken: {
       type: String,
     },
