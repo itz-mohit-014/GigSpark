@@ -10,6 +10,8 @@ import Message from "../pages/message/Message";
 import ScrollToTop from "../components/scrollToTop/ScrollToTop";
 import ProtectedRoute from "../components/protected/ProtectedRoute";
 import PageLoader from "../components/ui/PageLoader";
+import ExploreCategories from "../pages/explore/ExploreCategories";
+import BecomeA_Selller from "../pages/become_Seller/BecomeA_Selller";
 
 const Home = lazy(() => import("../pages/home/Home"));
 const AddNewGig = lazy(() => import("../pages/addNewGig/AddNewGig"));
@@ -40,9 +42,17 @@ const router = createBrowserRouter(
           ),
         },
         {
+          path: "/explore-categories",
+          element: <ExploreCategories />,
+        },
+        {
+          path: "/become-a-seller",
+          element: <BecomeA_Selller />,
+        },
+        {
           path: "gigs/:name",
           element: (
-            <Suspense fallback={<PageLoader/>}>
+            <Suspense fallback={<PageLoader />}>
               <AllGigs />
             </Suspense>
           ),
@@ -51,7 +61,8 @@ const router = createBrowserRouter(
           path: "gig/:id",
           element: <Gig />,
         },
-        { path:"/",
+        {
+          path: "/",
           element: <ProtectedRoute />,
           children: [
             {
@@ -73,7 +84,7 @@ const router = createBrowserRouter(
             {
               path: "add-new-gig",
               element: (
-                <Suspense fallback={<PageLoader/>}>
+                <Suspense fallback={<PageLoader />}>
                   <AddNewGig />
                 </Suspense>
               ),

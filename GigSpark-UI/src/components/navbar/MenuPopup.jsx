@@ -7,11 +7,11 @@ import { MdAddchart } from "react-icons/md";
 
 import LinkEl from "../ui/Link";
 import Button from "../ui/Button";
+import { useSelector } from "react-redux";
 
 const MenuPopup = ({ handleLogoutUser, setOpenMenu }) => {
-  const currentUser = {
-    isSeller: true,
-  };
+
+  const currentUser = useSelector(store => store?.user?.user)
 
   const linksItem = [
     { href: "/myGigs", text: "Gig" },

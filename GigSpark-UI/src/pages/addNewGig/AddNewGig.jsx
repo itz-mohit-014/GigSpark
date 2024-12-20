@@ -1,8 +1,10 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { FaSitemap } from "react-icons/fa";
 import { BsFillLightningChargeFill } from "react-icons/bs";
 import RenderSteps from "../../components/addNewGig/RenderFormSteps";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function AddNewGig() {
 
@@ -14,6 +16,22 @@ export default function AddNewGig() {
     "Add extras, FAQs, and guidelines in the details section.",
     "Fill the Additional Data section for gig details.",
   ];
+
+  const currentUser = useSelector(store => store?.user?.user)
+  const navigate = useNavigate();
+  
+
+  
+  useEffect(() => {
+    
+    if(!currentUser?.isSeller){
+      navigate(-1);
+      return;
+    }
+    
+  })
+  
+  if(!currentUser?.isSeller) return;
 
   return (
     <section className="sm:p-6 pt-0 bg-white dark:bg-black">

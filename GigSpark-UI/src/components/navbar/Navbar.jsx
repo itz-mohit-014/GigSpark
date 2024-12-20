@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import CategoryMeuList from "./CategoryMeuList";
@@ -79,15 +79,38 @@ const Navbar = () => {
             }`}
           >
             <ul
-              className={`gap-3 *:font-primary *:tracking-tighter ${
+              className={`gap-1 *:font-primary *:tracking-tighter ${
                 !activeHamburMenu
                   ? "hidden"
                   : "*:tracking-wider *:p-2 space-y-2 *:text-xl"
               } md:flex`}
             >
-              <li>GigSpark Business</li>
-              <li>Explore</li>
-              {!currentUser?.isSeller && <li>Become a Seller</li>}
+              <li>
+                <Link
+                  to={"/"}
+                  className=" py-2 px-3"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={"/explore-categories"}
+                  className=" py-2 px-3"
+                >
+                  Explore
+                </Link>
+              </li>
+              {!currentUser?.isSeller && (
+                <li>
+                  <Link
+                    to={"/become-a-seller"}
+                    className=" py-2 px-3"
+                  >
+                    Become a Seller
+                  </Link>{" "}
+                </li>
+              )}
             </ul>
             {currentUser ? (
               <div

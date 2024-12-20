@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { gigsData } from "../../mocks/data";
 import Table from "../../components/table/Table";
 import GigsRow from "../../components/myGigs/GigsRow";
 import { useNavigate } from "react-router-dom";
 import { fetchMyGig } from "../../utils/gig";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCurrentUser, expireSessionTimeout } from "../../slices/user.slice";
-import toast from "react-hot-toast";
 
 const MyGigs = () => {
   const navigate = useNavigate();
@@ -33,8 +31,14 @@ const MyGigs = () => {
   };
 
   useEffect(() => {
+    if(!currentUser?.isSeller){
+      navigate(-1) 
+      return;
+    }
     fetchAllMyGigs();
   }, []);
+
+  if(!currentUser?.isSeller) return; // not autorised to access this route
 
   return (
     <section className="sm:p-6">

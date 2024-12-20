@@ -96,13 +96,29 @@ const setAndValidateUser = () => {
     const currentTime = new Date().getTime();
 
     if (!currentUser || !sessionTimeout || currentTime > sessionTimeout) {
-      // expired token or log yet loggedin...
-      removeItemFromLocalstorage("user");
-      removeItemFromLocalstorage("sessionTimeout");
+      // regenerate token and loggedin...
+      const {REFRESH_AUTH_TOKENS} = User
+      const response = await newRequest("post", REFRESH_AUTH_TOKENS)
 
-      dispatch(deleteCurrentUser());
-      dispatch(expireSessionTimeout());
-    
+      if(typeof response === "string"){
+        removeItemFromLocalstorage("user");
+        removeItemFromLocalstorage("sessionTimeout");
+
+        dispatch(deleteCurrentUser());
+        dispatch(expireSessionTimeout());
+      }
+      
+      const tokenExpiry = new Date().getTime() + 24 * 60 * 60 * 1000;
+
+      if (response?.success) {
+
+        dispatch(setCurrentUser(response?.data));
+        dispatch(updateSessionTimeout(tokenExpiry));
+        
+        setItemsToLocalStorage("user", response?.data);
+        setItemsToLocalStorage("sessionTimeout", tokenExpiry);
+      }      
+      
     } else {
       dispatch(setCurrentUser(currentUser));
       dispatch(updateSessionTimeout(sessionTimeout));
