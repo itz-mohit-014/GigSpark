@@ -4,6 +4,8 @@ import { removeItemFromLocalstorage } from "../services/localStorage";
 import { newRequest } from "../services/newRequest";
 
 const handlePayment = async (productId, email) => {
+  console.log(productId)
+
   if (!productId) return;
   console.log(productId, email);
   const { CREATE_NEW_ORDER } = Payment;

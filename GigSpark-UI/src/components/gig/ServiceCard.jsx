@@ -7,7 +7,7 @@ import { FaCheck, FaArrowRightLong } from "react-icons/fa6";
 import { MdOutlineTimer } from "react-icons/md";
 import { handlePayment } from "../../utils/placeOrder";
 
-const ServiceCard = ({ data, produceId, coverPicture }) => {
+const ServiceCard = ({ data, productId, coverPicture }) => {
   const [open, setOpen] = useState(false);
   const {
     price,
@@ -19,10 +19,11 @@ const ServiceCard = ({ data, produceId, coverPicture }) => {
   } = data;
 
   const user = useSelector((store) => store?.user?.user);
-  console.log(user, produceId);
+  console.log( productId);
 
-  const handleCheckout = () => {
-    handlePayment(produceId, user?.email);
+  const handleCheckout = (e) => {
+    // console.log(e)
+    handlePayment(productId, user?.email);
   };
 
   return (

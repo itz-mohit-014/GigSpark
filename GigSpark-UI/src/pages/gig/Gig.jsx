@@ -57,15 +57,14 @@ const Gig = () => {
           <UserProfileCard data={author} rating={rating} />
           <GigDetails details={gigDetails} />
           <div className="lg:hidden block my-6">
-            {" "}
-            <ServiceCard data={services} produceId={gigDetails?._id} />{" "}
+            <ServiceCard data={services} coverPicture={gigDetails?.coverPicture} productId={gigDetails?._id} />
           </div>
           <Faqs />
           <Review rating={rating} />
           <UserShortProfileCard id={author?._id} fullName={author?.firstName + author?.lastName} profile={author?.profile} />
         </aside>
         <aside className="w-full max-w-3xl max-lg:hidden lg:basis-1/3 lg:sticky lg:top-48">
-          <ServiceCard data={services} coverPicture={gigDetails?.coverPicture}/>
+          <ServiceCard data={services} coverPicture={gigDetails?.coverPicture} productId={gigDetails?._id} />
         </aside>
       </div>
     </section>
