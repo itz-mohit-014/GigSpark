@@ -8,7 +8,7 @@ export const User = {
     REFRESH_AUTH_TOKENS : BASE_URL + "/user/regenrate-tokens",
     CHANGE_PASSWORD : BASE_URL + "/user/change-password",
     UPDATE_PROFILE : BASE_URL + "/user/update-profile",
-    CURRENT_USER : (id) =>  `${BASE_URL}/user/${id}`,
+    VIEW_USER_PROFILE : (id) =>  `${BASE_URL}/user/${id}`,
 }
 
 export const Category = {

@@ -51,7 +51,7 @@ const Gig = () => {
           />
         </div>
         <aside className="grow max-w-3xl">
-          <h1 className="font-bold text-xl md:text-3xl text-blue-950">
+          <h1 className="font-primary font-medium text-xl md:text-3xl text-blue-950">
             {title}
           </h1>
           <UserProfileCard data={author} rating={rating} />
@@ -65,7 +65,7 @@ const Gig = () => {
           <UserShortProfileCard id={author?._id} fullName={author?.firstName + author?.lastName} profile={author?.profile} />
         </aside>
         <aside className="w-full max-w-3xl max-lg:hidden lg:basis-1/3 lg:sticky lg:top-48">
-          <ServiceCard data={services} />
+          <ServiceCard data={services} coverPicture={gigDetails?.coverPicture}/>
         </aside>
       </div>
     </section>

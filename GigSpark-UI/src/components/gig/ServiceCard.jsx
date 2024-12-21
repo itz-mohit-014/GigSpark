@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 // icons
 import { IoIosArrowDown } from "react-icons/io";
 import { GrPowerCycle } from "react-icons/gr";
@@ -7,16 +7,23 @@ import { FaCheck, FaArrowRightLong } from "react-icons/fa6";
 import { MdOutlineTimer } from "react-icons/md";
 import { handlePayment } from "../../utils/placeOrder";
 
-const ServiceCard = ({ data, produceId }) => {
+const ServiceCard = ({ data, produceId, coverPicture }) => {
   const [open, setOpen] = useState(false);
-  const { price, serviceTitle, serviceDescription, features, deliveryTime, revisions } = data;
+  const {
+    price,
+    serviceTitle,
+    serviceDescription,
+    features,
+    deliveryTime,
+    revisions,
+  } = data;
 
-  const user = useSelector(store => store?.user?.user)
-  console.log(user, produceId)
+  const user = useSelector((store) => store?.user?.user);
+  console.log(user, produceId);
 
   const handleCheckout = () => {
     handlePayment(produceId, user?.email);
-  }
+  };
 
   return (
     <div className="static top-0 lg:ml-auto lg:max-w-sm w-full min-w-[320px] bg-white border border-gray-300 rounded-sm  p-6 font-primary space-y-2">
@@ -24,7 +31,18 @@ const ServiceCard = ({ data, produceId }) => {
         <h3 className="text-lg font-semibold text-gray-800">{serviceTitle}</h3>
         <p className="text-xl font-bold text-gray-900">₹{price}</p>
       </div>
-      <p className="text-base text-gray-500 font-medium">{serviceDescription}</p>
+        <div className="flex gap-3 items-start my-6">
+          <div className="rounded-md overflow-hidden w-16 h-16 shrink-0">
+            <img
+              className="inline-block w-full h-full object-cover"
+              src={coverPicture?.url}
+              alt={serviceTitle}
+            />
+          </div>
+          <p className="text-base text-gray-500 font-medium">
+            {serviceDescription}
+          </p>
+        </div>
 
       <div className="flex items-center justify-between space-x-2">
         {deliveryTime && (
@@ -69,7 +87,10 @@ const ServiceCard = ({ data, produceId }) => {
         )}
       </div>
 
-      <button className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition relative" onClick={handleCheckout}>
+      <button
+        className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition relative"
+        onClick={handleCheckout}
+      >
         Continue
         <FaArrowRightLong className="inline-block text-xl mr-auto absolute right-4 top-2.5" />
       </button>

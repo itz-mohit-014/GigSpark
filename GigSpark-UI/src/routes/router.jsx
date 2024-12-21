@@ -10,8 +10,8 @@ import Message from "../pages/message/Message";
 import ScrollToTop from "../components/scrollToTop/ScrollToTop";
 import ProtectedRoute from "../components/protected/ProtectedRoute";
 import PageLoader from "../components/ui/PageLoader";
-import ExploreCategories from "../pages/explore/ExploreCategories";
 import BecomeA_Selller from "../pages/become_Seller/BecomeA_Selller";
+import ProfilePage from "../pages/profile/ProfilePage";
 
 const Home = lazy(() => import("../pages/home/Home"));
 const AddNewGig = lazy(() => import("../pages/addNewGig/AddNewGig"));
@@ -42,10 +42,6 @@ const router = createBrowserRouter(
           ),
         },
         {
-          path: "/explore-categories",
-          element: <ExploreCategories />,
-        },
-        {
           path: "/become-a-seller",
           element: <BecomeA_Selller />,
         },
@@ -60,6 +56,10 @@ const router = createBrowserRouter(
         {
           path: "gig/:id",
           element: <Gig />,
+        },
+        {
+          path: "profile/:userId",
+          element: <ProfilePage />,
         },
         {
           path: "/",

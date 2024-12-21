@@ -22,6 +22,7 @@ const Navbar = () => {
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
   const dispatch = useDispatch();
 
   const currentUser = useSelector((store) => store.user.user);
@@ -36,6 +37,17 @@ const Navbar = () => {
 
   const handleShowAuthPage = (formName) => {
     dispatch(showAuthenticatePage(formName));
+  };
+
+  const handlePageScrollToView = (id) => {
+    navigate("/");
+    
+    setTimeout(() => {
+      const section = document.getElementById(id);
+      if (!section) return;
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+      
+    }, 100);
   };
 
   useEffect(() => {
@@ -85,28 +97,21 @@ const Navbar = () => {
                   : "*:tracking-wider *:p-2 space-y-2 *:text-xl"
               } md:flex`}
             >
-              <li>
-                <Link
-                  to={"/"}
-                  className=" py-2 px-3"
-                >
+              <li
+                className=" py-2 px-3"
+                onClick={() => handlePageScrollToView("home")}
+              >
                   Home
-                </Link>
               </li>
-              <li>
-                <Link
-                  to={"/explore-categories"}
-                  className=" py-2 px-3"
-                >
+              <li
+                onClick={() => handlePageScrollToView("explore-categories")}
+                className=" py-2 px-3"
+              >
                   Explore
-                </Link>
               </li>
               {!currentUser?.isSeller && (
-                <li>
-                  <Link
-                    to={"/become-a-seller"}
-                    className=" py-2 px-3"
-                  >
+                <li className=" py-2 px-0">
+                  <Link to={"/become-a-seller"} className=" px-3 py-1">
                     Become a Seller
                   </Link>{" "}
                 </li>

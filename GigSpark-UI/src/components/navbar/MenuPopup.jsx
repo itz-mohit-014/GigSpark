@@ -4,6 +4,7 @@ import { FaOpencart } from "react-icons/fa6";
 import { LuMessagesSquare } from "react-icons/lu";
 import { GoProjectRoadmap } from "react-icons/go";
 import { MdAddchart } from "react-icons/md";
+import { FaRegUser } from "react-icons/fa";
 
 import LinkEl from "../ui/Link";
 import Button from "../ui/Button";
@@ -14,6 +15,7 @@ const MenuPopup = ({ handleLogoutUser, setOpenMenu }) => {
   const currentUser = useSelector(store => store?.user?.user)
 
   const linksItem = [
+    { href: `/profile/${currentUser?._id}`, text:"Profile"  },
     { href: "/myGigs", text: "Gig" },
     { href: "/add-new-gig", text: "Add new Gig" },
     { href: "/messages", text: "Messages" },
@@ -21,6 +23,7 @@ const MenuPopup = ({ handleLogoutUser, setOpenMenu }) => {
   ];
 
   const LinksIcon = [
+    FaRegUser,
     GoProjectRoadmap,
     MdAddchart,
     LuMessagesSquare,
@@ -40,7 +43,7 @@ const MenuPopup = ({ handleLogoutUser, setOpenMenu }) => {
         onClick={handleCloseMenu}
       >
         {linksItem.map((link, index) => {
-          if (!currentUser.isSeller && index < 2) return;
+          if (!currentUser.isSeller && index > 0 && index < 3) return;
           const Icon = LinksIcon[index];
           return (
             <LinkEl

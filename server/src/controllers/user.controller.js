@@ -148,7 +148,7 @@ const getUserById = AsyncHandler(async (req, res) => {
       .status(200)
       .json(new ApiResponse(200, user, "User fetch successfully"));
   } catch (error) {
-    throw new ApiError(403, "User doesn't exists with this Id");
+    throw new ApiError(404, "User doesn't exists with this Id");
   }
 });
 

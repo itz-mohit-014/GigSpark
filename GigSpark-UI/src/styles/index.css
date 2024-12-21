@@ -30,4 +30,5 @@
 :root {
   scrollbar-width: thin; 
   scrollbar-color: rgb(232, 175, 19) #f0f0f0; 
+  scroll-padding-top: 140px;
 }

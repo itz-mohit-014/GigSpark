@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { SlLocationPin } from "react-icons/sl";
+import { FaLocationDot, FaEnvelope } from "react-icons/fa6";
+import { MdRecordVoiceOver } from "react-icons/md";
+
 import StarRating from "../ui/StarRating";
-import { FiMessageCircle } from "react-icons/fi";
 
 const UserProfileCard = ({ data, rating }) => {
   const [showMore, setShowMore] = useState(false);
@@ -23,79 +24,101 @@ const UserProfileCard = ({ data, rating }) => {
     skills,
     location,
     language,
-    headline,
+    heading,
     bio,
   } = userInfo;
 
   const fullName = `${firstName} ${lastName}`;
   return (
-    <div className="my-3 border-gray-400 rounded-md py-6">
-      <div className="flex items-center space-x-4 mb-4">
-        <img
-          src={profile?.url}
-          alt={fullName}
-          className="md:w-32 w-24 aspect-square rounded-full"
-        />
-        <div>
-          <Link to={`/profile/${userInfo?._id}`} className="flex gap-2">
-            <span className="text-xl font-semibold text-blue-900 underline-offset-2 hover:underline">
-              {fullName || "unknown"}
-            </span>
-          </Link>
-
-          <div className="flex items-center text-sm text-gray-500 space-x-2">
-            <StarRating
-              size={"w-4 h-4"}
-              star={rating?.starNumber}
-              ratingCount={rating?.totalStar}
-              className={{ rating: "!text-base", ratingCount: "!text-base" }}
+    <div className="relative flex flex-col w-full min-w-0 break-words border rounded-2xl border-stone-300 shadow-lg my-8 px-6 py-6 ">
+      <div className="flex-auto min-h-[70px] pb-0 bg-transparent">
+        <div className="flex flex-wrap xl:flex-nowrap">
+          <div className="mb-5 mr-5 w-[80px] h-[80px] lg:w-[160px] lg:h-[160px] shrink-0 rounded-2xl overflow-hidden">
+            <img
+              className="inline-block w-full h-full object-cover"
+              src={profile?.url}
+              alt={`Gig spark user | ${fullName}`}
             />
           </div>
-          <div className="flex items-center gap-3">
-            {location && (
-              <span>
-                {" "}
-                <SlLocationPin className="inline-block mr-1 text-blue-950" />
-                {location}
-              </span>
-            )}
-            {language.length > 0 && (
-              <span>
-                <FiMessageCircle className="inline-block mr-1 text-blue-950" />I
-                speak {language}.
-              </span>
-            )}
+          <div className="grow">
+            <div className="flex flex-wrap items-start justify-between mb-2">
+              <div className="flex flex-col">
+                <div className="flex items-center mb-2">
+                  <Link
+                    className="text-secondary-inverse hover:text-primary transition-colors duration-200 ease-in-out font-semibold text-[1.5rem] mr-1 capitalize"
+                    to={`/profile/${userInfo?._id}`}
+                  >
+                    {fullName}
+                  </Link>
+                </div>
+                <div className="flex flex-wrap pr-2 mb-4 font-medium">
+                  {location && (
+                    <span className="flex items-center mb-2 mr-5 text-secondary-dark hover:text-primary capitalize">
+                      <span className="mr-1">
+                        <FaLocationDot className="w-5 h-5" />
+                      </span>
+                      {location}
+                    </span>
+                  )}
+                  <span className="flex items-center mb-2 mr-5 text-secondary-dark hover:text-primary">
+                    <span className="mr-2">
+                      <FaEnvelope className="w-5 h-5" />
+                    </span>
+                    {userInfo?.email}
+                  </span>
+
+                  {language && (
+                    <span className="flex items-center mb-2 mr-5 text-secondary-dark hover:text-primary">
+                      <span className="mr-2">
+                      <MdRecordVoiceOver className="w-5 h-5" />
+                      </span>
+                      {language.join(", ")}
+                    </span>
+                  )}
+                </div>
+              </div>
+              <div className="flex flex-wrap my-auto">
+                <Link
+                  to={`/message/${userInfo?._id}`}
+                  className="inline-block px-5 py-3 text-base font-medium leading-normal text-center text-white align-middle transition-colors duration-150 ease-in-out border-0 shadow-none cursor-pointer rounded-lg bg-blue-500 hover:bg-blue-700 active:bg-blue-700 focus:bg-blue-700"
+                >
+                  Contact Me
+                </Link>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center">
+              {skills.length > 0 &&
+                skills.map((skill, index) => (
+                  <span
+                    key={index}
+                    className="mr-3 mb-2 inline-flex items-center justify-center text-secondary-inverse rounded-full bg-neutral-100 hover:bg-neutral-200 transition-all duration-200 ease-in-out px-3 py-1 text-sm font-medium leading-normal"
+                  >
+                    {skill}
+                  </span>
+                ))}
+            </div>
           </div>
-          <button className="active:scale-95 w-fit border border-blue-900 text-blue-900 font-semibold py-1 px-4 rounded-md hover:border-blue-600 hover:text-blue-600 transition my-4">
-            Contact me
-          </button>
         </div>
-      </div>
-
-      <h3 className="text-lg font-semibold text-gray-800 mb-2">{headline}</h3>
-      {bio && (
-        <>
-          <p className="text-base text-gray-600 mb-2">
-            {showMore ? bio : bio?.slice(0, 200).concat("...")}
-          </p>
-          <button
-            className="text-blue-700 font-medium underline"
-            onClick={() => setShowMore(!showMore)}
-          >
-            {!showMore ? "Read More" : "Show Less"}
-          </button>
-        </>
-      )}
-
-      <div className="flex flex-wrap gap-2 mt-8">
-        {skills.map((tag, index) => (
-          <span
-            className="text-base capitalize bg-gray-200 text-gray-900 py-1 px-3 rounded-full"
-            key={index}
-          >
-            {tag}
-          </span>
-        ))}
+        <div>
+          <hr className="w-full h-px  border-neutral-300" />
+          {heading && (
+            <p className="my-3 text-lg text-gray-800 font-medium ">{heading}</p>
+          )}
+          {bio && (
+            <>
+              <p className="text-base text-gray-600 mb-2">
+                {showMore ? bio : bio?.slice(0, 200).concat("...")}
+              </p>
+              <button
+                className="text-blue-700 font-medium underline"
+                onClick={() => setShowMore(!showMore)}
+              >
+                {!showMore ? "Read More" : "Show Less"}
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ const ExploreCategory = () => {
     "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/";
  
   return (
-    <div className="max-w-screen-xl mx-auto space-y-11 mt-20" id="explore">
+    <div className="max-w-screen-xl mx-auto space-y-11 mt-20" id="explore-categories">
       <h3 className="font-primary text-2xl sm:text-3xl md:text-4xl font-medium">
         Explore the marketplace
       </h3>

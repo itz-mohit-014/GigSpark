@@ -33,7 +33,7 @@ const GigCard = ({ data }) => {
       </Link>
       <div className="px-4 py-3 pb-5">
         <div className="flex gap-2 items-center justify-between">
-          <Link to={`/profile/${_id}`} className="flex gap-2 py-2">
+          <Link to={`/profile/${data?.author?._id}`} className="flex gap-2 py-2">
             <span>
               <img
                 className="rounded-full h-6 w-6"
