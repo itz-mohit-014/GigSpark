@@ -9,7 +9,7 @@ const IconCard = ({item, baseUrl}) => {
   <img src={`${baseUrl}${item.iconsSrc}`} alt="" className="w-12" />
   <span className="absolute top-0 left-1/2 -translate-x-1/2 bg-custom-radial h-full aspect-square rounded-3xl z-[-1] opacity-0 group-hover:opacity-100 transition-all duration-200"></span>
   <span className="inline-block h-[3px] w-10 rounded-full bg-slate-300 transition-all duration-300 group-hover:bg-green-400 group-hover:w-16"></span>
-  <span className="text-sm font-secondary">{item.title}</span>
+  <span className="text-sm text-center font-secondary">{item.title}</span>
 </div>
 }
 

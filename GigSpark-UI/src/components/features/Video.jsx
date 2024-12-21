@@ -3,7 +3,7 @@ import React from "react";
 const Video = () => {
   return (
     <div className="space-y-16 max-w-screen-xl  mx-auto">
-      <div className="pt-6 pl-8 text-center ">
+      <div className="text-center ">
         <h3 className="text-2xl font-semibold sm:text-3xl md:text-4xl font-primary mt-16">
           What success on GigSpark looks like
         </h3>

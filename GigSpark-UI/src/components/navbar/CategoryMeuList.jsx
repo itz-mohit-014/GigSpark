@@ -9,8 +9,8 @@ const CategoryMeuList = () => {
   return (
     <>
       <hr className="w-full border-gray-300" />
-      <div className="max-w-screen-xl mx-auto relative py-2">
-        <ul className="py-0.5 px-4">
+      <div className="max-w-screen-xl mx-auto relative py-2 bg-inherit">
+        <ul className="py-0.5 px-2 bg-inherit">
           {allCategory.length <= 0 ? (
             <CategoryMenuListShimmerUi />
           ) : (

@@ -37,6 +37,8 @@ const Navbar = () => {
 
   const handleShowAuthPage = (formName) => {
     dispatch(showAuthenticatePage(formName));
+
+    handleCloseHamburgerMenu();
   };
 
   const handlePageScrollToView = (id) => {
@@ -47,8 +49,13 @@ const Navbar = () => {
       if (!section) return;
       section.scrollIntoView({ behavior: "smooth", block: "start" });
       
+      handleCloseHamburgerMenu();
     }, 100);
   };
+
+  const handleCloseHamburgerMenu = () => {
+    setActiveHamburMenu(false);
+  }
 
   useEffect(() => {
     window.addEventListener("scroll", changeBg);
@@ -75,10 +82,10 @@ const Navbar = () => {
             onClick={() => setActiveHamburMenu(!activeHamburMenu)}
           >
             <div
-              className={`border border-black text-3xl relative z-[20] ml-auto w-fit`}
+              className={`border border-black text-3xl relative z-10 ml-auto w-fit`}
               onClick={() => setActiveHamburMenu(!activeHamburMenu)}
             >
-              {!activeHamburMenu ? <IoMenu /> : <IoClose />}
+              {!activeHamburMenu && <IoMenu /> }
             </div>
           </div>
           <Logo src={active || pathname !== "/" ? lightLogo : darkLogo} />
@@ -90,6 +97,13 @@ const Navbar = () => {
               "absolute top-0 left-0 flex-col w-full max-w-[400px] bg-inherit h-dvh p-6 z-[2] items-stretch"
             }`}
           >
+            <div
+              className={`${activeHamburMenu ? "absolute top-5 right-5 z-[5] border rounded-full p-1 text-xl ml-auto" : "hidden"} ${active || pathname !== "/" ? " border-blue-950" : "border-white"}`}
+              onClick={() => setActiveHamburMenu(!activeHamburMenu)}
+            >
+              <IoClose />
+            </div>
+            
             <ul
               className={`gap-1 *:font-primary *:tracking-tighter ${
                 !activeHamburMenu
@@ -110,8 +124,8 @@ const Navbar = () => {
                   Explore
               </li>
               {!currentUser?.isSeller && (
-                <li className=" py-2 px-0">
-                  <Link to={"/become-a-seller"} className=" px-3 py-1">
+                <li className="py-2 px-0" onClick={handleCloseHamburgerMenu}>
+                  <Link to={"/become-a-seller"} className="py-1">
                     Become a Seller
                   </Link>{" "}
                 </li>
@@ -120,8 +134,8 @@ const Navbar = () => {
             {currentUser ? (
               <div
                 className={`flex gap-2 items-center cursor-pointer px-2.5 py-2 relative ${
-                  activeHamburMenu ? "justify-start" : "justify-center"
-                }`}
+                  activeHamburMenu ? "justify-start mt-auto border rounded-md" : "justify-center"
+                } ${active || pathname !== "/" ? "border-blue-950" : "border-white"}`}
                 onClick={() => setOpenMenu(!openMenu)}
               >
                 <span className="h-6 w-6 rounded-full inline-block overflow-hidden border border-blue-950">
@@ -151,11 +165,11 @@ const Navbar = () => {
                 )}
               </div>
             ) : (
-              <>
+              <div className={`flex gap-4 *:px-2.5 ml-1 ${activeHamburMenu && "mt-auto mb-5 justify-between flex-col"}`}>
                 <button
                   onClick={() => handleShowAuthPage("login")}
-                  className={`font-primary tracking-tighter font-semibold mr-3 sm:block ${
-                    !activeHamburMenu ? "hidden " : "pl-2"
+                  className={`font-primary tracking-tighter font-semibold hidden sm:block ${
+                    !activeHamburMenu ? "hidden " : "pl-2 rounded-md border-2 px-3 py-1 font-bold "
                   }`}
                 >
                   Sign in
@@ -164,16 +178,16 @@ const Navbar = () => {
                   onClick={() => handleShowAuthPage("signup")}
                   className={`${
                     activeHamburMenu &&
-                    "border-none text-start text-lg pl-2 font-bold"
-                  } rounded-md sm:border-2 px-1 sm:px-3 py-1 sm:font-bold  ${
+                    "text-lg pl-2 font-bold border"
+                  } rounded-md border-2 px-3 py-1 font-bold  ${
                     active || pathname !== "/"
                       ? " border-blue-700 text-blue-700 hover:bg-blue-900 hover:text-blue-100"
                       : "border-blue-100 text-blue-100 hover:bg-[#fbfbfb] hover:text-blue-900 transition-all duration-300"
-                  }`}
+                  } ${ (active || pathname !== "/" ) && activeHamburMenu ? "" :""}`}
                 >
                   Join
                 </button>
-              </>
+              </div>
             )}
           </div>
         </div>

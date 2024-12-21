@@ -48,7 +48,7 @@ const BusinessFeatures = () => {
             onClick={handleExploreBtn}
             className="rounded-md bg-orange-950 hover:bg-orange-950/80 border-none text-blue-50 py-3 px-5 font-medium active:scale-95 text-sm inline-block sm:!mt-16"
           >
-            Explore Gigspark Business{" "}
+            Explore Gigspark Business
             <IoIosArrowForward className="inline-block h-4 w-4" />
           </button>
         </div>

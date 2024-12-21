@@ -107,6 +107,7 @@ const SortFilter = ({ AllGigCards, setGigCards }) => {
         <span className="text-base font-medium text-blue-900/70 mr-2">
           Sort by:{" "}
         </span>
+        
         <select
           defaultValue={sortMethod}
           onChange={handleSorting}
