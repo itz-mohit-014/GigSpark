@@ -20,6 +20,9 @@ const NewGigForm = ({
 }) => {
   const gigDetails = getValues();
   const [keywords, setKeywords] = useState(gigDetails?.keywords || []);
+
+  const [selectValue, setSelectedValue] = useState(gigDetails?.category);
+
   const [keywordInput, setKeywordInput] = useState("");
 
   const allCategory = useSelector((store) => store.category);
@@ -41,6 +44,11 @@ const NewGigForm = ({
     } else {
       setKeywordInput(text);
     }
+  };
+
+  const handleSelectCotegory = (id) => {
+    setSelectedValue(id);
+    setValue("category", id);
   };
 
   return (
@@ -66,12 +74,18 @@ const NewGigForm = ({
               required: true,
             })}
           />
-          {
-            errors.title && <p className="text-red-500 text-sm capitalize">{errors.title?.message}*</p> 
-          }
+          {errors.title && (
+            <p className="text-red-500 text-sm capitalize">
+              {errors.title?.message}*
+            </p>
+          )}
         </LabelInputContainer>
 
-        <RichTextEditor setValue={setValue} value={gigDetails?.description} errors={errors} />
+        <RichTextEditor
+          setValue={setValue}
+          value={gigDetails?.description}
+          errors={errors}
+        />
 
         <LabelInputContainer className={"space-y-1"}>
           <Label
@@ -122,17 +136,24 @@ const NewGigForm = ({
                 </div>
               ))}
           </div>
-          {
-            errors?.keywords && <p className="text-red-500 text-sm capitalize">{errors.keywords?.message}*</p> 
-          }
+          {errors?.keywords && (
+            <p className="text-red-500 text-sm capitalize">
+              {errors.keywords?.message}*
+            </p>
+          )}
         </LabelInputContainer>
 
         <DropdownList
           lists={allCategory}
-          label={"Category"}
-          value={gigDetails?.category}
-          setValue={setValue}
+          label={
+            <>
+              Category
+              <span className="text-[#EF476F]"> *</span>
+            </>
+          }
+          value={selectValue}
           errors={errors}
+          onChange={handleSelectCotegory}
         />
 
         <FileUpload

@@ -10,7 +10,7 @@ const CategoryMeuList = () => {
     <>
       <hr className="w-full border-gray-300" />
       <div className="max-w-screen-xl mx-auto relative py-2 bg-inherit">
-        <ul className="py-0.5 px-2 bg-inherit">
+        <ul className="py-0.5 px-2 bg-inherit flex flex-nowrap">
           {allCategory.length <= 0 ? (
             <CategoryMenuListShimmerUi />
           ) : (

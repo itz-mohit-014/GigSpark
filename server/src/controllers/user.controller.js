@@ -45,10 +45,13 @@ const signup = AsyncHandler(async (req, res) => {
     sameSite: "None"
   };
 
+  const accessTokenExpiry = 24 * 60 * 60 * 1000; // 1 day
+  const refreshTokenExpiry = 7 * 24 * 60 * 60 * 1000; // 7 day
+
   return res
     .status(200)
-    .cookie("accessToken", `Bearer ${accessToken}`, options)
-    .cookie("refreshToken", `Bearer ${refreshToken}`, options)
+    .cookie("accessToken", `Bearer ${accessToken}`, {...options, maxAge:accessTokenExpiry  })
+    .cookie("refreshToken", `Bearer ${refreshToken}`, {...options, maxAge:refreshTokenExpiry })
     .json(
       new ApiResponse(200, userWithToken, "User registration successfully.")
     );
@@ -74,10 +77,13 @@ const login = AsyncHandler(async (req, res) => {
     sameSite: "None"
   };
 
+  const accessTokenExpiry = 24 * 60 * 60 * 1000; // 1 day
+  const refreshTokenExpiry = 7 * 24 * 60 * 60 * 1000; // 7 day
+
   return res
     .status(200)
-    .cookie("accessToken", `Bearer ${accessToken}`, options)
-    .cookie("refreshToken", `Bearer ${refreshToken}`, options)
+    .cookie("accessToken", `Bearer ${accessToken}`, {...options, maxAge:accessTokenExpiry  })
+    .cookie("refreshToken", `Bearer ${refreshToken}`, {...options, maxAge:refreshTokenExpiry  })
     .json(new ApiResponse(200, userWithToken, "User loggedin successfully"));
 });
 
@@ -274,10 +280,13 @@ const regenerateTokens = AsyncHandler(async (req, res) => {
     sameSite: "None"
   };
 
+  const accessTokenExpiry = 24 * 60 * 60 * 1000; // 1 day
+  const refreshTokenExpiry = 7 * 24 * 60 * 60 * 1000; // 7 day
+
   return res
     .status(200)
-    .cookie("accessToken", `Bearer ${accessToken}`, options)
-    .cookie("refreshToken", `Bearer ${newRefreshToken}`, options)
+    .cookie("accessToken", `Bearer ${accessToken}`, {...options, maxAge:accessTokenExpiry  })
+    .cookie("refreshToken", `Bearer ${newRefreshToken}`, {...options, maxAge:refreshTokenExpiry  })
     .json(
       new ApiResponse(200, userWithToken, "New Token Generated successfully")
     );

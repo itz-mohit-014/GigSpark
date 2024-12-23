@@ -11,11 +11,9 @@ const CategoryCarousel = ({ title, data, Item, cardLimit, className }) => {
       )}
 
       <Carousel className={`w-full bg-inherit ${className}`}>
-        <Slide Item={Item} data={data} cardLimit={cardLimit} />
+        <Slide Item={Item} data={data} cardLimit={cardLimit}/>
         <CarouselPrevious className="bg-inherit" />
         <CarouselNext className="bg-inherit" />
-        {/* <CarouselPrevious className="top-auto -bottom-16 left-auto right-12 sm:right-auto sm:top-1/2 sm:bottom-auto sm:-left-4 backdrop:blur-3xl" />
-        <CarouselNext className="top-auto -bottom-16 right-0 sm:top-1/2 sm:bottom-auto sm:-right-4 backdrop:blur-3xl" /> */}
       </Carousel>
     </div>
   );

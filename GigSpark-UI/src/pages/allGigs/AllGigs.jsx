@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import GigCard from "./GigCard";
 import SortFilter from "./SortFilter";
 import Breadcrumbs from "../../components/Breadcrumb/Breadcrumb";
@@ -45,7 +46,8 @@ const AllGigs = () => {
         {categoryInfo?.detailedDescription}
       </p>
       <SortFilter AllGigCards={AllGigCards} setGigCards={setGigCards} />
-      <div
+      <motion.div
+      layout
         className={`${
           GigCards.length > 0
             ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 gap-6 md:gap-y-16"
@@ -53,11 +55,11 @@ const AllGigs = () => {
         } py-6`}
       >
         {GigCards.length <= 0 ? (
-          <EmptyList />
+          <EmptyList desctiption={"No gigs are currently available in this category. Please try searching for a different category or check back later"}/>
         ) : (
           GigCards.map((card) => <GigCard data={card} key={card?._id} />)
         )}
-      </div>
+      </motion.div>
     </section>
   );
 };

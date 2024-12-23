@@ -2,17 +2,14 @@ import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import Button from "../ui/Button";
 import BrandsIconCarousel from "../brandsIconsCarousel/BrandsIconsCarousel";
+import { useSelector } from "react-redux";
 
 
 const Hero = () => {
   const [value, setValue] = useState("")
-  const popularTag = [
-    "AI Services",
-    "Web Design",
-    "Logo Design",
-    "SEO",
-    "Video Editing",
-  ];
+
+  //current populat categori will be even index under 10; (starting 5 even index)
+  const AllCategories = useSelector(store => store?.category);
 
   const handleTagClick = (tagName) => {
     console.log(tagName);
@@ -53,12 +50,13 @@ const Hero = () => {
           </div>
           <div className="flex gap-3 flex-wrap font-semibold">
             <span>Popular:</span>
-            {popularTag.map((tagName, index) => (
+            { AllCategories.length && AllCategories.map((cat, index) => (
+              index % 2 == 0 && index <= 10 && 
               <Button
-                key={index}
-                onClick={() => handleTagClick(tagName)}
+                key={cat?._id}
+                onClick={() => handleTagClick(cat?._id)}
                 className="border border-emerald-50 rounded-full px-2.5 py-1 text-xs hover:text-blue-950 hover:bg-emerald-50 transition-all duration-200"
-                children={tagName}
+                children={cat?.name}
                 disabled={false}
               />
             ))}

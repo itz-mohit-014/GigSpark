@@ -7,7 +7,7 @@ const GigsCard = React.memo(({ card, index, hovered, setHovered }) => (
     onMouseEnter={() => setHovered(index)}
     onMouseLeave={() => setHovered(null)}
     className={cn(
-      "rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden w-full aspect-[4/5] transition-all duration-300 ease-out snap-start cursor-pointer",
+      "rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden w-full aspect-[11/15] transition-all duration-300 ease-out snap-start cursor-pointer",
       hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
     )}
   >

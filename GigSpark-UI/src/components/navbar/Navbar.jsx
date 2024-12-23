@@ -70,7 +70,7 @@ const Navbar = () => {
         active || pathname !== "/"
           ? "bg-[#fbf5f5] text-blue-950 "
           : "bg-slate-950 text-blue-50"
-      }  transition-all duration-300 sticky top-0 z-20`}
+      }  transition-all duration-300 z-20 ${pathname !== "/become-a-seller" ? "sticky top-0" : "relative"}`}
     >
       <nav className="px-4 bg-inherit text-inherit">
         <div className="max-w-screen-xl bg-inherit text-inherit flex justify-between items-center mx-auto">
@@ -105,7 +105,7 @@ const Navbar = () => {
             </div>
             
             <ul
-              className={`gap-1 *:font-primary *:tracking-tighter ${
+              className={`gap-1 *:font-primary *:tracking-tighter *:cursor-pointer ${
                 !activeHamburMenu
                   ? "hidden"
                   : "*:tracking-wider *:p-2 space-y-2 *:text-xl"

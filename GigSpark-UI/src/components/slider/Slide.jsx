@@ -6,7 +6,7 @@ export function Slide({Item, data, cardLimit}) {
   const [hovered, setHovered] = useState(null);
 
   return (
-    <CarouselContent className={"mx-6"}>
+    <CarouselContent className={"mx-6 bg-yellow-200"}>
         {data.map((card, index) => (
           <CarouselItem key={card._id} className={cardLimit}>
             {/* card */}

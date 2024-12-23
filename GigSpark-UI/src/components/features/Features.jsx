@@ -1,8 +1,8 @@
 import React from "react";
 import { BsArrowUpRight, BsPatchCheckFill } from "react-icons/bs";
 import Button from "../ui/Button";
-import Video from "./Video";
 import ExploreCategory from "../exploreCategory/ExploreCategory";
+import VideoSection from "./VideoSection";
 
 const FeatureCard = ({ title, desc }) => {
   return (
@@ -67,7 +67,7 @@ const FeatureSection = () => {
           />
         </div>
       </div>
-      <Video />
+      <VideoSection />
       <ExploreCategory/>
     </section>
   );

@@ -10,27 +10,15 @@ import {
   SelectValue,
 } from "./select";
 
-const DropdownList = ({ lists, label, setValue, value, errors }) => {
-  const [selectValue, setSelectedValue] = useState(value);
-
-  const handleSelectCotegory = (id) => {
-    setSelectedValue(id);
-    setValue("category", id);
-  };
-
+const DropdownList = ({ lists, label, onChange, value, errors = null }) => {
   return (
     <LabelInputContainer>
-      <Label
-        children={
-          <>
-            {label}
-            <span className="text-[#EF476F]"> *</span>
-          </>
-        }
+      {label && <Label
+        children={label}
         htmlFor={label}
         className={"text-lg text-gray-500"}
-      />
-      <Select onValueChange={handleSelectCotegory} value={selectValue}>
+      />}
+      <Select onValueChange={onChange} value={value}>
         <SelectTrigger className="w-full border-gray-300 shadow-input border-2 text-base">
           <SelectValue placeholder="Select a category" />
         </SelectTrigger>
@@ -45,7 +33,9 @@ const DropdownList = ({ lists, label, setValue, value, errors }) => {
         </SelectContent>
       </Select>
       {errors?.category && (
-        <p className="text-red-500 text-sm capitalize">{errors.category?.message}*</p>
+        <p className="text-red-500 text-sm capitalize">
+          {errors.category?.message}*
+        </p>
       )}
     </LabelInputContainer>
   );
