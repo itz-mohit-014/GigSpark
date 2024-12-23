@@ -1,5 +1,5 @@
 import React from "react";
-import Video from "../ui/video";
+import Video from "../video/Video.jsx";
 
 const EmptyList = ({ desctiption }) => {
   return (

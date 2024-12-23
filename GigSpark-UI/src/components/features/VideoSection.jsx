@@ -1,5 +1,5 @@
 import React from "react";
-import Video from "../ui/video.jsx";
+import Video from "../video/Video";
 
 const VideoSection = () => {
   return (
