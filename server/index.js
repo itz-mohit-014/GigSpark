@@ -1,7 +1,4 @@
-import dotenv from "dotenv";
-dotenv.config({
-  path:"./.env"
-});
+import "./dotenv.js"
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -46,3 +43,4 @@ dbConnection()
     })
   )
   .catch((e) => console.log("MONGO db connection failed !!!  ", e));
+
