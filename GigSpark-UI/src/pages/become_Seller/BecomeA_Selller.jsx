@@ -5,40 +5,49 @@ const BecomeA_Selller = () => {
   return (
     <section className="bg-inherit">
       <div className="bg-black w-full h-screen fixed top-0 left-0 z-[-1]">
-        <Video src={"./video/GigSpark-Become-seller.mp4"} className="h-full w-full object-cover" controls={false} />
+        <Video
+          src={"./video/GigSpark-Become-seller.mp4"}
+          className="h-full w-full object-cover"
+          controls={false}
+        />
       </div>
 
-      <div className="font-secondary relative z-[1] bg-gradient-to-b from-transparent to-gray-800">
-        <div className="max-w-screen-xl min-h-[calc(100dvh-120px)] mx-auto p-4 sm:p-6 text-white w-full relative">
-          <div className="text-center flex flex-col items-center justify-center sm:gap-4 absolute top-0 left-0 h-full w-full">
-            <h1 className="text-4xl sm:text-5xl font-bold">Work Your Way</h1>
-            <p className="text-lg sm:text-2xl">
-              You bring the skill. We'll make earning easy.
-            </p>
-            <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold mt-8 py-2.5 px-8 rounded">
-              Become a Seller
-            </button>
-          </div>
-          <div className="absolute border top-[100%] sm:top-auto sm:bottom-0 left-0 w-full py-6">
-            <div className="flex items-center justify-center gap-12 max-sm:flex-col">
-              <div className="flex-1 px-6 flex flex-col items-center justify-center">
-                <p className="text-gray-50 text-base md:text-xl xl:text-2xl text-center">
-                  A Gig is Bought Every
-                </p>
-                <p className="text-2xl md:text-3xl xl:text-5xl">4 SEC</p>
-              </div>
-              <div className="flex-1 px-6 flex flex-col items-center justify-center">
-                <p className="text-gray-50 text-base md:text-xl xl:text-2xl text-center">
-                  Transactions
-                </p>
-                <p className="text-2xl md:text-3xl xl:text-5xl">50M+</p>
-              </div>
-              <div className="flex-1 px-6 flex flex-col items-center justify-center">
-                <p className="text-gray-50 text-base md:text-xl xl:text-2xl text-center">
-                  Price Range
-                </p>
-                <p className="text-2xl md:text-3xl xl:text-5xl">$1 - $10,000</p>
-              </div>
+      <div className="font-secondary relative z-[1] bg-gradient-to-b from-transparent to-gray-800 min-h-[calc(100dvh-120px)] text-white w-full">
+        <div className="text-center flex flex-col items-center justify-center sm:gap-4 absolute top-0 left-0 h-full w-full">
+          <h1 className="text-4xl sm:text-5xl font-bold">Work Your Way</h1>
+          <p className="text-lg sm:text-2xl">
+            You bring the skill. We'll make earning easy.
+          </p>
+          <button
+            href="#_"
+            class="relative inline-block px-4 py-2 font-medium group"
+          >
+            <span class="absolute inset-0 w-full h-full transition duration-300 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0 rounded-md"></span>
+            <span class="absolute inset-0 w-full h-full  transition duration-300 ease-out  bg-white border-2 border-black group-hover:bg-black rounded-md"></span>
+            <span class="relative text-black group-hover:text-white">
+              Become a seller
+            </span>
+          </button>
+        </div>
+        <div className="absolute bg-gray-50/20 top-[100%] sm:top-auto sm:bottom-0 left-0 w-full py-6">
+          <div className="flex items-center justify-center gap-12 max-sm:flex-col">
+            <div className="flex-1 px-6 flex flex-col items-center justify-center">
+              <p className="text-gray-50 text-base md:text-xl xl:text-2xl text-center">
+                A Gig is Bought Every
+              </p>
+              <p className="text-2xl md:text-3xl xl:text-5xl">4 SEC</p>
+            </div>
+            <div className="flex-1 px-6 flex flex-col items-center justify-center">
+              <p className="text-gray-50 text-base md:text-xl xl:text-2xl text-center">
+                Transactions
+              </p>
+              <p className="text-2xl md:text-3xl xl:text-5xl">50M+</p>
+            </div>
+            <div className="flex-1 px-6 flex flex-col items-center justify-center">
+              <p className="text-gray-50 text-base md:text-xl xl:text-2xl text-center">
+                Price Range
+              </p>
+              <p className="text-2xl md:text-3xl xl:text-5xl">$1 - $10,000</p>
             </div>
           </div>
         </div>

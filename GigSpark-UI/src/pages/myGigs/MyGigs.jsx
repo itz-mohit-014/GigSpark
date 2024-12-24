@@ -21,7 +21,7 @@ const MyGigs = () => {
 
   const fetchAllMyGigs = async () => {
     const response = await fetchMyGig()
-    console.log(response)
+
     if(typeof response !== 'string'){
       setMyGigs(response)
     }else{

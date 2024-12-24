@@ -9,7 +9,6 @@ const GigsRow = ({ rowData, bgColor, index, itemList, setItemList }) => {
     setItemList(remaingItem);
   }
 
-  console.log(rowData)
 
   return (
     <tr className={index % 2 === 0 ? bgColor : "bg-white"}>

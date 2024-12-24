@@ -8,7 +8,7 @@ const OrderRow = ({ rowData, bgColor, index, itemList, setItemList }) => {
   const handleMessageUser = () => {
     navigate("/messages");
   };
-  console.log(rowData)
+
   return (
     <tr className={index % 2 === 0 ? bgColor : "bg-white"}>
       <td className="p-4">

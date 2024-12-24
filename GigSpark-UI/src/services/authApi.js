@@ -23,7 +23,6 @@ const signin_signup = (data, loadingText, requestUrl) => {
     const toastId = toast.loading(loadingText);
     try {
       const response = await newRequest("post", requestUrl, data);
-      console.log(response)
 
       if(typeof response === "string") throw response;
 
@@ -44,8 +43,6 @@ const signin_signup = (data, loadingText, requestUrl) => {
     
     } catch (error) {
 
-      console.log(error)
-
       toast.error(error, { id: toastId });
 
       dispatch(deleteCurrentUser());
@@ -65,7 +62,6 @@ const logout = (navigate) => {
     try {
 
       const response = await newRequest("get", User?.LOGOUT, null);
-      console.log(response)
 
       if(typeof response === "string") throw response;
 

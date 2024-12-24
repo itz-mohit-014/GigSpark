@@ -223,7 +223,6 @@ const uploadProfile = AsyncHandler(async (req, res) => {
 
   req.user = updateUser;
   const removeOldProfile = await deleteImageFromCloudinary(req.user?.profile);
-  console.log(removeOldProfile);
   return res
     .status(200)
     .json(new ApiResponse(200, updateUser, "File upload successfylly"));

@@ -32,8 +32,6 @@ const ProfilePage = () => {
 
   if (!userDetails) return;
 
-  console.log(userDetails);
-
   return (
     <section className="sm:p-6">
       <div className="max-w-screen-xl mx-auto p-6 ">

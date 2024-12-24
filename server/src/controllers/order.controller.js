@@ -51,7 +51,6 @@ const createNewOrder = AsyncHandler(async (req, res) => {
 
   razorpayInstance.orders.create(options, (error, order) => {
     if (error) {
-      console.log(error);
       throw new ApiError(400, error.message);
     }
 

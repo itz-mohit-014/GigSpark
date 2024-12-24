@@ -16,7 +16,7 @@ const PublishGigPopup = ({ getValues }) => {
 
     const data = getValues();
     setTimeout(() => {
-      console.log(data);
+
       dispatch(changeLoadingState(false));
     }, 2000);
   };

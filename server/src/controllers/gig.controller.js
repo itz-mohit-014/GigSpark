@@ -192,15 +192,12 @@ const deleteGig = AsyncHandler(async (req, res) => {
   const gigDetails = await Gig.findByIdAndDelete({ _id: id });
   if (!gigDetails) throw new ApiError(404, "Gig not found.");
 
-  console.log(gigDetails);
+  const result = await deleteImageFromCloudinary(gigDetails?.coverPicture);
 
-  const resulte = await deleteImageFromCloudinary(gigDetails?.coverPicture);
-  console.log(resulte);
   if (gigDetails?.images?.length > 0) {
-    const resulte = await Promise.all(
+    const result = await Promise.all(
       gigDetails.images.map(async (img) => await deleteImageFromCloudinary(img))
     );
-    console.log(resulte);
   }
   return res
     .status(200)
@@ -217,7 +214,6 @@ const deleteImageFromGig = AsyncHandler(async (req, res) => {
 
   const imageToBeDeleted = images.find((img) => img.public_id === imageId);
   if (!imageToBeDeleted) throw new ApiError(404, "Image not found");
-  console.log(imageToBeDeleted);
 
   const restImages = images.filter((img) => img.public_id !== imageId);
 
@@ -232,8 +228,6 @@ const deleteImageFromGig = AsyncHandler(async (req, res) => {
 
   const deletedImage = await deleteImageFromCloudinary(imageToBeDeleted);
 
-  console.log(deletedImage);
-
   return res
     .status(200)
     .json(new ApiResponse(200, updatedGig, "Image deleted successfully"));
@@ -241,7 +235,7 @@ const deleteImageFromGig = AsyncHandler(async (req, res) => {
 
 const getAllGigs = AsyncHandler(async (req, res) => {
   const filter = { author: req.user?._id };
-  console.log(filter);
+
   const allGigs = await Gig.find(filter).populate("services");
   return res
     .status(200)

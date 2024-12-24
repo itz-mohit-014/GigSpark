@@ -4,10 +4,8 @@ import { removeItemFromLocalstorage } from "../services/localStorage";
 import { newRequest } from "../services/newRequest";
 
 const handlePayment = async (productId, email) => {
-  console.log(productId)
 
   if (!productId) return;
-  console.log(productId, email);
   const { CREATE_NEW_ORDER } = Payment;
 
   const response = await newRequest("post", CREATE_NEW_ORDER, {
@@ -27,7 +25,7 @@ const handlePayment = async (productId, email) => {
     toast.error(response);
     return response;
   }
-  console.log(response);
+
   handlePaymentVerify(response?.data, email, productId);
 };
 
@@ -43,7 +41,6 @@ const handlePaymentVerify = async (orderDetails, name, gigId) => {
     description: "Test Mode",
     order_id: orderDetails.id,
     handler: async (response) => {
-      console.log("response", response);
       
       const paymentDetails = {...response, gigId }
 
@@ -54,7 +51,6 @@ const handlePaymentVerify = async (orderDetails, name, gigId) => {
         return;
       }
 
-      console.log(result);
       // order place successfully...
       toast.success(result?.message);
     },
@@ -70,7 +66,6 @@ const handlePaymentVerify = async (orderDetails, name, gigId) => {
 };
 
 const fetchAllOrder = async () => {
-  // "get", "no data", "/"
   const { GET_MY_ORDERS } = Payment;
 
   const response = await newRequest("get", GET_MY_ORDERS, null);

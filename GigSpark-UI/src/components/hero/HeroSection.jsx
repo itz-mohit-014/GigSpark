@@ -18,7 +18,6 @@ const Hero = () => {
   const handleSearch = (e) => {
     setValue(e.target.value);
     // further action.
-    console.log(value)
   }
 
   return (

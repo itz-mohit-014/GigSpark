@@ -44,11 +44,9 @@ const Message = () => {
       text: inputMessage,
       user: "sender",
     };
-    console.log(inputMessage);
     // just test...
     const currUserMessages = [...User.messages];
     currUserMessages.push(newMessage);
-    console.log(currUserMessages);
 
     setUser({
       ...User,

@@ -19,10 +19,8 @@ const ServiceCard = ({ data, productId, coverPicture }) => {
   } = data;
 
   const user = useSelector((store) => store?.user?.user);
-  console.log( productId);
 
   const handleCheckout = (e) => {
-    // console.log(e)
     handlePayment(productId, user?.email);
   };
 
