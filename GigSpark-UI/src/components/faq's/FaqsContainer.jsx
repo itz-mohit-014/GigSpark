@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { userFAQs } from "../../mocks/data";
+import React, { useState } from "react";
 import Faq from "./Faq";
 
-const Faqs = ({ faq }) => {
-  const [faqs, setFaqs] = useState(null);
+const Faqs = ({ data, heading, className="", layoutClass="" }) => {
+  const [faqs, setFaqs] = useState(data);
   const [showAnswer, setShowAnswer] = useState(null);
 
-  useEffect(() => {
-    if (faqs) return;
-    setFaqs(userFAQs); // dummy for testing
-  }, []);
-
-  if (!faqs) return;
+  if (!faqs.length) return;
 
   return (
-    <div className="py-4">
-      <h2 className="text-xl font-bold mb-4">FAQ</h2>
-      <div>
+    <div className={`py-4 ${className}`}>
+      {heading && <h2 className="text-xl font-bold mb-4">{heading}</h2>}
+      <div className={layoutClass}>
         {faqs.map((faq, index) => (
           <Faq
             key={index}

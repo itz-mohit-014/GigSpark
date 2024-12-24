@@ -1,5 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Video from "../../components/video/Video.jsx";
+import { BiSolidPurchaseTag } from "react-icons/bi";
+import { AiOutlineTransaction } from "react-icons/ai";
+import { RiAedFill } from "react-icons/ri";
+import GetStartedBtn from "./GetStartedBtn.jsx";
+import { becomeA_Sellerfaqs } from "../../mocks/Faqs.js";
+import Faqs from "../../components/faq's/FaqsContainer.jsx";
 
 const BecomeA_Selller = () => {
   return (
@@ -12,42 +18,54 @@ const BecomeA_Selller = () => {
         />
       </div>
 
-      <div className="font-secondary relative z-[1] bg-gradient-to-b from-transparent to-gray-800 min-h-[calc(100dvh-120px)] text-white w-full">
-        <div className="text-center flex flex-col items-center justify-center sm:gap-4 absolute top-0 left-0 h-full w-full">
-          <h1 className="text-4xl sm:text-5xl font-bold">Work Your Way</h1>
-          <p className="text-lg sm:text-2xl">
-            You bring the skill. We'll make earning easy.
-          </p>
-          <button
-            href="#_"
-            class="relative inline-block px-4 py-2 font-medium group"
-          >
-            <span class="absolute inset-0 w-full h-full transition duration-300 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0 rounded-md"></span>
-            <span class="absolute inset-0 w-full h-full  transition duration-300 ease-out  bg-white border-2 border-black group-hover:bg-black rounded-md"></span>
-            <span class="relative text-black group-hover:text-white">
-              Become a seller
-            </span>
-          </button>
+      <div className="font-secondary relative z-[1] bg-gradient-to-b from-transparent to-gray-800 min-h-[calc(100dvh-110px)] text-white w-full">
+        <div className="text-center flex items-center justify-center sm:absolute top-0 left-0 min-h-[calc(100dvh-110px)] w-full">
+          <div className="flex flex-col items-center justify-center gap-1">
+            <h1 className="text-4xl sm:text-5xl font-bold">Work Your Way</h1>
+            <p className="text-lg sm:text-2xl">
+              You bring the skill. We'll make earning easy.
+            </p>
+            <button
+              href="#_"
+              className="relative inline-block mt-6 px-4 py-2 font-medium group"
+            >
+              <span className="absolute inset-0 w-full h-full transition duration-300 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0 rounded-md"></span>
+              <span className="absolute inset-0 w-full h-full  transition duration-300 ease-out  bg-white border-2 border-black group-hover:bg-black rounded-md"></span>
+              <span className="relative text-black group-hover:text-white">
+                Become a seller
+              </span>
+            </button>
+          </div>
         </div>
-        <div className="absolute bg-gray-50/20 top-[100%] sm:top-auto sm:bottom-0 left-0 w-full py-6">
+
+        <div className="sm:absolute bg-white text-black sm:text-gray-50 sm:bg-gray-50/20  sm:top-auto sm:bottom-0 left-0 w-full py-12 sm:py-6">
           <div className="flex items-center justify-center gap-12 max-sm:flex-col">
-            <div className="flex-1 px-6 flex flex-col items-center justify-center">
-              <p className="text-gray-50 text-base md:text-xl xl:text-2xl text-center">
-                A Gig is Bought Every
-              </p>
-              <p className="text-2xl md:text-3xl xl:text-5xl">4 SEC</p>
+            <div className="flex-1 px-6 flex items-center justify-center gap-2">
+              <BiSolidPurchaseTag className="text-5xl" />
+              <div>
+                <p className="text-base md:text-xl xl:text-2xl text-center">
+                  A Gig is Bought Every
+                </p>
+                <p className="text-2xl md:text-3xl xl:text-5xl">4 SEC</p>
+              </div>
             </div>
-            <div className="flex-1 px-6 flex flex-col items-center justify-center">
-              <p className="text-gray-50 text-base md:text-xl xl:text-2xl text-center">
-                Transactions
-              </p>
-              <p className="text-2xl md:text-3xl xl:text-5xl">50M+</p>
+            <div className="flex-1 px-6 flex items-center justify-center gap-2">
+              <AiOutlineTransaction className="text-5xl" />
+              <div>
+                <p className="text-base md:text-xl xl:text-2xl text-center">
+                  Transactions
+                </p>
+                <p className="text-2xl md:text-3xl xl:text-5xl">50M+</p>
+              </div>
             </div>
-            <div className="flex-1 px-6 flex flex-col items-center justify-center">
-              <p className="text-gray-50 text-base md:text-xl xl:text-2xl text-center">
-                Price Range
-              </p>
-              <p className="text-2xl md:text-3xl xl:text-5xl">$1 - $10,000</p>
+            <div className="flex-1 px-6 flex  items-center justify-center gap-2">
+              <RiAedFill className="text-5xl" />
+              <div>
+                <p className="text-base md:text-xl xl:text-2xl text-center">
+                  Price Range
+                </p>
+                <p className="text-2xl md:text-3xl xl:text-5xl">$1 - $10,000</p>
+              </div>
             </div>
           </div>
         </div>
@@ -55,7 +73,7 @@ const BecomeA_Selller = () => {
 
       <div className="bg-white">
         <div className="max-w-screen-xl mx-auto p-4 sm:p-6 font-secondary flex flex-col gap-16 relative z-[1]">
-          <div className="max-sm:pt-72 py-12 bg-white">
+          <div className="py-12 bg-white">
             <h2 className="text-center text-3xl font-bold mb-6">
               Join our growing freelance community
             </h2>
@@ -189,39 +207,19 @@ const BecomeA_Selller = () => {
             </div>
           </div>
 
-          <div className="py-12 bg-gray-100">
+          <div className="py-12 bg-gray-100 rounded-2xl">
             <h2 className="text-center text-3xl font-bold mb-6">Q&A</h2>
             <div className="max-w-4xl mx-auto">
-              <div className="border-b py-4">
-                <button className="w-full text-left font-semibold">
-                  What can I sell?
-                </button>
-              </div>
-              <div className="border-b py-4">
-                <button className="w-full text-left font-semibold">
-                  How much money can I make?
-                </button>
-              </div>
-              <div className="border-b py-4">
-                <button className="w-full text-left font-semibold">
-                  How much does it cost?
-                </button>
-              </div>
-              <div className="border-b py-4">
-                <button className="w-full text-left font-semibold">
-                  How do I get paid?
-                </button>
-              </div>
+              <Faqs data={becomeA_Sellerfaqs} layoutClass="grid grid-cols-2 grid-rows-auto gap-y-4 gap-x-12"/>
             </div>
           </div>
 
-          <div className="bg-green-500 py-8 text-center">
-            <h2 className="text-white text-3xl font-bold mb-4">
+          <div className="border-2 border-dashed rounded-2xl  bg-violet-200 mb-16 border-blue-500 py-8 text-center font-primary">
+            <h2 className="mb-2 text-4xl">
               Sign up and create your first Gig today
             </h2>
-            <button className="bg-white text-green-500 font-semibold py-2 px-6 rounded-lg">
-              Get Started
-            </button>
+            <p className="text-gray-500 mb-4">GigSpark Freelance services at your fingertips</p>
+            <GetStartedBtn/>
           </div>
         </div>
       </div>
@@ -230,3 +228,8 @@ const BecomeA_Selller = () => {
 };
 
 export default BecomeA_Selller;
+
+
+
+// export default CustomBtn;
+
