@@ -30,7 +30,7 @@ export default function SignupForm() {
   };
 
   return (
-    <div className="max-w-xl w-full mx-auto p-8 shadow-input bg-white dark:bg-black">
+    <div className="min-w-60 basis-1/2 max-w-xl w-full mx-auto p-8 shadow-input bg-white dark:bg-black">
       <h2 className="font-bold text-2xl text-neutral-800 dark:text-neutral-200">
         Welcome Back
       </h2>

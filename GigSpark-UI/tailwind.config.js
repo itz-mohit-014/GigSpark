@@ -16,6 +16,11 @@ export default {
         secondary: ["Poppins", "sans-serif"],
       },
       keyframes: {
+        shimmer: {
+          "100%": {
+            "transform": "translateX(100%)",
+          },
+        },
         marquee: {
           from: {
             transform: "translateX(0)",
