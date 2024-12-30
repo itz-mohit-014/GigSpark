@@ -6,6 +6,8 @@ import { GrPowerCycle } from "react-icons/gr";
 import { FaCheck, FaArrowRightLong } from "react-icons/fa6";
 import { MdOutlineTimer } from "react-icons/md";
 import { handlePayment } from "../../utils/placeOrder";
+import toast from "react-hot-toast";
+import CustomToastNotification from "../../utils/CustomFun";
 
 const ServiceCard = ({ data, productId, coverPicture }) => {
   const [open, setOpen] = useState(false);
@@ -21,6 +23,11 @@ const ServiceCard = ({ data, productId, coverPicture }) => {
   const user = useSelector((store) => store?.user?.user);
 
   const handleCheckout = (e) => {
+    if(!user){
+      toast.dismiss();
+      CustomToastNotification();
+      return;
+    }
     handlePayment(productId, user?.email);
   };
 

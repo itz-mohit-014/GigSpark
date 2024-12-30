@@ -3,6 +3,8 @@ import { BsArrowUpRight, BsPatchCheckFill } from "react-icons/bs";
 import Button from "../ui/Button";
 import ExploreCategory from "../exploreCategory/ExploreCategory";
 import VideoSection from "./VideoSection";
+import { useDispatch } from "react-redux";
+import { showAuthenticatePage } from "../../slices/showLoginForm.slice";
 
 const FeatureCard = ({ title, desc }) => {
   return (
@@ -36,8 +38,11 @@ const FeatureSection = () => {
     },
   ];
 
+  const dispatch = useDispatch();
+
   const handleJoinNowBtn = (e) => {
     console.log(e.target.innerHTML);
+    dispatch(showAuthenticatePage("signin"))
   };
 
   return (

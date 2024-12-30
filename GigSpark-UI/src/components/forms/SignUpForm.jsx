@@ -12,10 +12,11 @@ import { BottomGradient, LabelInputContainer } from "./InputBoxUtils";
 import { User } from "../../services/api";
 import Loading from "../ui/Loading";
 import { signin_signup } from "../../services/authApi";
+import CustomToggle from "../ui/CheckboxToggle";
 
 export default function SignupForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const { register, handleSubmit } = useForm();
+  const { register,setValue, handleSubmit } = useForm();
 
   const dispatch = useDispatch();
   const isLoading = useSelector((store) => store?.showAuthForm?.isLoading);
@@ -37,7 +38,7 @@ export default function SignupForm() {
   };
 
   return (
-    <div className="min-w-60 basis-1/2 max-w-xl w-full mx-auto p-8 shadow-input bg-white dark:bg-black">
+    <div className="min-w-60 basis-1/2 max-w-xl w-full mx-auto px-8 py-6 shadow-input bg-white dark:bg-black">
       <h2 className="font-bold text-2xl text-neutral-800 dark:text-neutral-200">
         Create your account
       </h2>
@@ -45,7 +46,7 @@ export default function SignupForm() {
         Signing up for GigSpark a 100% free freelance platform.
       </p>
       <form className="my-5" onSubmit={handleSubmit(handleSignUp)}>
-        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
+        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-2">
           <LabelInputContainer>
             <Label htmlFor="firstName">First name</Label>
             <Input
@@ -65,7 +66,8 @@ export default function SignupForm() {
             />
           </LabelInputContainer>
         </div>
-        <LabelInputContainer className="mb-4">
+
+        <LabelInputContainer className="mb-2">
           <Label htmlFor="email">Email Address</Label>
           <Input
             id="email"
@@ -76,7 +78,8 @@ export default function SignupForm() {
             })}
           />
         </LabelInputContainer>
-        <LabelInputContainer className="mb-4">
+
+        <LabelInputContainer className="mb-2">
           <Label htmlFor="password">Password</Label>
           <Input
             id="password"
@@ -91,6 +94,11 @@ export default function SignupForm() {
             {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
           </div>
         </LabelInputContainer>
+
+        <div className="mb-4 flex items-center justify-between gap-2 flex-row">
+          <Label htmlFor="isSeller">Want to Become a Seller?</Label>
+          <CustomToggle setValue={setValue}/>
+        </div>
 
         <button
           className="bg-gradient-to-br flex items-center justify-center relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] disabled:cursor-not-allowed"

@@ -1,14 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { FaLocationDot, FaEnvelope } from "react-icons/fa6";
 import { MdRecordVoiceOver } from "react-icons/md";
 
 import StarRating from "../ui/StarRating";
+import CustomToastNotification from "../../utils/CustomFun";
+import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const UserProfileCard = ({ data, rating }) => {
   const [showMore, setShowMore] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
+
+  const currentUser = useSelector(store => store?.user?.user )
+  
+  const navigate = useNavigate();
+
+  const handleContactMeBtn = () => {
+    if(!currentUser){
+      toast.dismiss();
+      CustomToastNotification();
+    }else{
+      navigate(`/message/${userInfo?._id}`)
+    }
+  }
 
   useEffect(() => {
     if (!data) return;
@@ -78,12 +94,12 @@ const UserProfileCard = ({ data, rating }) => {
                 </div>
               </div>
               <div className="flex flex-wrap my-auto">
-                <Link
-                  to={`/message/${userInfo?._id}`}
+                <button
+                  onClick={handleContactMeBtn}
                   className="inline-block px-5 py-3 text-base font-medium leading-normal text-center text-white align-middle transition-colors duration-150 ease-in-out border-0 shadow-none cursor-pointer rounded-lg bg-blue-500 hover:bg-blue-700 active:bg-blue-700 focus:bg-blue-700"
                 >
                   Contact Me
-                </Link>
+                </button>
               </div>
             </div>
 

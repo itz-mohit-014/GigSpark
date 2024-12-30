@@ -6,8 +6,16 @@ import { RiAedFill } from "react-icons/ri";
 import GetStartedBtn from "./GetStartedBtn.jsx";
 import { becomeA_Sellerfaqs } from "../../mocks/Faqs.js";
 import Faqs from "../../components/faq's/FaqsContainer.jsx";
+import { useDispatch } from "react-redux";
+import { showAuthenticatePage } from "../../slices/showLoginForm.slice.js";
 
 const BecomeA_Selller = () => {
+  const dispatch = useDispatch();
+
+  const handleLogin = () => {
+    dispatch(showAuthenticatePage("signin"));
+  };
+
   return (
     <section className="bg-inherit">
       <div className="bg-black w-full h-screen fixed top-0 left-0 z-[-1]">
@@ -27,13 +35,15 @@ const BecomeA_Selller = () => {
             </p>
             <button
               href="#_"
-              className="relative inline-block mt-6 px-4 py-2 font-medium group"
+              className="relative inline-block mt-6 px-4 py-2 font-medium group active:scale-95"
+              onClick={handleLogin}
             >
               <span className="absolute inset-0 w-full h-full transition duration-300 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0 rounded-md"></span>
-              <span className="absolute inset-0 w-full h-full  transition duration-300 ease-out  bg-white border-2 border-black group-hover:bg-black rounded-md"></span>
+              <span className="absolute inset-0 w-full h-full  transition duration-300 ease-out  bg-white border-2 border-black group-hover:bg-black  rounded-md"></span>
               <span className="relative text-black group-hover:text-white">
                 Become a seller
               </span>
+              <div className="absolute inset-x-0 h-0.5 w-1/2 mx-auto -top-px shadow-2xl bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
             </button>
           </div>
         </div>
@@ -210,16 +220,21 @@ const BecomeA_Selller = () => {
           <div className="py-12 bg-gray-100 rounded-2xl">
             <h2 className="text-center text-3xl font-bold mb-6">Q&A</h2>
             <div className="max-w-4xl mx-auto">
-              <Faqs data={becomeA_Sellerfaqs} layoutClass="grid grid-cols-2 grid-rows-auto gap-y-4 gap-x-12"/>
+              <Faqs
+                data={becomeA_Sellerfaqs}
+                layoutClass="grid grid-cols-2 grid-rows-auto gap-y-4 gap-x-12"
+              />
             </div>
           </div>
 
-          <div className="border-2 border-dashed rounded-2xl  bg-violet-200 mb-16 border-blue-500 py-8 text-center font-primary">
+          <div className="border-2 border-dashed rounded-2xl mb-16 bg-blue-400/60 border-blue-500 py-8 text-center font-primary">
             <h2 className="mb-2 text-4xl">
               Sign up and create your first Gig today
             </h2>
-            <p className="text-gray-500 mb-4">GigSpark Freelance services at your fingertips</p>
-            <GetStartedBtn/>
+            <p className="text-gray-500 mb-4">
+              GigSpark Freelance services at your fingertips
+            </p>
+            <GetStartedBtn />
           </div>
         </div>
       </div>
@@ -228,8 +243,3 @@ const BecomeA_Selller = () => {
 };
 
 export default BecomeA_Selller;
-
-
-
-// export default CustomBtn;
-

@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { showAuthenticatePage } from "../../slices/showLoginForm.slice";
 
 const GetStartedBtn = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hover, setHover] = useState(false);
+
+  const dispatch = useDispatch()
 
   const handleMouseMove = (event) => {
     const { clientX, clientY } = event;
@@ -17,6 +21,10 @@ const GetStartedBtn = () => {
     setHover(false);
     setMousePos({ x: 0, y: 0 }); // Reset position
   };
+
+  const handleSignIn = () => {
+    dispatch(showAuthenticatePage("signup"))
+  }
 
   const transformStyle = hover
     ? `translateX(${(mousePos.x - window.innerWidth / 2) / 5}px) translateY(${
@@ -33,6 +41,7 @@ const GetStartedBtn = () => {
         className="group relative grid h-[220px] w-[220px] place-content-center rounded-full border-2 border-black transition-all duration-700 ease-out"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onClick={handleSignIn}
         style={{
           transform: transformStyle,
           backgroundColor: hover ? "white" : "",
@@ -80,7 +89,7 @@ const GetStartedBtn = () => {
                 hover ? "opacity-100" : "opacity-0"
               } transition-opacity duration-700 ease-out`}
             >
-              Sign In to Kickstart 🏆 your journey on GigSpark 🚀
+              Sign Up to Kickstart 🏆 your journey on GigSpark 🚀
             </textPath>
           </text>
         </svg>

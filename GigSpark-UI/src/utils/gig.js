@@ -8,7 +8,9 @@ const fetchGig = async (id) => {
   const response = await newRequest("get", SINGLE_GIG(id), null);
 
   if (typeof response === "string") {
-    toast.error(response);
+
+    (response  !== "Unauthorized request" &&  toast.error(response));
+
     return;
   }
   toast.success(response?.message);
@@ -24,7 +26,7 @@ const createNewGig = async (data) => {
   });
   
   if (typeof response === "string") {
-    toast.error(response);
+    (response  !== "Unauthorized request" &&  toast.error(response));
     return;
   }
   toast.success(response?.message);
@@ -42,7 +44,8 @@ const fetchMyGig = async (filter) => {
   }
 
   if (typeof response === "string") {
-    toast.error(response);
+    (response  !== "Unauthorized request" &&  toast.error(response));
+    
     return response;
   }
   toast.success(response?.message);

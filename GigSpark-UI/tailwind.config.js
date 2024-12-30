@@ -36,11 +36,20 @@ export default {
           to:{
             transform:"translate(-50%, -50%) rotate(360deg)"
           }
+        },
+        "box-slide": {
+          from: {
+            height: "0"
+          },
+          to:{
+            height: "100%"
+          }
         }
       },
       animation: {
         marquee: "marquee var(--duration) infinite linear",
-        rotate: "rotateTxt 5s infinite linear"
+        rotate: "rotateTxt 5s infinite linear",
+        "toast-slide":"toast-slide 5s linear forwards"
       },
       backgroundImage: {
         "custom-radial":

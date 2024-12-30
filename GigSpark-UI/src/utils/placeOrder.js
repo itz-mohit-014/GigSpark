@@ -22,7 +22,7 @@ const handlePayment = async (productId, email) => {
   }
 
   if (typeof response === "string") {
-    toast.error(response);
+    (response  !== "Unauthorized request" &&  toast.error(response));
     return response;
   }
 
@@ -47,7 +47,8 @@ const handlePaymentVerify = async (orderDetails, name, gigId) => {
       const result = await newRequest("post", VERIFY_PAYMENT, paymentDetails);
 
       if (typeof result === "string") {
-        toast.error(result);
+        (result  !== "Unauthorized request" &&  toast.error(result));
+
         return;
       }
 
@@ -74,10 +75,12 @@ const fetchAllOrder = async () => {
     // reset if token is expired or removed...
     removeItemFromLocalstorage("user");
     removeItemFromLocalstorage("sessionTimeout");
+    (response && toast.error(response));
+    return;
   }
 
   if (typeof response === "string") {
-    toast.error(response);
+    (response  !== "Unauthorized request" &&  toast.error(response));
     return response;
   }
   toast.success(response?.message);

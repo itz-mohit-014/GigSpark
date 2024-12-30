@@ -109,16 +109,14 @@ const ProfilePage = () => {
 
               {userDetails?.bio && (
                 <>
-                  <div className="overflow-hidden mt-6">
+                  <div className="overflow-hidden mt-6 relative">
                     <p
-                      className={`text-gray-600 text-center font-light lg:px-16 ${
-                        showMore ? "h-auto" : "h-2"
-                      }`}
+                      className={`text-gray-600 text-center font-light lg:px-16 `}
                     >
-                      {userDetails?.bio}
+                      {userDetails?.bio} 
                     </p>
                     <div
-                      className={`w-full h-20 rounded-md bg-gradient-to-b from-white to-gray-950/80 ${
+                      className={`w-full h-20 rounded-md bg-gradient-to-b absolute bottom-0 from-transparent to-65% to-white ${
                         showMore ? "hidden" : "block"
                       }`}
                     ></div>

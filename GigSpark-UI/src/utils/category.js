@@ -7,7 +7,7 @@ import { setAllCategory } from "../slices/category.slice";
 const fetchAllCategory = () => async (dispatch) => {
     const response = await newRequest("get", Category?.GET_ALL_CATEGORY, null);
     if (typeof response === "string") {
-      toast.error(response);
+     (response !== "Unauthorized request" && toast.error(response));
       return;
     }
     toast.success(response?.message)
@@ -19,7 +19,7 @@ const getCurrentCategoryWithAllGigs = async (id) => {
     const response = await newRequest("get", SINGLE_CATEGORY(id), null);
     
     if (typeof response === "string") {
-      toast.error(response);
+      (response  !== "Unauthorized request" &&  toast.error(response));
       return;
     }
     toast.success(response?.message)
