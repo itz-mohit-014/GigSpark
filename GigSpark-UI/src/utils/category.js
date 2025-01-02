@@ -5,12 +5,13 @@ import { setAllCategory } from "../slices/category.slice";
 
 
 const fetchAllCategory = () => async (dispatch) => {
+    const firstToastId = toast.loading("category loading...")
     const response = await newRequest("get", Category?.GET_ALL_CATEGORY, null);
     if (typeof response === "string") {
-     (response !== "Unauthorized request" && toast.error(response));
+     (response !== "Unauthorized request" && toast.error(response , {id: firstToastId}));
       return;
     }
-    toast.success(response?.message)
+    toast.success(response?.message, {id: firstToastId})
     dispatch(setAllCategory(response?.data))
   };
 
