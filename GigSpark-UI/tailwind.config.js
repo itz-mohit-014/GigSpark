@@ -1,8 +1,12 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 import colors from "tailwindcss/colors";
+
 // @ts-ignore
-// import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
+const {
+  default: flattenColorPalette,
+}= require("tailwindcss/lib/util/flattenColorPalette");
 /** @type {import('tailwindcss').Config} */
+
 export default {
   darkMode: ["class"],
   mode: "jit",
@@ -18,7 +22,7 @@ export default {
       keyframes: {
         shimmer: {
           "100%": {
-            "transform": "translateX(100%)",
+            transform: "translateX(100%)",
           },
         },
         marquee: {
@@ -29,27 +33,36 @@ export default {
             transform: "translateX(calc(-100% - 2.5rem))",
           },
         },
-        rotateTxt:{
-          from:{
-            transform:"translate(-50%, -50%) rotate(0deg)"
+        rotateTxt: {
+          from: {
+            transform: "translate(-50%, -50%) rotate(0deg)",
           },
-          to:{
-            transform:"translate(-50%, -50%) rotate(360deg)"
-          }
+          to: {
+            transform: "translate(-50%, -50%) rotate(360deg)",
+          },
         },
         "box-slide": {
           from: {
-            height: "0"
+            height: "0",
           },
-          to:{
-            height: "100%"
-          }
-        }
+          to: {
+            height: "100%",
+          },
+        },
+        meteor: {
+          "0%": { transform: "rotate(215deg) translateX(0)", opacity: "1" },
+          "70%": { opacity: "1" },
+          "100%": {
+            transform: "rotate(215deg) translateX(-500px)",
+            opacity: "0",
+          },
+        },
       },
       animation: {
+        "meteor-effect": "meteor 5s linear infinite",
         marquee: "marquee var(--duration) infinite linear",
         rotate: "rotateTxt 5s infinite linear",
-        "toast-slide":"toast-slide 5s linear forwards"
+        "toast-slide": "toast-slide 5s linear forwards",
       },
       backgroundImage: {
         "custom-radial":
@@ -60,18 +73,19 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-  // plugins: [require("tailwindcss-animate"), addVariablesForColors],
+  plugins: [
+    require("tailwindcss-animate"),
+    addVariablesForColors
+  ],
 };
 
-// This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
-// function addVariablesForColors({ addBase, theme }) {
-// let allColors = flattenColorPalette(theme("colors"));
-//   let newVars = Object.fromEntries(
-//     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
-//   );
+function addVariablesForColors({ addBase, theme }) {
+let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
 
-//   addBase({
-//     ":root": newVars,
-//   });
-// }
+  addBase({
+    ":root": newVars,
+  });
+}

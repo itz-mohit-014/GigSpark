@@ -7,6 +7,6 @@
         ]
       }
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "tailwindcss.d.ts"],
     "exclude": ["node_modules"]
 }

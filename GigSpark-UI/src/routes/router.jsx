@@ -10,12 +10,14 @@ import Message from "../pages/message/Message";
 import ScrollToTop from "../components/scrollToTop/ScrollToTop";
 import ProtectedRoute from "../components/protected/ProtectedRoute";
 import PageLoader from "../components/ui/PageLoader";
-import BecomeA_Selller from "../pages/become_Seller/BecomeA_Selller";
 import ProfilePage from "../pages/profile/ProfilePage";
 
 const Home = lazy(() => import("../pages/home/Home"));
 const AddNewGig = lazy(() => import("../pages/addNewGig/AddNewGig"));
 const AllGigs = lazy(() => import("../pages/allGigs/AllGigs"));
+const BecomeA_Selller = lazy(() =>
+  import("../pages/become_Seller/BecomeA_Selller")
+);
 
 const RootLayout = () => {
   return (
