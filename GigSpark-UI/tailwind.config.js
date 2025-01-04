@@ -57,12 +57,21 @@ export default {
             opacity: "0",
           },
         },
+        aurora: {
+          from: {
+            backgroundPosition: "50% 50%, 50% 50%",
+          },
+          to: {
+            backgroundPosition: "350% 50%, 350% 50%",
+          },
+        },
       },
       animation: {
         "meteor-effect": "meteor 5s linear infinite",
         marquee: "marquee var(--duration) infinite linear",
         rotate: "rotateTxt 5s infinite linear",
         "toast-slide": "toast-slide 5s linear forwards",
+        aurora: "aurora 60s linear infinite",
       },
       backgroundImage: {
         "custom-radial":
@@ -80,7 +89,7 @@ export default {
 };
 
 function addVariablesForColors({ addBase, theme }) {
-let allColors = flattenColorPalette(theme("colors"));
+  let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
   );

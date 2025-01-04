@@ -13,7 +13,7 @@ const Home = () => {
   const AllCategories = useSelector((store) => store?.category);
 
   return (
-    <main className="space-y-16" id="home">
+    <main className="space-y-16 overflow-x-hidden" id="home">
       <Hero />
       <div className="max-w-screen-xl mx-auto p-4 sm:p-6 ">
         {AllCategories.length <= 0 ? (
