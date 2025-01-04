@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "./select";
 
-const DropdownList = ({ lists, label, onChange, value, errors = null }) => {
+const DropdownList = ({ lists, label, onChange, value, Heading, errors = null }) => {
   return (
     <LabelInputContainer>
       {label && <Label
@@ -18,9 +18,9 @@ const DropdownList = ({ lists, label, onChange, value, errors = null }) => {
         htmlFor={label}
         className={"text-lg text-gray-500"}
       />}
-      <Select onValueChange={onChange} value={value}>
+      <Select onValueChange={onChange} >
         <SelectTrigger className="w-full border-gray-300 shadow-input border-2 text-base">
-          <SelectValue placeholder="Select a category" />
+          <SelectValue placeholder={Heading} />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>

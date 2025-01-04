@@ -152,6 +152,7 @@ const NewGigForm = ({
             </>
           }
           value={selectValue}
+          Heading={<span className="">Select a category </span>}
           errors={errors}
           onChange={handleSelectCotegory}
         />
