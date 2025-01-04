@@ -99,7 +99,19 @@ export const StickyScroll = ({ content, contentClassName, heading, height }) => 
                 </motion.p>
               </div>
             ))}
-            <div className="h-40" />
+            {/* One for increse the scroll height till the last */}
+            <div className="my-20 opacity-0">
+                <h2
+                  className="text-4xl font-bold text-slate-100 flex items-center gap-1"
+                >
+                  <span>{content[content.length - 1].title}</span>
+                </h2>
+                <p
+                  className="text-kg text-slate-300 max-w-sm mt-10"
+                >
+                  {content[content.length - 1].description}
+                </p>
+              </div>
           </div>
         </div>
         <div

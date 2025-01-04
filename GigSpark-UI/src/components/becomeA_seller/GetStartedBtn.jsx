@@ -38,7 +38,7 @@ const GetStartedBtn = () => {
       onMouseMove={handleMouseMove}
     >
       <button
-        className="group relative grid h-[220px] w-[220px] place-content-center rounded-full border-2 border-black transition-all duration-700 ease-out"
+        className="group relative grid h-[220px] w-[220px] place-content-center rounded-full border-2 border-white  transition-all duration-700 ease-out"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={handleSignIn}
@@ -53,8 +53,8 @@ const GetStartedBtn = () => {
           strokeWidth="0"
           viewBox="0 0 24 24"
           className={`pointer-events-none relative z-10 ${
-            hover ? "rotate-90" : "rotate-45"
-          } text-7xl text-black transition-transform duration-700 ease-out`}
+            hover ? " rotate-90 text-black" : "rotate-45 text-white"
+          } text-7xl  transition-transform duration-700 ease-out`}
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"

@@ -1,16 +1,16 @@
 import React from "react";
-import ExploreCategory from "../exploreCategory/ExploreCategory";
-import VideoSection from "./VideoSection";
-import { StickyScroll } from "../ui/sticky-scroll-reveal";
+import ExploreCategory from "../exploreCategory/ExploreCategory.jsx";
+import VideoSection from "./VideoSection.jsx";
+import { StickyScroll } from "../ui/sticky-scroll-reveal.jsx";
 
 const FeatureSection = () => {
   return (
     <section className="w-full p-4 sm:p-6">
-      <div className="max-w-screen-xl mx-auto mb-10">
+      <div className="max-w-screen-xl mx-auto mb-10 *:min-h-screen">
         <StickyScroll
           content={featuresList}
+          height={"h-screen"}
           heading={
-           
             <span>A whole world of{" "}
               <i className="bg-gradient-to-r from-purple-500 to-emerald-500 bg-clip-text text-transparent underline underline-offset-4 decoration-wavy decoration-yellow-500 ">
                 freelance talent

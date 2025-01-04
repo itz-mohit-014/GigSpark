@@ -3,7 +3,6 @@ import Video from "../../components/video/Video.jsx";
 import { BiSolidPurchaseTag } from "react-icons/bi";
 import { AiOutlineTransaction } from "react-icons/ai";
 import { RiAedFill } from "react-icons/ri";
-import GetStartedBtn from "../../components/becomeA_seller/GetStartedBtn.jsx";
 import { becomeA_Sellerfaqs } from "../../mocks/Faqs.js";
 import Faqs from "../../components/faq's/FaqsContainer.jsx";
 import { useDispatch } from "react-redux";
@@ -11,6 +10,7 @@ import { showAuthenticatePage } from "../../slices/showLoginForm.slice.js";
 import UserTestimonials from "../../components/becomeA_seller/UserTestimonials.jsx";
 import FreelanceCommunity from "../../components/becomeA_seller/FreelanceCommunity.jsx";
 import WorkStep from "../../components/becomeA_seller/WorkStep.jsx";
+import CallToAction from "../../components/becomeA_seller/CallToAction.jsx";
 
 const BecomeA_Selller = () => {
   const dispatch = useDispatch();
@@ -86,10 +86,9 @@ const BecomeA_Selller = () => {
 
       <div className="bg-white">
         <div className="max-w-screen-xl mx-auto p-4 sm:p-6 font-secondary flex flex-col gap-16 relative z-[1]">
-          
-          <FreelanceCommunity/>
-          <WorkStep/>
-          <UserTestimonials/>
+          <FreelanceCommunity />
+          <WorkStep />
+          <UserTestimonials />
 
           <div className="py-12 bg-gray-100 rounded-2xl">
             <h2 className="text-center text-3xl font-bold mb-6">Q&A</h2>
@@ -101,15 +100,7 @@ const BecomeA_Selller = () => {
             </div>
           </div>
 
-          <div className="border-2 border-dashed rounded-2xl mb-16 bg-custom-radial border-blue-500 py-8 text-center font-primary p-6">
-            <h2 className="mb-2 text-2xl sm:text-4xl">
-              Sign up and create your first Gig today
-            </h2>
-            <p className="text-gray-500 mb-4">
-              GigSpark Freelance services at your fingertips
-            </p>
-            <GetStartedBtn />
-          </div>
+          <CallToAction/>
         </div>
       </div>
     </section>
@@ -117,4 +108,3 @@ const BecomeA_Selller = () => {
 };
 
 export default BecomeA_Selller;
-

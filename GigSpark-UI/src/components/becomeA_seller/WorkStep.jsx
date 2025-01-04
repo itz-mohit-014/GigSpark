@@ -6,6 +6,7 @@ const WorkStep = () => {
     <div className="flex flex-col md:flex-row justify-center items-center gap-8 w-full">
       <StickyScroll
         content={workStepList}
+        height={'h-screen'}
         heading={
           <h2 className="text-center  text-2xl sm:text-4xl font-secondary font-medium mb-10">
             How it works
