@@ -27,15 +27,15 @@ const Hero = () => {
       <BackgroundBeams className="h-[calc(100dvh-86px)]"/>
 
       <LampDemo>
-        <div className="flex flex-col gap-3 sm:gap-4 justify-center pt-5 w-full">
-          <div className="relative overflow-hidden rounded-xl sm:rounded-lg">
-            <BsSearch className="absolute top-3 left-2.5 text-gray-500 text-2xl" />
+        <div className={`flex flex-col gap-3 sm:gap-4 justify-center w-full`}>
+          <div className={`relative overflow-hidden rounded-xl sm:rounded-lg flex items-center justify-center ${  AllCategories.length > 0 ? "pt-5" :"mt-16"}`}> 
+            <BsSearch className="absolute sm:left-3 text-2xl right-0 max-sm:h-full max-sm:w-12 max-sm:bg-emerald-600 max-sm:hover:bg-emerald-700 max-sm:rounded-tl-lg max-sm:rounded-bl-lg max-sm:p-2.5 text-blue-50" />
             <input
               type="search"
               value={value}
               onChange={handleSearch}
               name="category-search"
-              className="p-3 outline-none border-none bg-blue-50 text-blue-950 text-sm sm:text-base pl-4 sm:pl-12 pr-28 w-full"
+              className="p-3 outline-none border-none bg-blue-50 text-blue-950 text-sm sm:text-base pl-4 pr-12 sm:pl-12 sm:pr-28 w-full"
               placeholder={`Try "Building mobile app"`}
             />
             <Button
@@ -47,7 +47,9 @@ const Hero = () => {
               disabled={false}
             />
           </div>
-          <div className="flex gap-3 flex-wrap font-semibold">
+          {
+            AllCategories.length > 0 ? 
+           <div className="flex gap-3 flex-wrap font-semibold">
             <span>Popular:</span>
             {AllCategories.length &&
               AllCategories.map(
@@ -64,6 +66,8 @@ const Hero = () => {
                   )
               )}
           </div>
+          : null
+        }
         </div>
       </LampDemo>
       
