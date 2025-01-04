@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Faq from "./Faq";
+import Faq from "./Faq.jsx";
 
 const Faqs = ({ data, heading, className="", layoutClass="" }) => {
   const [faqs, setFaqs] = useState(data);

@@ -1,12 +1,11 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { useMotionValueEvent, useScroll } from "framer-motion";
-import { motion } from "framer-motion";
+import { useMotionValueEvent, useScroll, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 import { BsPatchCheckFill } from "react-icons/bs";
 
-export const StickyScroll = ({ content, contentClassName, heading }) => {
+export const StickyScroll = ({ content, contentClassName, heading, height }) => {
   const [activeCard, setActiveCard] = React.useState(0);
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -67,7 +66,7 @@ export const StickyScroll = ({ content, contentClassName, heading }) => {
           backgroundColor:
             backgroundColors[activeCard % backgroundColors.length],
         }}
-        className="h-[30rem] scrollbar-hidden overflow-y-auto flex justify-center lg:justify-between relative space-x-10 lg:p-20 p-6 rounded-2xl w-full"
+        className={`scrollbar-hidden overflow-y-auto flex justify-center lg:justify-between relative space-x-10 lg:p-20 p-6 rounded-2xl w-full ${height}`}
         ref={ref}
       >
         <div className="div relative flex items-start px-4">
@@ -82,9 +81,9 @@ export const StickyScroll = ({ content, contentClassName, heading }) => {
                   animate={{
                     opacity: activeCard === index ? 1 : 0.3,
                   }}
-                  className="text-2xl font-bold text-slate-100 flex items-center gap-1"
+                  className="text-4xl font-bold text-slate-100 flex items-center gap-1"
                 >
-                  <BsPatchCheckFill className="inline-block mr-2 text-blue-600 text-2xl align-middle" />{" "}
+                  <BsPatchCheckFill className="inline-block mr-2 text-blue-600 text-4xl align-middle" />{" "}
                   <span>{item.title}</span>
                 </motion.h2>
                 <motion.p

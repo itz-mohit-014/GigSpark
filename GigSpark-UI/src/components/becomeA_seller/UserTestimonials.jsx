@@ -1,5 +1,5 @@
 import React from "react";
-import { AnimatedTestimonials } from "../ui/animated-testimonials";
+import { AnimatedTestimonials } from "../ui/animated-testimonials.jsx";
 
 const UserTestimonials = () => {
   return (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { showAuthenticatePage } from "../../slices/showLoginForm.slice";
+import { showAuthenticatePage } from "../../slices/showLoginForm.slice.js";
 
 const GetStartedBtn = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
