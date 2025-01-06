@@ -45,7 +45,12 @@ const router = createBrowserRouter(
         },
         {
           path: "/become-a-seller",
-          element: <BecomeA_Selller />,
+          element: 
+          (
+            <Suspense fallback={<PageLoader />}>
+              <BecomeA_Selller />
+            </Suspense>
+          ),
         },
         {
           path: "gigs/:name",
