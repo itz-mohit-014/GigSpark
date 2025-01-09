@@ -14,26 +14,8 @@ const CallToAction = () => {
         </p>
         <GetStartedBtn />
       </div>
-      <svg
-        viewBox="0 0 1024 1024"
-        className="absolute left-1/2 top-1/3 z-10 h-[64rem] w-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"
-        aria-hidden="true"
-      >
-        <circle
-          cx="512"
-          cy="512"
-          r="512"
-          fill="url(#827591b1-ce8c-4110-b064-7cb85a0b1217)"
-          fillOpacity="0.7"
-        ></circle>
-        <defs>
-          <radialGradient id="827591b1-ce8c-4110-b064-7cb85a0b1217">
-            <stop stopColor="#3b82f6"></stop>
-            <stop offset="1" stopColor="#1d4ed8"></stop>
-          </radialGradient>
-        </defs>
-      </svg>
-      <Meteors number={20}/>
+       <div className="absolute bottom-[-60%] left-1/2 -translate-x-1/2 aspect-square h-96 w-96 transform bg-gradient-to-r from-blue-500 to-teal-500 bg-red-500 rounded-full blur-3xl opacity-60 shadow-[0px_0px_500px_50px_#3b82f6]" />
+      <Meteors number={30}/>
     </div>
   );
 };

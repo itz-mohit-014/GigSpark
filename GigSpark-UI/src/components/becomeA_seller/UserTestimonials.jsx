@@ -3,9 +3,23 @@ import { AnimatedTestimonials } from "../ui/animated-testimonials.jsx";
 
 const UserTestimonials = () => {
   return (
-    <div className="py-12 bg-slate-300 rounded-2xl">
-      <h2 className="text-center text-4xl font-secondary font-medium mb-6">Buyer stories</h2>
-      <AnimatedTestimonials autoplay={true} testimonials={userTestimonials} />
+    <div className="px-2 py-24 pb-16 bg-slate-300 rounded-2xl relative">
+      <span className="absolute top-8 left-1/2 -translate-x-1/2 py-1 px-4 bg-indigo-100 rounded-full text-xs font-medium text-indigo-600">
+      Buyer Stories
+      </span>
+      <div className="max-w-4xl mx-auto grid grid-cols-1 gap-x-6">
+        <div className="mb-14 text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 py-5">
+            Inspiring Buyer Stories
+          </h2>
+          <p className="text-base lg:text-lg font-normal text-gray-500 max-w-md md:max-w-2xl mx-auto">
+            See how real buyers achieved success with our talented freelancers.
+            Discover their journeys and get inspired to start your own project.
+          </p>
+        </div>
+
+        <AnimatedTestimonials autoplay={true} testimonials={userTestimonials} />
+      </div>
     </div>
   );
 };

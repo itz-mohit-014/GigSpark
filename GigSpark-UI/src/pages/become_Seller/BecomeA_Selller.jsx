@@ -3,14 +3,13 @@ import Video from "../../components/video/Video.jsx";
 import { BiSolidPurchaseTag } from "react-icons/bi";
 import { AiOutlineTransaction } from "react-icons/ai";
 import { RiAedFill } from "react-icons/ri";
-import { becomeA_Sellerfaqs } from "../../mocks/Faqs.js";
-import Faqs from "../../components/faq's/FaqsContainer.jsx";
 import { useDispatch } from "react-redux";
 import { showAuthenticatePage } from "../../slices/showLoginForm.slice.js";
 import UserTestimonials from "../../components/becomeA_seller/UserTestimonials.jsx";
 import FreelanceCommunity from "../../components/becomeA_seller/FreelanceCommunity.jsx";
 import WorkStep from "../../components/becomeA_seller/WorkStep.jsx";
 import CallToAction from "../../components/becomeA_seller/CallToAction.jsx";
+import Qna from "../../components/becomeA_seller/Qna.jsx";
 
 const BecomeA_Selller = () => {
   const dispatch = useDispatch();
@@ -89,17 +88,7 @@ const BecomeA_Selller = () => {
           <FreelanceCommunity />
           <WorkStep />
           <UserTestimonials />
-
-          <div className="py-12 bg-gray-100 rounded-2xl">
-            <h2 className="text-center text-3xl font-bold mb-6">Q&A</h2>
-            <div className="max-w-4xl mx-auto">
-              <Faqs
-                data={becomeA_Sellerfaqs}
-                layoutClass="grid grid-cols-2 grid-rows-auto gap-y-4 gap-x-12"
-              />
-            </div>
-          </div>
-
+          <Qna/>
           <CallToAction/>
         </div>
       </div>

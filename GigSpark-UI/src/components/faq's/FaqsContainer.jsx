@@ -1,23 +1,28 @@
 import React, { useState } from "react";
 import Faq from "./Faq.jsx";
 
-const Faqs = ({ data, heading, className="", layoutClass="" }) => {
-  const [faqs, setFaqs] = useState(data);
+const Faqs = ({
+  data,
+  heading,
+  className = "",
+  layoutClass = "flex flex-col gap-4",
+}) => {
+
   const [showAnswer, setShowAnswer] = useState(null);
 
-  if (!faqs.length) return;
+  if (!data.length) return;
 
   return (
     <div className={`py-4 ${className}`}>
       {heading && <h2 className="text-xl font-bold mb-4">{heading}</h2>}
       <div className={layoutClass}>
-        {faqs.map((faq, index) => (
+        {data.map((faq) => (
           <Faq
-            key={index}
+            key={faq?._id}
             faq={faq}
-            showAnswer={index === showAnswer ? true : false}
+            showAnswer={faq?._id === showAnswer ? true : false}
             setShowAnswer={() =>
-              setShowAnswer(showAnswer === index ? null : index)
+              setShowAnswer(showAnswer === faq?._id ? null : faq?._id)
             }
           />
         ))}

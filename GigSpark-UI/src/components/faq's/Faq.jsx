@@ -2,27 +2,33 @@ import React from "react";
 import { FaChevronDown } from "react-icons/fa";
 
 const Faq = ({ faq, setShowAnswer, showAnswer }) => {
+  const { question, answer } = faq;
+
   return (
-    <div className="border-b border-gray-300 py-3 hover:border-l-blue-600 border-l-transparent border-l-4 rounded-md pl-3 transition-all">
+    <div className="border-b last:border-b-transparent border-gray-400 py-3 hover:border-l-blue-600 border-l-transparent border-l-4 rounded-md pl-3 transition-all duration-500">
       <h3
-        className="w-full py-2 flex justify-between items-center text-left text-gray-800 font-medium focus:outline-none cursor-pointer"
+        className="w-full py-1 flex justify-between items-center text-left text-gray-800 font-medium focus:outline-none cursor-pointer"
         type="button"
         onClick={() => setShowAnswer()}
       >
-        {faq.question}
+        {question}
         <FaChevronDown
           className={`"h-5 w-5 transform transition-transform duration-300 ${
             showAnswer ? "rotate-180" : "rotate-0"
           }`}
         />
       </h3>
-      <p
-        className={`mt-2 transition-all duration-300 origin-top ${
-          showAnswer ? "scale-y-100 h-auto" : "scale-y-0 h-0"
+
+      <div
+        className={`transition-all duration-300 mt-4 ease-in-out overflow-hidden ${
+          showAnswer ? "max-h-60" : "max-h-0"
         }`}
+        style={{ transition: "max-height 0.3s ease-in-out 0s" }}
       >
-        {faq.answer}
-      </p>
+        <div className="pb-5 leading-relaxed">
+          <div className="space-y-2 leading-relaxed">{answer}</div>
+        </div>
+      </div>
     </div>
   );
 };

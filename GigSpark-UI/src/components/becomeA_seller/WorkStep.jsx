@@ -1,19 +1,59 @@
 import React from "react";
-import { StickyScroll } from "../ui/sticky-scroll-reveal.jsx";
 
 const WorkStep = () => {
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center gap-8 w-full">
-      <StickyScroll
-        content={workStepList}
-        height={'h-screen'}
-        heading={
-          <h2 className="text-center  text-2xl sm:text-4xl font-secondary font-medium mb-10">
-            How it works
+    <section
+      id="works"
+      className="relative bg-gray-900 py-10 sm:py-16 lg:py-24 px-4 rounded-xl shadow-lg"
+    >
+      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <span className="absolute top-8 left-1/2 -translate-x-1/2 py-1 px-4 bg-indigo-100 rounded-full text-xs font-medium text-indigo-600">
+        Work Steps
+      </span>
+
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-3xl text-white font-extrabold mx-auto md:text-4xl lg:text-5xl">
+            Simple Steps to Success{" "}
           </h2>
-        }
-      />
-    </div>
+          <p className="max-w-2xl mx-auto mt-4 text-base text-gray-400 leading-relaxed md:text-xl">
+            Explore how our platform connects you with top freelancers in just a
+            few clicks. Your project, your way, made effortless.
+          </p>
+        </div>
+        <div className="relative mt-12 lg:mt-20">
+          <div className="absolute inset-x-0 hidden xl:px-44 top-2 md:block md:px-20 lg:px-28">
+            <img
+              width="1000"
+              height="500"
+              decoding="async"
+              data-nimg="1"
+              className="w-full"
+              style={{ color: "transparent" }}
+              src="/img/curved-dotted-line.svg"
+            />
+          </div>
+          <div className="relative grid grid-cols-1 text-center gap-y-12 md:grid-cols-3 gap-x-12">
+            {workStepList.map((step, index) => {
+              return (
+                <div>
+                  <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-200 rounded-full shadow">
+                    <span className="text-xl font-semibold text-gray-700">
+                      {index + 1}
+                    </span>
+                  </div>
+                  <h3 className="mt-6 text-xl  text-white font-semibold leading-tight md:mt-10">
+                    {step.title}
+                  </h3>
+                  <p className="mt-4 text-base text-gray-400 md:text-lg">
+                    {step.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
@@ -21,39 +61,18 @@ export default WorkStep;
 
 const workStepList = [
   {
-    title: "1. Create a Gig",
+    title: "Create Your Gig",
     description:
-      "Sign up for free, set up your Gig, and offer your work to our global audience. Create a detailed and appealing gig description that highlights your skills and attracts potential buyers. Showcase your expertise with an engaging title, eye-catching images, and a clear pricing structure.",
-    content: (
-      <img
-        className="object-cover"
-        src={"/img/workStep/createGig.jpeg"}
-        alt="gig spark work steps - Create gig"
-      />
-    ),
+      "Sign up, set up your gig, and showcase your skills to a global audience with an engaging title, images, and pricing.",
   },
   {
-    title: "2. Deliver great work",
+    title: "Deliver Quality Work",
     description:
-      "Get notified when you receive an order and use our efficient system to discuss all the necessary details with your customers. Ensure clear communication, maintain professionalism, and deliver high-quality work that meets or exceeds client expectations to build trust and earn repeat business.",
-    content: (
-      <img
-        className="object-cover"
-        src={"/img/workStep/deliverWork.jpg"}
-        alt="gig spark work steps - Deliver work"
-      />
-    ),
+      "Stay notified, communicate clearly, and deliver exceptional work to build trust and gain repeat clients.",
   },
   {
-    title: "3. Get paid",
+    title: "Get Paid Securely",
     description:
-      "Get paid on time, every time. Payments are processed securely and are available for withdrawal as soon as they clear. With our trusted system, you can focus on your work without worrying about delayed or missed payments, giving you peace of mind and financial stability.",
-    content: (
-      <img
-        className="object-cover"
-        src={"/img/workStep/getPaid.jpg"}
-        alt="gig spark work steps - Get paid"
-      />
-    ),
+      "Enjoy on-time, secure payments with no delays, so you can focus on your work stress-free.",
   },
 ];

@@ -1,66 +1,120 @@
 import React from "react";
 import ExploreCategory from "../exploreCategory/ExploreCategory.jsx";
 import VideoSection from "./VideoSection.jsx";
-import { StickyScroll } from "../ui/sticky-scroll-reveal.jsx";
+// icons
+import { FiPieChart } from "react-icons/fi";
+import { FiThumbsUp } from "react-icons/fi";
+import { AiOutlineProduct } from "react-icons/ai";
+import { BsBarChart } from "react-icons/bs";
+import { SiAwsorganizations } from "react-icons/si";
+import { BiSupport } from "react-icons/bi";
+import { cn } from "../../lib/utils.js";
 
 const FeatureSection = () => {
+  const Icons = [
+    FiPieChart,
+    FiThumbsUp,
+    AiOutlineProduct,
+    BsBarChart,
+    SiAwsorganizations,
+    BiSupport,
+  ];
+
   return (
     <section className="w-full p-4 sm:p-6">
       <div className="max-w-screen-xl mx-auto mb-10 *:min-h-screen">
-        <StickyScroll
-          content={featuresList}
-          height={"h-screen"}
-          heading={
-            <span>A whole world of{" "}
-              <i className="bg-gradient-to-r from-purple-500 to-emerald-500 bg-clip-text text-transparent underline underline-offset-4 decoration-wavy decoration-yellow-500 ">
-                freelance talent
-              </i>{" "}
-              at your fingertips</span>
-          }
-        />
+        <section className="pt-12 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-inherit">
+            <div className="mb-14 text-center">
+              <span className="py-1 px-4 bg-indigo-100 rounded-full text-xs font-medium text-indigo-600">
+                Features
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 py-5">
+                Why Choose GigSpark?
+              </h2>
+              <p className="text-base lg:text-lg font-normal text-gray-500 max-w-md md:max-w-2xl mx-auto">
+                Discover the benefits of working with GigSpark. From
+                budget-friendly services to secure payments, we provide a
+                seamless experience for both freelancers and clients.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 relative after:absolute after:inset-0 after:border-2 after:border-current text-gray-50">
+              {featuresList.map((feature, index) => {
+                const Icon = Icons[index];
+                return (
+                  <FeatureCardItem key={index} feature={feature} Icon={Icon} />
+                );
+              })}
+            </div>
+          </div>
+        </section>
       </div>
       <VideoSection />
-      <ExploreCategory />
     </section>
   );
 };
 
-const FeatureItemImage = () => {
+const FeatureCardItem = ({ feature, Icon }) => {
+
+
   return (
-    <div className="flex items-center justify-center">
-      <img
-        src="./img/features.png"
-        alt="GigSpark Freelance features"
-        className="mix-blend-multiply brightness-125 hidden lg:block animate-out"
-      />
+    <div
+      className={`flex flex-col items-center text-center py-10 px-8 border-2`}
+    >
+      <div style={{
+        backgroundColor:feature.bgColor+"20",
+        color:feature.bgColor+"ff"
+      }}
+        className={cn(
+          "flex justify-center items-center w-16 h-16 text-3xl rounded-full mb-4",
+        )}
+      >
+        <Icon />
+      </div>
+      <h4 className="text-lg font-semibold text-gray-900 mb-2">
+        {feature.title}
+      </h4>
+      <p className="text-sm font-normal text-gray-500">{feature.description}</p>
     </div>
   );
 };
 
 const featuresList = [
   {
-    title: "The best for every budget",
+    bgColor: "#ff0000",
+    title: "Result",
     description:
-      "Find high-quality services at every price point, ensuring you get the best value for your money. With no hourly rates and transparent project-based pricing, you can focus on what matters most without worrying about hidden fees.",
-    content: <FeatureItemImage />,
+      "Accurate results are our top priority, ensuring you always have reliable information at your fingertips.",
   },
   {
-    title: "Quality work done quickly",
+    bgColor: "#03ada0",
+    title: "Quality",
     description:
-      "Discover top freelancers ready to begin working on your project within minutes. Enjoy a seamless experience with professionals who deliver outstanding results promptly, ensuring your project stays on track.",
-    content: <FeatureItemImage />,
+      "We are committed to providing high-quality products and services that exceed your expectations.",
   },
   {
-    title: "Protected payments, every time",
+    bgColor: "#0000ff",
+    title: "Product",
     description:
-      "Always know what you'll pay upfront with our secure payment system. Your funds remain protected and are only released to freelancers once you are completely satisfied with the work delivered.",
-    content: <FeatureItemImage />,
+      "Experience the difference of our feature-rich product that offers everything you require and more.",
   },
   {
-    title: "24/7 support",
+    bgColor: "#ffa430",
+    title: "Sales",
     description:
-      "Get assistance whenever you need it with our dedicated customer support team available around the clock. Whether it's a question, concern, or guidance, we're here to help you every step of the way.",
-    content: <FeatureItemImage />,
+      "Experience the difference of our personalized sales approach, where you are always our top priority.",
+  },
+  {
+    bgColor: "#000000",
+    title: "Onboarding",
+    description:
+      "Our onboarding process is designed to be simple and intuitive, so you can start using our platform right away.",
+  },
+  {
+    bgColor: "#ff045d",
+    title: "Support",
+    description:
+      "Our commitment to exceptional support ensures that you receive the assistance you need, whenever you need it.",
   },
 ];
 

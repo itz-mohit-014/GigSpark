@@ -3,14 +3,28 @@ import { Meteors } from "../ui/meteors.jsx";
 
 const FreelanceCommunity = () => {
   return (
-    <div className="py-12 ">
-      <h2 className="text-center  text-2xl sm:text-4xl font-secondary font-medium mb-10">
-        Join our growing freelance community
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 gap-y-10 max-w-5xl mx-auto">
-        {users.map((card) => (
-          <UserCard key={card?.id} card={card} />
-        ))}
+    <div className="py-20 pb-16 px-3 relative">
+      <span className="absolute top-8 left-1/2 -translate-x-1/2 py-1 px-4 bg-indigo-100 rounded-full text-xs font-medium text-indigo-600">
+        Buyer Stories
+      </span>
+
+      <div className="max-w-4xl mx-auto grid grid-cols-1 gap-x-6">
+        <div className="mb-20 text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 py-5">
+            Be Part of Something Bigger
+          </h2>
+
+          <p className="text-base lg:text-lg font-normal text-gray-500 max-w-md md:max-w-2xl mx-auto">
+            Join thousands of talented freelancers and clients working together
+            to create amazing projects. Grow, collaborate, and succeed with us.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 gap-y-10 max-w-5xl mx-auto">
+          {users.map((card) => (
+            <UserCard key={card?.id} card={card} />
+          ))}
+        </div>
       </div>
     </div>
   );

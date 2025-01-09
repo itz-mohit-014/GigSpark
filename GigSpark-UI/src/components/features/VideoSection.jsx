@@ -19,7 +19,7 @@ const VideoSection = () => {
   return (
     <div className="space-y-16 max-w-screen-xl  mx-auto">
       <ContainerScroll titleComponent={<VideoHeader />}>
-        <div className="w-full relative pb-8">
+        <div className="w-full relative pb-8 mx-auto rounded-2xl object-cover h-full object-left-top">
           <p className="text-slate-600 text-sm font-primary pb-2 absolute -bottom-4 left-4 z-[1] ">
             Video source from youtube -
             <a

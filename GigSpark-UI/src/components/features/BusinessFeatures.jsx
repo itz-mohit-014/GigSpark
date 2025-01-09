@@ -1,63 +1,68 @@
 import React from "react";
-import { IoIosArrowForward } from "react-icons/io";
-import { MdBusinessCenter } from "react-icons/md";
-import { FaUserTie } from "react-icons/fa6";
-import { AiOutlineProject } from "react-icons/ai";
+import { FaUsers, FaHandshake, FaRocket } from "react-icons/fa";
+import { showAuthenticatePage } from "../../slices/showLoginForm.slice";
+import { useDispatch } from "react-redux";
 
 const BusinessFeatures = () => {
-  const handleExploreBtn = (e) => {
-    console.log(e.target.innerText);
+  const FeatureIcon = [FaUsers, FaHandshake, FaRocket];
+  const dispatch = useDispatch();
+
+  const handleSignUp = () => {
+    dispatch(showAuthenticatePage("/signup"));
   };
 
-  const items = [
-    "Connect to freelancers with proven business experience.",
-    "Get matched with the perfect talent by a customer success manager.",
-    "Manage teamwork and boost productivity with one powerful workspace",
-  ];
-
-  const FeatureIcon = [AiOutlineProject, MdBusinessCenter, FaUserTie];
-
   return (
-    <section className="w-full px-4 sm:px-6">
-      <div className="max-w-screen-xl sm:py-10 py-6 sm:px-12 px-8 bg-orange-100 rounded-3xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="pt-4 space-y-6 relative">
-          <span className="font-bold text-xl sm:text-2xl">
-            GigSpark <i className="font-normal">business</i>
-          </span>
-          <div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium font-primary">
-              A business solution design for <i>teams</i>
-            </h2>
-            <p className="text-sm sm:text-base text-slate-500 mt-1">
-              Upgrade to a curated experience package with tools and benifits
-              dedicated to businesses.
-            </p>
+    <section className="overflow-hidden bg-white py-8 sm:py-16">
+      <div className="mx-auto max-w-screen-xl px-6 lg:px-8">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+          <div className="lg:pr-8 lg:pt-4">
+            <div className="lg:max-w-lg">
+              <h2 className="text-base font-semibold leading-7 text-indigo-600">
+                GigSpark <i className="font-normal">business</i>
+              </h2>
+              <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                A business solution design for <i>teams</i>
+              </p>
+              <p className="mt-6 text-lg leading-8 text-gray-600">
+                Upgrade to a curated experience package with tools and benifits
+                dedicated to businesses.
+              </p>
+              <ul className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
+                {items.map((item, index) => {
+                  const Icon = FeatureIcon[index];
+                  return (
+                    <li
+                      className="flex items-stretch justify-start gap-2"
+                      key={index}
+                    >
+                      <Icon className="h-10 w-10 text-indigo-600" />
+                      <div>
+                        <span className="font-semibold text-gray-900 ">
+                          {item.title}&nbsp;
+                        </span>
+                        <span className="inline text-gray-600">
+                          {item.description}
+                        </span>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            <button
+              onClick={handleSignUp}
+              className="rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-10"
+            >
+              Start for free
+            </button>
           </div>
-          <div className="flex flex-col gap-3 sm:gap-6">
-            {items.map((text, index) => {
-              const Icon = FeatureIcon[index];
-              return (
-                <div className="flex items-center gap-4" key={index}>
-                  <Icon className="inline-block h-8 w-8 sm:h-10 sm:w-10 grow-0 shrink-0" />
-                  <span className="text-base sm:text-lg">{text}</span>
-                </div>
-              );
-            })}
+          <div className="rounded-xl shadow-xl ring-1 ring-gray-400/10 md:-ml-4 lg:-ml-0 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw4fHxjb21wdXRlcnxlbnwwfDB8fHwxNjkxODE2NjY3fDA&ixlib=rb-4.0.3&q=80&w=1080"
+              alt="Product screenshot"
+              className="object-cover h-full w-full"
+            />
           </div>
-          <button
-            onClick={handleExploreBtn}
-            className="rounded-md bg-orange-950 hover:bg-orange-950/80 border-none text-blue-50 py-3 px-5 font-medium active:scale-95 text-sm inline-block sm:!mt-16"
-          >
-            Explore Gigspark Business
-            <IoIosArrowForward className="inline-block h-4 w-4" />
-          </button>
-        </div>
-        <div className="items-center justify-center hidden lg:flex">
-          <img
-            src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_870,dpr_2.0/v1/attachments/generic_asset/asset/d9c17ceebda44764b591a8074a898e63-1599597624768/business-desktop-870-x2.png"
-            alt="GigSpark Freelance features"
-            className="mix-blend-multiply brightness-125 drop-shadow-[0px_25px_50px_#00000050]"
-          />
         </div>
       </div>
     </section>
@@ -65,3 +70,26 @@ const BusinessFeatures = () => {
 };
 
 export default BusinessFeatures;
+
+const items = [
+  {
+    title: "Connect to freelancers",
+    description:
+      "With proven business experience, find the right experts for your needs.",
+    icon: <FaUsers className="absolute left-1 top-1 h-5 w-5 text-indigo-600" />,
+  },
+  {
+    title: "Perfect talent matches",
+    description:
+      "Get matched with the ideal talent by a dedicated customer success manager.",
+    icon: (
+      <FaHandshake className="absolute left-1 top-1 h-5 w-5 text-indigo-600" />
+    ),
+  },
+  {
+    title: "Boost productivity",
+    description:
+      "Manage teamwork effectively with a powerful workspace tailored for you.",
+    icon: <FaRocket />,
+  },
+];

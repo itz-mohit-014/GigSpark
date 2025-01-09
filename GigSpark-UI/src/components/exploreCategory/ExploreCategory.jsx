@@ -1,31 +1,98 @@
 import React from "react";
-import { categoryData } from "../../mocks/categoryData";
+import { servicesData } from "../../mocks/categoryData.js";
+import CategoryCardShimmerUI from "../ui/shimmerUI/CategoryCard.jsx";
+import Slider from "../slider/Slider.jsx";
 
-const IconCard = ({item, baseUrl}) => {
-  return <div
-  key={item.id}
-  className="relative z-[1] flex flex-col items-center justify-between group cursor-pointer p-2 gap-2"
->
-  <img src={`${baseUrl}${item.iconsSrc}`} alt="" className="w-12" />
-  <span className="absolute top-0 left-1/2 -translate-x-1/2 bg-custom-radial h-full aspect-square rounded-3xl z-[-1] opacity-0 group-hover:opacity-100 transition-all duration-200"></span>
-  <span className="inline-block h-[3px] w-10 rounded-full bg-slate-300 transition-all duration-300 group-hover:bg-green-400 group-hover:w-16"></span>
-  <span className="text-sm text-center font-secondary">{item.title}</span>
-</div>
-}
+import {
+  FaPaintBrush,
+  FaBullhorn,
+  FaKeyboard,
+  FaVideo,
+  FaMusic,
+  FaCode,
+  FaBriefcase,
+  FaSpa,
+  FaDatabase,
+  FaCamera,
+} from "react-icons/fa";
+import { Meteors } from "../ui/meteors.jsx";
+
+const CardIcon = [
+  FaPaintBrush,
+  FaBullhorn,
+  FaKeyboard,
+  FaVideo,
+  FaMusic,
+  FaCode,
+  FaBriefcase,
+  FaSpa,
+  FaDatabase,
+  FaCamera,
+];
 
 const ExploreCategory = () => {
-  const baseUrl =
-    "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/";
- 
   return (
-    <div className="max-w-screen-xl mx-auto space-y-11 mt-20" id="explore-categories">
-      <h3 className="font-primary text-2xl sm:text-3xl md:text-4xl font-medium">
-        Explore the marketplace
-      </h3>
-      <div className="px-4 grid gap-10 justify-between grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {categoryData.map((item, index) => (
-          <IconCard key={index} item={item} baseUrl={baseUrl}/>
-        ))}
+    <section className="w-full p-4 sm:p-6" id="explore-categories">
+      <div className="max-w-screen-xl mx-auto mb-10 px-4 sm:px-6 relative">
+        <div className="space-y-24 py-12">
+          <div className="max-w-xl mx-auto text-center xl:max-w-2xl">
+            <span className="py-1 px-4 mb-6 inline-block bg-indigo-100 rounded-full text-xs font-medium text-indigo-600">
+              Services
+            </span>
+            <h2 className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl xl:text-5xl mb-6">
+              Our Professional Services
+            </h2>
+            <p className="mb-4">
+              Explore a wide range of services crafted to help you achieve your
+              goals efficiently and effectively. From creative designs to
+              technical solutions, we've got you covered.
+            </p>
+          </div>
+
+          <div className="">
+            {servicesData.length <= 0 ? (
+              <Slider
+                Item={CategoryCardShimmerUI}
+                data={Array(6).fill(0)}
+                cardLimit={
+                  "sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
+                }
+                className={"md:px-8 px-6 max-w-screen-xl"}
+              />
+            ) : (
+              <Slider
+                Item={ServiceCard}
+                data={servicesData}
+                cardLimit={""}
+                // className={"md:px-8 max-w-screen-xl"}
+                className={"md:px-8 px-6 max-w-screen-xl"}
+              />
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const ServiceCard = ({ card: service, index }) => {
+  const Icon = CardIcon[index];
+
+  const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+  const color = "#" + randomColor;
+
+  return (
+    <div className="p-4">
+      <div className="bg-gray-950 text-gray-50 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow relative overflow-hidden">
+        <div className="flex text-4xl backdrop-blur-md" style={{ color }}>
+          <Icon />
+        </div>
+        <h3 className=" mb-2 mt-4 text-2xl font-bold sm:mt-4">
+          {service.title}
+        </h3>
+        <p className="text-sm text-gray-400">{service.description}</p>
+        <Meteors />
+        <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] -translate-y-16 bg-red-500 rounded-full blur-3xl opacity-60" />
       </div>
     </div>
   );
