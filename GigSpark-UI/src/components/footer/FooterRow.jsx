@@ -3,6 +3,7 @@ import Logo from "../ui/Logo";
 import { FaXTwitter, FaFacebook } from "react-icons/fa6";
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { IoIosGlobe } from "react-icons/io";
+import darkLogo from "../../assets/logo/logo-dark.png";
 
 const FooterRow = () => {
   const socialMedia = [
@@ -16,9 +17,9 @@ const FooterRow = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto px-4 gap-4 gap-y-8 flex-wrap flex justify-center md:justify-between items-center">
-      <div className="flex items-center justify-center flex-wrap gap-3">
-        <Logo theme={"light"}/>{" "}
-        <span className="ml-4  text-[14px] text-gray-500 font-primary">
+      <div className="flex items-center flex-wrap gap-3">
+        <Logo src={darkLogo} className={'scale-50 border'}/>
+        <span className="ml-4  text-[14px] text-gray-400 font-primary">
           © GigSpark International Ltd. 2024
         </span>
       </div>

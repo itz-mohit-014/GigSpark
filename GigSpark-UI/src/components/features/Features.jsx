@@ -1,5 +1,4 @@
 import React from "react";
-import ExploreCategory from "../exploreCategory/ExploreCategory.jsx";
 import VideoSection from "./VideoSection.jsx";
 // icons
 import { FiPieChart } from "react-icons/fi";
@@ -22,14 +21,14 @@ const FeatureSection = () => {
 
   return (
     <section className="w-full p-4 sm:p-6">
-      <div className="max-w-screen-xl mx-auto mb-10 *:min-h-screen">
-        <section className="pt-12 bg-gray-50">
+      <div className="max-w-screen-xl mx-auto mb-10 *:min-h-screen rounded-md">
+        <section className="pt-12 ">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-inherit">
             <div className="mb-14 text-center">
-              <span className="py-1 px-4 bg-indigo-100 rounded-full text-xs font-medium text-indigo-600">
+              <span className="py-1 px-4 bg-gray-100 rounded-full text-xs font-medium text-indigo-600">
                 Features
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 py-5">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-b from-white to-zinc-950 from-20% bg-clip-text text-transparent py-5">
                 Why Choose GigSpark?
               </h2>
               <p className="text-base lg:text-lg font-normal text-gray-500 max-w-md md:max-w-2xl mx-auto">
@@ -38,7 +37,7 @@ const FeatureSection = () => {
                 seamless experience for both freelancers and clients.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 relative after:absolute after:inset-0 after:border-2 after:border-current text-gray-50">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 relative after:absolute after:inset-0 after:border-2 after:border-current text-gray-950">
               {featuresList.map((feature, index) => {
                 const Icon = Icons[index];
                 return (
@@ -56,13 +55,12 @@ const FeatureSection = () => {
 
 const FeatureCardItem = ({ feature, Icon }) => {
 
-
   return (
     <div
       className={`flex flex-col items-center text-center py-10 px-8 border-2`}
     >
       <div style={{
-        backgroundColor:feature.bgColor+"20",
+        backgroundColor:feature.bgColor+"30",
         color:feature.bgColor+"ff"
       }}
         className={cn(
@@ -71,7 +69,7 @@ const FeatureCardItem = ({ feature, Icon }) => {
       >
         <Icon />
       </div>
-      <h4 className="text-lg font-semibold text-gray-900 mb-2">
+      <h4 className="text-lg font-semibold text-gray-100 mb-2">
         {feature.title}
       </h4>
       <p className="text-sm font-normal text-gray-500">{feature.description}</p>
@@ -105,7 +103,7 @@ const featuresList = [
       "Experience the difference of our personalized sales approach, where you are always our top priority.",
   },
   {
-    bgColor: "#000000",
+    bgColor: "#945678",
     title: "Onboarding",
     description:
       "Our onboarding process is designed to be simple and intuitive, so you can start using our platform right away.",

@@ -83,7 +83,7 @@ const BecomeA_Selller = () => {
         </div>
       </div>
 
-      <div className="bg-white">
+      <div className="bg-slate-950 text-white">
         <div className="max-w-screen-xl mx-auto p-4 sm:p-6 font-secondary flex flex-col gap-16 relative z-[1]">
           <FreelanceCommunity />
           <WorkStep />

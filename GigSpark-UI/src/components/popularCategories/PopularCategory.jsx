@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import CategoryCarousel from "../slider/Slider";
-import CategoryCardShimmerUI from "../ui/shimmerUI/CategoryCard";
-import GigsCard from "./GigsCard";
+import CategoryCarousel from "../slider/Slider.jsx";
+import CategoryCardShimmerUI from "../ui/shimmerUI/CategoryCard.jsx";
+import GigsCard from "./GigsCard.jsx";
 
 const PopularCategory = () => {
   const AllCategories = useSelector((store) => store?.category);
@@ -16,7 +16,7 @@ const PopularCategory = () => {
               <div className="inline-block py-1 px-6 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-full text-xs font-semibold uppercase tracking-wide">
                 Popular Categories
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-transparent py-6 bg-gradient-to-b from-black to-white from-50% bg-clip-text">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-transparent py-6 bg-gradient-to-b from-white to-zinc-950 from-20% bg-clip-text">
                 Explore Our Most Loved Categories
               </h2>
               <p className="text-base lg:text-lg font-medium text-gray-400 max-w-lg md:max-w-3xl mx-auto">

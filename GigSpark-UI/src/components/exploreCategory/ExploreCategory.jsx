@@ -33,16 +33,16 @@ const CardIcon = [
 const ExploreCategory = () => {
   return (
     <section className="w-full p-4 sm:p-6" id="explore-categories">
-      <div className="max-w-screen-xl mx-auto mb-10 px-4 sm:px-6 relative">
+      <div className="max-w-screen-xl mx-auto mb-10 px-4 sm:px-6 relative ">
         <div className="space-y-24 py-12">
           <div className="max-w-xl mx-auto text-center xl:max-w-2xl">
             <span className="py-1 px-4 mb-6 inline-block bg-indigo-100 rounded-full text-xs font-medium text-indigo-600">
               Services
             </span>
-            <h2 className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl xl:text-5xl mb-6">
+            <h2 className="text-3xl font-bold leading-tight bg-gradient-to-b from-white to-zinc-950 from-50% bg-clip-text text-transparent sm:text-4xl xl:text-5xl mb-6">
               Our Professional Services
             </h2>
-            <p className="mb-4">
+            <p className="mb-4 text-zinc-400">
               Explore a wide range of services crafted to help you achieve your
               goals efficiently and effectively. From creative designs to
               technical solutions, we've got you covered.
@@ -64,8 +64,7 @@ const ExploreCategory = () => {
                 Item={ServiceCard}
                 data={servicesData}
                 cardLimit={""}
-                // className={"md:px-8 max-w-screen-xl"}
-                className={"md:px-8 px-6 max-w-screen-xl"}
+                className={"md:px-8 px-6 max-w-screen-xl *:text-gray-50 *:border-gray-400"}
               />
             )}
           </div>
@@ -83,7 +82,7 @@ const ServiceCard = ({ card: service, index }) => {
 
   return (
     <div className="p-4">
-      <div className="bg-gray-950 text-gray-50 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow relative overflow-hidden">
+      <div className="bg-gray-950 text-gray-50 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow relative overflow-hidden shadow-zinc-700/40">
         <div className="flex text-4xl backdrop-blur-md" style={{ color }}>
           <Icon />
         </div>

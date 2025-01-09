@@ -8,9 +8,9 @@ const FreelanceCommunity = () => {
         Buyer Stories
       </span>
 
-      <div className="max-w-4xl mx-auto grid grid-cols-1 gap-x-6">
+      <div className="mx-auto grid grid-cols-1 gap-x-6">
         <div className="mb-20 text-center">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 py-5">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold  py-5">
             Be Part of Something Bigger
           </h2>
 
@@ -20,7 +20,7 @@ const FreelanceCommunity = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 gap-y-10 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 gap-y-10">
           {users.map((card) => (
             <UserCard key={card?.id} card={card} />
           ))}
@@ -34,10 +34,10 @@ export default FreelanceCommunity;
 
 const UserCard = ({ card }) => {
   return (
-    <div className="mx-auto w-full h-full relative max-w-sm ">
+    <div className="mx-auto w-full h-full relative max-w-80">
       <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] -translate-y-16 bg-red-500 rounded-full blur-3xl opacity-60" />
 
-      <div className="rounded-lg overflow-hidden transition-all duration-300 shadow-md hover:shadow-2xl group relative">
+      <div className="rounded-lg overflow-hidden transition-all duration-300 shadow-md hover:shadow-2xl group relative border border-gray-500 bg-neutral-950">
         <div className="relative">
           <div className="w-full h-60 clipy">
             <img
@@ -50,8 +50,8 @@ const UserCard = ({ card }) => {
         </div>
         <div className="pt-3 pb-5 px-5 flex flex-col items-center ">
           <p className="font-bold text-2xl">{card?.name}</p>
-          <p className="mb-2 text-gray-500 text-sm">{card?.designation}</p>
-          <p className="text-center text-base text-gray-600 mb-2">
+          <p className="mb-2 text-gray-600 text-sm">{card?.designation}</p>
+          <p className="text-center text-base text-gray-400 mb-2">
             {card?.bio}
           </p>
         </div>

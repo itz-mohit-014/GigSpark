@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { BsSearch } from "react-icons/bs";
-import Button from "../ui/Button";
-import BrandsIconCarousel from "../brandsIconsCarousel/BrandsIconsCarousel";
 import { useSelector } from "react-redux";
-
-import LampDemo from "../ui/lamp";
-import { BackgroundBeams } from "../ui/aurora-background";
+import { BsSearch } from "react-icons/bs";
+import Button from "../ui/Button.jsx";
+import BrandsIconCarousel from "../brandsIconsCarousel/BrandsIconsCarousel.jsx";
+import LampDemo from "../ui/lamp.jsx";
+import { BackgroundBeams } from "../ui/aurora-background.jsx";
 
 const Hero = () => {
   const [value, setValue] = useState("");

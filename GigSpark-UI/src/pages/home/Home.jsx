@@ -1,18 +1,13 @@
 import React from "react";
-import Hero from "../../components/hero/HeroSection";
-import FeatureSection from "../../components/features/Features";
-import BusinessFeatures from "../../components/features/BusinessFeatures";
-import PopularCategory from "../../components/popularCategories/PopularCategory";
-import ExploreCategory from "../../components/exploreCategory/ExploreCategory";
-
-import ProjectCard from "../../components/projects/ProjectCard";
-
-import Slider from "../../components/slider/Slider";
-import CategoryCardShimmerUI from "../../components/ui/shimmerUI/CategoryCard";
+import Hero from "../../components/hero/HeroSection.jsx";
+import FeatureSection from "../../components/features/Features.jsx";
+import BusinessFeatures from "../../components/features/BusinessFeatures.jsx";
+import PopularCategory from "../../components/popularCategories/PopularCategory.jsx";
+import ExploreCategory from "../../components/exploreCategory/ExploreCategory.jsx";
 
 const Home = () => {
   return (
-    <main className="space-y-16 overflow-x-hidden" id="home">
+    <main className="space-y-16 overflow-x-hidden bg-zinc-950 " id="home">
       <Hero />
       <PopularCategory/>
       <FeatureSection />

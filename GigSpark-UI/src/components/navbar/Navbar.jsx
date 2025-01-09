@@ -66,11 +66,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`${
-        active || pathname !== "/"
-          ? "bg-[#fbf5f5] text-blue-950 "
-          : "bg-slate-950 text-blue-50"
-      }  transition-all duration-300 z-20 ${pathname !== "/become-a-seller" ? "sticky top-0" : "relative overflow-x-hidden"}`}
+      className={`bg-slate-950 text-blue-50 transition-all duration-200 z-20 ${pathname !== "/become-a-seller" ? "sticky top-0" : "relative overflow-x-hidden"}`}
     >
       <nav className="px-4 bg-inherit text-inherit">
         <div className="max-w-screen-xl bg-inherit text-inherit flex justify-between items-center mx-auto">
@@ -88,17 +84,15 @@ const Navbar = () => {
               {!activeHamburMenu && <IoMenu /> }
             </div>
           </div>
-          <Logo src={active || pathname !== "/" ? lightLogo : darkLogo} />
+          <Logo src={darkLogo} />
           <div
-            className={`flex gap-3 items-center ${
-              active || pathname !== "/" ? "text-slate-600" : "text-slate-200"
-            } ${
+            className={`flex gap-3 items-center text-slate-100 ${
               activeHamburMenu &&
               "absolute top-0 left-0 flex-col w-full max-w-[400px] bg-inherit h-dvh p-6 z-[2] items-stretch"
             }`}
           >
             <div
-              className={`${activeHamburMenu ? "absolute top-5 right-5 z-[5] border rounded-full p-1 text-xl ml-auto" : "hidden"} ${active || pathname !== "/" ? " border-blue-950" : "border-white"}`}
+              className={`${activeHamburMenu ? "absolute top-5 right-5 z-[5] border rounded-full p-1 text-xl ml-auto" : "hidden"} border-white`}
               onClick={() => setActiveHamburMenu(!activeHamburMenu)}
             >
               <IoClose />
@@ -179,11 +173,7 @@ const Navbar = () => {
                   className={`${
                     activeHamburMenu &&
                     "text-lg pl-2 font-bold border"
-                  } rounded-md border-2 px-3 py-1 font-bold  ${
-                    active || pathname !== "/"
-                      ? " border-blue-700 text-blue-700 hover:bg-blue-900 hover:text-blue-100"
-                      : "border-blue-100 text-blue-100 hover:bg-[#fbfbfb] hover:text-blue-900 transition-all duration-300"
-                  } ${ (active || pathname !== "/" ) && activeHamburMenu ? "" :""}`}
+                  } rounded-md border-2 px-3 py-1 font-bold border-blue-100 text-blue-100 hover:bg-[#fbfbfb] hover:text-blue-950  transition-all duration-300`}
                 >
                   Join
                 </button>

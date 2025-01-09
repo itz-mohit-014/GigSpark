@@ -4,11 +4,11 @@ import { ContainerScroll } from "../ui/container-scroll-animation";
 
 const VideoHeader = () => {
   return (
-    <div className="text-center ">
-      <h3 className="text-2xl font-semibold sm:text-3xl md:text-4xl font-primary mt-16">
+    <div className="text-center text-zinc-100">
+      <h3 className="text-2xl font-semibold sm:text-3xl md:text-4xl font-primary mt-16 bg-gradient-to-b from-white to-zinc-950 from-50% bg-clip-text text-transparent">
         What success on GigSpark looks like
       </h3>
-      <p className="mt-2 text-sm sm:text-base">
+      <p className="mt-2 text-sm sm:text-base text-zinc-400">
         Discover key insights to achieve success and thrive on GigSpark.
       </p>
     </div>

@@ -4,7 +4,7 @@ import { Meteors } from "../ui/meteors.jsx";
 
 const CallToAction = () => {
   return (
-    <div className="relative py-8 p-6 rounded-2xl mb-16 overflow-hidden bg-gray-950">
+    <div className="relative py-8 p-6 rounded-2xl mb-16 overflow-hidden bg-gray-950 border border-gray-500">
       <div className=" relative z-20 text-white text-center font-primary">
         <h2 className="mb-2 text-2xl sm:text-4xl">
           Sign up and create your first Gig today

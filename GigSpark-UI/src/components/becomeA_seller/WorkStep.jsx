@@ -4,7 +4,7 @@ const WorkStep = () => {
   return (
     <section
       id="works"
-      className="relative bg-gray-900 py-10 sm:py-16 lg:py-24 px-4 rounded-xl shadow-lg"
+      className="relative bg-gray-900 pt-24 py-10 sm:py-16 lg:py-24 px-4 rounded-xl shadow-lg"
     >
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <span className="absolute top-8 left-1/2 -translate-x-1/2 py-1 px-4 bg-indigo-100 rounded-full text-xs font-medium text-indigo-600">
