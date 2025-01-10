@@ -15,6 +15,7 @@ const ProfilePage = () => {
 
   const fetchUserDetails = async () => {
     const { VIEW_USER_PROFILE } = User;
+    toast.dismiss();
     const response = await newRequest("get", VIEW_USER_PROFILE(userId), null);
 
     if (typeof response === "string") {

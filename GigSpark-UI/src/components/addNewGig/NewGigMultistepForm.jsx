@@ -112,6 +112,7 @@ const NewGigMultistepForm = () => {
 
   const handleCreateNewGig = async (data) => {
     dispatch(changeLoadingState(true));
+    toast.dismiss()
     const toastId = toast.loading("Creating New Gig...");
     const formData = new FormData();
 

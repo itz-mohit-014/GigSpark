@@ -7,6 +7,7 @@ const handlePayment = async (productId, email) => {
 
   if (!productId) return;
   const { CREATE_NEW_ORDER } = Payment;
+  toast.dismiss();
 
   const response = await newRequest("post", CREATE_NEW_ORDER, {
     id: productId,
@@ -43,6 +44,7 @@ const handlePaymentVerify = async (orderDetails, name, gigId) => {
     handler: async (response) => {
       
       const paymentDetails = {...response, gigId }
+      toast.dismiss();
 
       const result = await newRequest("post", VERIFY_PAYMENT, paymentDetails);
 
@@ -68,6 +70,7 @@ const handlePaymentVerify = async (orderDetails, name, gigId) => {
 
 const fetchAllOrder = async () => {
   const { GET_MY_ORDERS } = Payment;
+  toast.dismiss();
 
   const response = await newRequest("get", GET_MY_ORDERS, null);
 

@@ -5,6 +5,8 @@ import { removeItemFromLocalstorage } from "../services/localStorage";
 
 const fetchGig = async (id) => {
   const { SINGLE_GIG } = Gig;
+  toast.dismiss();
+
   const response = await newRequest("get", SINGLE_GIG(id), null);
 
   if (typeof response === "string") {
@@ -19,6 +21,8 @@ const fetchGig = async (id) => {
 
 const createNewGig = async (data) => {
   const { ADD_NEW_GIG } = Gig;
+  toast.dismiss();
+
   const response = await newRequest("post", ADD_NEW_GIG, data, {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -35,6 +39,8 @@ const createNewGig = async (data) => {
 
 const fetchMyGig = async (filter) => {
   const { ALL_GIGS } = Gig;
+  toast.dismiss();
+
   const response = await newRequest("get", ALL_GIGS, filter);
 
   if ( response === "Unauthorized request" || response === "Invalid Access Token" ) {

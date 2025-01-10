@@ -20,6 +20,7 @@ import { newRequest } from "./newRequest.js";
 const signin_signup = (data, loadingText, requestUrl) => {
   return async (dispatch) => {
     dispatch(changeLoadingState(true));
+    toast.dismiss();
     const toastId = toast.loading(loadingText);
     try {
       const response = await newRequest("post", requestUrl, data);
@@ -58,6 +59,7 @@ const signin_signup = (data, loadingText, requestUrl) => {
 
 const logout = (navigate) => {
   return async (dispatch) => {
+    toast.dismiss();
     const toastId = toast.loading("logging out...");
     try {
 
