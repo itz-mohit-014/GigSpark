@@ -19,7 +19,7 @@ const Qna = () => {
             how to make the most out of your freelance journey.
           </p>
         </div>
-        <Faqs data={becomeA_Sellerfaqs} className="" />
+        <Faqs data={becomeA_Sellerfaqs} className="" faqClassName={{q : "text-gray-100", a:"text-gray-400"}}/>
       </div>
     </div>
   );

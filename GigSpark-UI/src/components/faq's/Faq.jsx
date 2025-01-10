@@ -1,13 +1,13 @@
 import React from "react";
 import { FaChevronDown } from "react-icons/fa";
 
-const Faq = ({ faq, setShowAnswer, showAnswer }) => {
+const Faq = ({ faq, setShowAnswer, showAnswer, faqClassName={q : "", a : "" } }) => {
   const { question, answer } = faq;
 
   return (
-    <div className="border-b last:border-b-transparent border-gray-400 py-3 hover:border-l-blue-600 border-l-transparent border-l-4 rounded-md pl-3 transition-all duration-500">
+    <div className={`border-b last:border-b-transparent border-gray-400 py-3 hover:border-l-blue-600 border-l-transparent border-l-4 rounded-md pl-3 transition-all duration-500 `}>
       <h3
-        className="w-full py-1 flex justify-between items-center text-left text-zinc-100 font-medium focus:outline-none cursor-pointer"
+        className={`w-full py-1 flex justify-between items-center text-left  font-medium focus:outline-none cursor-pointer ${faqClassName?.q}`}
         type="button"
         onClick={() => setShowAnswer()}
       >
@@ -26,7 +26,7 @@ const Faq = ({ faq, setShowAnswer, showAnswer }) => {
         style={{ transition: "max-height 0.3s ease-in-out 0s" }}
       >
         <div className="pb-5 leading-relaxed">
-          <div className="space-y-2 leading-relaxed text-gray-500">{answer}</div>
+          <div className={`space-y-2 leading-relaxed ${faqClassName?.a}`}>{answer}</div>
         </div>
       </div>
     </div>

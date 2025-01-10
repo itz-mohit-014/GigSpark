@@ -5,6 +5,7 @@ const Faqs = ({
   data,
   heading,
   className = "",
+  faqClassName="",
   layoutClass = "flex flex-col gap-4",
 }) => {
 
@@ -20,6 +21,7 @@ const Faqs = ({
           <Faq
             key={faq?._id}
             faq={faq}
+            faqClassName={faqClassName}
             showAnswer={faq?._id === showAnswer ? true : false}
             setShowAnswer={() =>
               setShowAnswer(showAnswer === faq?._id ? null : faq?._id)

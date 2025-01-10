@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { projectsData, gigsData, dummyUserInfo, userFAQs } from "../../mocks/data";
+import { userFAQs } from "../../mocks/data";
 import Breadcrumbs from "../../components/Breadcrumb/Breadcrumb";
 import ServiceCard from "../../components/gig/ServiceCard";
 import UserProfileCard from "../../components/userProfile/UserProfileCard";
@@ -59,7 +59,7 @@ const Gig = () => {
           <div className="lg:hidden block my-6">
             <ServiceCard data={services} coverPicture={gigDetails?.coverPicture} productId={gigDetails?._id} />
           </div>
-          <Faqs data={userFAQs} heading={'FAQ'}/>
+          <Faqs data={userFAQs} heading={'FAQ'} layoutClass="" faqClassName={{q : "text-gray-900", a:"text-gray-500"}}/>
           <Review rating={rating} />
           <UserShortProfileCard id={author?._id} fullName={author?.firstName + author?.lastName} profile={author?.profile} />
         </aside>

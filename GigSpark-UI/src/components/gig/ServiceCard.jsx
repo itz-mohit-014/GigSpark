@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // icons
 import { IoIosArrowDown } from "react-icons/io";
 import { GrPowerCycle } from "react-icons/gr";
@@ -8,9 +8,16 @@ import { MdOutlineTimer } from "react-icons/md";
 import { handlePayment } from "../../utils/placeOrder";
 import toast from "react-hot-toast";
 import CustomToastNotification from "../../utils/CustomFun";
+import Loading from "../ui/Loading";
+import { changeLoadingState } from "../../slices/showLoginForm.slice";
 
 const ServiceCard = ({ data, productId, coverPicture }) => {
   const [open, setOpen] = useState(false);
+
+  const isLoading = useSelector((store) => store?.showAuthForm?.isLoading);
+
+  const dispatch = useDispatch();
+
   const {
     price,
     serviceTitle,
@@ -22,13 +29,16 @@ const ServiceCard = ({ data, productId, coverPicture }) => {
 
   const user = useSelector((store) => store?.user?.user);
 
-  const handleCheckout = (e) => {
+  const handleCheckout = async(e) => {
+    dispatch(changeLoadingState(true));
     if(!user){
       toast.dismiss();
       CustomToastNotification();
+      dispatch(changeLoadingState(false));
       return;
     }
-    handlePayment(productId, user?.email);
+    await handlePayment(productId, user?.email);
+    dispatch(changeLoadingState(false));
   };
 
   return (
@@ -94,11 +104,13 @@ const ServiceCard = ({ data, productId, coverPicture }) => {
       </div>
 
       <button
-        className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition relative"
+        className="w-full bg-blue-600 disabled:bg-gray-500 disabled:text-gray-300 text-white  font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition relative disabled:cursor-not-allowed"
         onClick={handleCheckout}
+        disabled={isLoading}
       >
-        Continue
-        <FaArrowRightLong className="inline-block text-xl mr-auto absolute right-4 top-2.5" />
+
+      {isLoading ? <Loading /> : <span> Continue <FaArrowRightLong className="inline-block text-xl mr-auto absolute right-4 top-2.5" /></span>}
+        
       </button>
     </div>
   );

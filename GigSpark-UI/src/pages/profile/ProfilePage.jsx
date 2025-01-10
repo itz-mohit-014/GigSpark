@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 
 import { FaUser } from "react-icons/fa6";
+import ProfileSkeleton from "../../components/ui/shimmerUI/UserProfileSkeleton";
 
 const ProfilePage = () => {
   const { userId } = useParams();
@@ -30,7 +31,7 @@ const ProfilePage = () => {
     fetchUserDetails();
   }, []);
 
-  if (!userDetails) return;
+  if (!userDetails) return <ProfileSkeleton/>;
 
   return (
     <section className="sm:p-6">

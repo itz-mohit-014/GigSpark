@@ -4,41 +4,50 @@ import GigsRow from "../../components/myGigs/GigsRow";
 import { useNavigate } from "react-router-dom";
 import { fetchMyGig } from "../../utils/gig";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCurrentUser, expireSessionTimeout } from "../../slices/user.slice";
+import {
+  deleteCurrentUser,
+  expireSessionTimeout,
+} from "../../slices/user.slice";
+import { changeLoadingState } from "../../slices/showLoginForm.slice";
+import TableLoadingPlaceholder from "../../components/ui/shimmerUI/TableShimmerUi";
 
 const MyGigs = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [myGigs, setMyGigs] = useState([]);
-  const currentUser = useSelector(store => store.user?.user) 
+  const currentUser = useSelector((store) => store.user?.user);
 
   const columns = ["Image", "Title", "Price", "Order", "Action"];
+
+  const isLoading = useSelector((store) => store?.showAuthForm?.isLoading);
 
   const handleAddNewGig = () => {
     navigate("/add-new-gig");
   };
 
   const fetchAllMyGigs = async () => {
-    const response = await fetchMyGig()
+    dispatch(changeLoadingState(true));
+    const response = await fetchMyGig();
 
-    if(typeof response !== 'string'){
-      setMyGigs(response)
-    }else{
+    dispatch(changeLoadingState(false));
+    if (typeof response !== "string") {
+      setMyGigs(response);
+    } else {
       dispatch(deleteCurrentUser());
       dispatch(expireSessionTimeout());
     }
   };
 
   useEffect(() => {
-    if(!currentUser?.isSeller){
-      navigate(-1) 
+    if (!currentUser?.isSeller) {
+      navigate(-1);
       return;
     }
     fetchAllMyGigs();
   }, []);
 
-  if(!currentUser?.isSeller) return; // not autorised to access this route
+  if (!currentUser?.isSeller) return; // not autorised to access this route
 
   return (
     <section className="sm:p-6">
@@ -53,13 +62,17 @@ const MyGigs = () => {
           </button>
         </div>
         <div className="overflow-x-auto relative">
-          <Table
-            data={myGigs}
-            setData={setMyGigs}
-            column={columns}
-            Row={GigsRow}
-            bgColor={"bg-blue-50"}
-          />
+          {isLoading ? (
+            <TableLoadingPlaceholder />
+          ) : (
+            <Table
+              data={myGigs}
+              setData={setMyGigs}
+              column={columns}
+              Row={GigsRow}
+              bgColor={"bg-blue-50"}
+            />
+          )}
         </div>
       </div>
     </section>
