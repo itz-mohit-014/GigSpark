@@ -12,7 +12,7 @@ const PopularCategory = () => {
       <div className="max-w-screen-xl mx-auto">
         <section className="">
           <div className="bg-inherit">
-            <div className="mb-16 text-center">
+            <div className="mb-20 text-center">
               <div className="inline-block py-1 px-6 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-full text-xs font-semibold uppercase tracking-wide">
                 Popular Categories
               </div>
@@ -26,7 +26,7 @@ const PopularCategory = () => {
               </p>
             </div>
 
-            <div className="p-4 sm:p-6">
+            <div className="p-4">
               {AllCategories.length <= 0 ? (
                 <CategoryCarousel
                   Item={CategoryCardShimmerUI}
@@ -43,7 +43,7 @@ const PopularCategory = () => {
                   cardLimit={
                     "sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
                   }
-                  className={"md:px-8 px-6 max-w-screen-xl"}
+                  className={"md:px-8 px-2 max-w-screen-xl"}
                 />
               )}
             </div>

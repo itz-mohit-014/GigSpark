@@ -64,7 +64,7 @@ const ExploreCategory = () => {
                 Item={ServiceCard}
                 data={servicesData}
                 cardLimit={""}
-                className={"md:px-8 px-6 max-w-screen-xl *:text-gray-50 *:border-gray-400"}
+                className={"md:px-8 max-w-screen-xl px-2"}
               />
             )}
           </div>
@@ -81,9 +81,9 @@ const ServiceCard = ({ card: service, index }) => {
   const color = "#" + randomColor;
 
   return (
-    <div className="p-4">
-      <div className="bg-gray-950 text-gray-50 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow relative overflow-hidden shadow-zinc-700/40">
-        <div className="flex text-4xl backdrop-blur-md" style={{ color }}>
+    <div className="sm:p-4 w-full">
+      <div className="bg-gray-950 text-gray-50 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow relative overflow-hidden shadow-zinc-700/40 w-full sm:aspect-[3/2] text-center flex flex-col items-center justify-center">
+        <div className="flex text-4xl justify-center" style={{ color }}>
           <Icon />
         </div>
         <h3 className=" mb-2 mt-4 text-2xl font-bold sm:mt-4">

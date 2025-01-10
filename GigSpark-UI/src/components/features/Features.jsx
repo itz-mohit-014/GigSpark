@@ -37,7 +37,7 @@ const FeatureSection = () => {
                 seamless experience for both freelancers and clients.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 relative after:absolute after:inset-0 after:border-2 after:border-current text-gray-950">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 relative gap-3 gap-y-6 text-gray-950">
               {featuresList.map((feature, index) => {
                 const Icon = Icons[index];
                 return (
@@ -54,25 +54,29 @@ const FeatureSection = () => {
 };
 
 const FeatureCardItem = ({ feature, Icon }) => {
-
   return (
-    <div
-      className={`flex flex-col items-center text-center py-10 px-8 border-2`}
-    >
-      <div style={{
-        backgroundColor:feature.bgColor+"30",
-        color:feature.bgColor+"ff"
-      }}
-        className={cn(
-          "flex justify-center items-center w-16 h-16 text-3xl rounded-full mb-4",
-        )}
-      >
-        <Icon />
+    <div className={`p-1 rounded-md relative bg-gradient-to-b from-zinc-50 to-zinc-950 overflow-hidden`}>
+      <span className="absolute inset-[-100000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)] opacity-50" />
+
+      <div className="h-full w-full flex flex-col items-center text-center py-10 px-8 relative bg-zinc-950 rounded-md">
+        <div
+          style={{
+            backgroundColor: feature.bgColor + "30",
+            color: feature.bgColor + "ff",
+          }}
+          className={cn(
+            "flex justify-center items-center w-16 h-16 text-3xl rounded-full mb-4"
+          )}
+        >
+          <Icon />
+        </div>
+        <h4 className="text-lg font-semibold text-gray-100 mb-2">
+          {feature.title}
+        </h4>
+        <p className="text-sm font-normal text-gray-500">
+          {feature.description}
+        </p>
       </div>
-      <h4 className="text-lg font-semibold text-gray-100 mb-2">
-        {feature.title}
-      </h4>
-      <p className="text-sm font-normal text-gray-500">{feature.description}</p>
     </div>
   );
 };

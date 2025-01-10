@@ -140,11 +140,7 @@ const Navbar = () => {
                   />
                 </span>
                 <span
-                  className={`${
-                    active || pathname !== "/"
-                      ? "text-blue-950"
-                      : "text-blue-50"
-                  }
+                  className={`text-blue-50
                   ${
                     !activeHamburMenu && "hidden"
                   } min-[400px]:block font-bold capitalize`}

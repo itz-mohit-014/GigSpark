@@ -136,7 +136,7 @@ const CarouselItem = React.forwardRef(({ className, ...props }, ref) => {
       role="group"
       aria-roledescription="slide"
       className={cn(
-        "min-w-0 shrink-0 grow-0 basis-full max-w-[360px]",
+        "min-w-0 shrink-0 grow-0 basis-full max-w-[380px]",
         orientation === "horizontal" ? "pl-4" : "pt-4",
         className
       )}
@@ -153,13 +153,13 @@ const CarouselPrevious = React.forwardRef(({ className, variant = "outline", siz
       ref={ref}
       variant={variant}
       size={size}
-      className={cn("absolute h-8 w-8 rounded-full border border-blue-950 flex items-center justify-center disabled:opacity-0 ", orientation === "horizontal"
+      className={cn("absolute h-8 w-8 rounded-full border border-blue-50 flex items-center justify-center disabled:opacity-0 ", orientation === "horizontal"
         ? "-left-4 top-1/2 -translate-y-1/2"
         : "-top-4 left-1/2 -translate-x-1/2 rotate-90", className)}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}>
-      <ArrowLeftIcon className="h-5 w-5" />
+      <ArrowLeftIcon className="h-5 w-5 text-zinc-100" />
       <span className="sr-only">Previous slide</span>
     </Button>)
   );
@@ -174,13 +174,13 @@ const CarouselNext = React.forwardRef(({ className, variant = "outline", size = 
       ref={ref}
       variant={variant}
       size={size}
-      className={cn("absolute h-8 w-8 rounded-full border border-blue-950 flex items-center justify-center disabled:opacity-0", orientation === "horizontal"
+      className={cn("absolute h-8 w-8 rounded-full border border-blue-50 flex items-center justify-center disabled:opacity-0", orientation === "horizontal"
         ? "-right-4 top-1/2 -translate-y-1/2"
         : "-bottom-4 left-1/2 -translate-x-1/2 rotate-90", className)}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}>
-      <ArrowRightIcon className="h-5 w-5" />
+      <ArrowRightIcon className="h-5 w-5 text-zinc-100" />
       <span className="sr-only">Next slide</span>
     </Button>)
   );
