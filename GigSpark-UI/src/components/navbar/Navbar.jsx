@@ -66,7 +66,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`bg-slate-950 text-blue-50 transition-all duration-200 z-20 ${pathname !== "/become-a-seller" ? "sticky top-0" : "relative overflow-x-hidden"}`}
+      className={`bg-slate-950 text-blue-50 transition-all duration-200 z-20 sticky top-0`}
     >
       <nav className="px-4 bg-inherit text-inherit">
         <div className="max-w-screen-xl bg-inherit text-inherit flex justify-between items-center mx-auto">
