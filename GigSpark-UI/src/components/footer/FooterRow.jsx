@@ -16,9 +16,9 @@ const FooterRow = () => {
   const SocialIcon = [FaFacebook, FaInstagram, FaLinkedin, FaXTwitter];
 
   return (
-    <div className="max-w-screen-xl mx-auto px-4 gap-4 gap-y-8 flex-wrap flex justify-center md:justify-between items-center">
+    <div className="max-w-screen-xl mx-auto  gap-4 gap-y-8 flex-wrap flex justify-center md:justify-between items-center">
       <div className="flex items-center flex-wrap gap-3">
-        <Logo src={darkLogo} className={'scale-50 border'}/>
+        <Logo src={darkLogo} className={'!w-20'}/>
         <span className="ml-4  text-[14px] text-gray-400 font-primary">
           © GigSpark International Ltd. 2024
         </span>

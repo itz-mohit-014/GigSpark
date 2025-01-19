@@ -5,9 +5,9 @@ const Faq = ({ faq, setShowAnswer, showAnswer, faqClassName={q : "", a : "" } })
   const { question, answer } = faq;
 
   return (
-    <div className={`border-b last:border-b-transparent border-gray-400 py-3 hover:border-l-blue-600 border-l-transparent border-l-4 rounded-md pl-3 transition-all duration-500 `}>
+    <div className={`border-b last:border-b-transparent border-gray-400 hover:border-l-blue-600 border-l-transparent border-l-4 rounded-md pl-3 transition-all duration-500 `}>
       <h3
-        className={`w-full py-1 flex justify-between items-center text-left  font-medium focus:outline-none cursor-pointer ${faqClassName?.q}`}
+        className={`w-full pt-3 pb-3 flex justify-between items-center text-left  font-medium focus:outline-none cursor-pointer ${faqClassName?.q}`}
         type="button"
         onClick={() => setShowAnswer()}
       >
@@ -20,13 +20,13 @@ const Faq = ({ faq, setShowAnswer, showAnswer, faqClassName={q : "", a : "" } })
       </h3>
 
       <div
-        className={`transition-all duration-300 mt-4 ease-in-out overflow-hidden ${
+        className={`transition-all duration-300  ease-in-out overflow-hidden ${
           showAnswer ? "max-h-60" : "max-h-0"
         }`}
         style={{ transition: "max-height 0.3s ease-in-out 0s" }}
       >
-        <div className="pb-5 leading-relaxed">
-          <div className={`space-y-2 leading-relaxed ${faqClassName?.a}`}>{answer}</div>
+        <div className="pb-4 px-2 leading-relaxed">
+          <div className={`space-y-2 text-sm leading-relaxed ${faqClassName?.a}`}>{answer}</div>
         </div>
       </div>
     </div>

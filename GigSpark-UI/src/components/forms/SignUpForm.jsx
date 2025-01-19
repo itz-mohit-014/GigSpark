@@ -20,15 +20,9 @@ export default function SignupForm() {
 
   const dispatch = useDispatch();
   const isLoading = useSelector((store) => store?.showAuthForm?.isLoading);
-  const {PROFILE_IMAGE} = User;
   
   const handleSignUp = async (data) => {
     const newUserData = { ...data };
-
-    newUserData.profile = {
-      public_id: newUserData.firstName,
-      url: PROFILE_IMAGE(newUserData.firstName, newUserData.lastName),
-    };
 
     dispatch(signin_signup(newUserData, "Creating Account...", User?.CREATE_ACCOUNT));
   };
@@ -114,7 +108,7 @@ export default function SignupForm() {
         </button>
 
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-6 h-[1px] w-full" />
-        <button
+        {/* <button
           className=" relative group/btn flex space-x-2 items-center justify-center px-4 w-full text-black rounded-md h-10 font-medium shadow-input  bg-gray-100 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
           type="submit"
         >
@@ -123,7 +117,7 @@ export default function SignupForm() {
             Google
           </span>
           <BottomGradient />
-        </button>
+        </button> */}
       </form>
       <p className="text-center font-medium text-gray-500 text-sm font-primary">
         Already have an account?{" "}

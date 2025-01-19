@@ -59,7 +59,7 @@ const Gig = () => {
           <div className="lg:hidden block my-6">
             <ServiceCard data={services} coverPicture={gigDetails?.coverPicture} productId={gigDetails?._id} />
           </div>
-          <Faqs data={userFAQs} heading={'FAQ'} layoutClass="" faqClassName={{q : "text-gray-900", a:"text-gray-500"}}/>
+          <Faqs data={userFAQs} heading={'FAQ'} layoutClass="flex flex-col gap-1" faqClassName={{q : "text-gray-900", a:"text-gray-500"}}/>
           <Review rating={rating} />
           <UserShortProfileCard id={author?._id} fullName={author?.firstName + author?.lastName} profile={author?.profile} />
         </aside>

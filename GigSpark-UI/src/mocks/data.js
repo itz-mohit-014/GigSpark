@@ -811,17 +811,17 @@ export const dummyUserInfo = {
 };
 
 export const userFAQs = [
-  {
+  {_id:"001",
     question: "What services do you offer?",
     answer:
       "I specialize in providing high-quality graphic design services, including logo design, branding, and social media templates. I also offer revisions to ensure client satisfaction.",
   },
-  {
+  { _id:"002",
     question: "What is your delivery time?",
     answer:
       "Delivery time depends on the complexity of the project. Most tasks are completed within 3 to 5 business days. For urgent requests, feel free to contact me to discuss faster delivery options.",
   },
-  {
+  {_id:"003",
     question: "Do you provide support after project delivery?",
     answer:
       "Yes, I offer post-delivery support to ensure that you are fully satisfied with the work. Minor adjustments and clarifications are included. For larger changes, additional charges may apply.",
