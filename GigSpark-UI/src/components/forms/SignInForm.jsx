@@ -13,6 +13,7 @@ import { BottomGradient, LabelInputContainer } from "./InputBoxUtils";
 import { User } from "../../services/api";
 import Loading from "../ui/Loading";
 import { signin_signup } from "../../services/authApi";
+import { FaUser } from "react-icons/fa6";
 
 export default function SignupForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -24,6 +25,16 @@ export default function SignupForm() {
   const handleSignIn = async (data) => {
     dispatch(signin_signup(data, "Loging...", User?.LOGIN_USER))
   };
+
+  // default login for demo user
+  const handleSignInAsDemoUser = async () => {
+    const data = {
+      email:"demo.user@gmail.com",
+      password:"demo@123"
+    }
+    dispatch(signin_signup(data, "Loging...", User?.LOGIN_USER))
+  };
+
 
   const loadSignUpForm = () => {
     dispatch(showAuthenticatePage("signup"));
@@ -79,13 +90,24 @@ export default function SignupForm() {
         </button>
 
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
-        <button
+        {/* Will add soon */}
+        {/* <button
           className=" relative group/btn flex space-x-2 items-center justify-center px-4 w-full text-black rounded-md h-10 font-medium shadow-input  bg-gray-100 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
           type="submit"
         >
           <FcGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
           <span className="text-neutral-700 dark:text-neutral-300 text-sm">
             Google
+          </span>
+          <BottomGradient />
+        </button> */}
+        <button onClick={handleSignInAsDemoUser}
+          className=" relative group/btn flex space-x-2 items-center justify-center px-4 w-full text-black rounded-md h-10 font-medium shadow-input  bg-gray-100 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
+          type="submit"
+        >
+          <FaUser className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
+          <span className="text-neutral-700 dark:text-neutral-300 text-sm">
+            Demo User
           </span>
           <BottomGradient />
         </button>
