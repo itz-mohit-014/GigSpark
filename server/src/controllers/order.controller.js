@@ -75,7 +75,14 @@ const verifyPayment = AsyncHandler(async (req, res) => {
 
   if (!isAuthentic) throw new ApiError(403, "Payment request failed");
 
-  const gig = await Gig.findById(gigId);
+  const gig = await Gig.findByIdAndUpdate(
+    gigId,
+    { 
+      $inc:
+      { sales: 1 } 
+    },
+    {new:true}
+);
 
   const payment = await Payment.create({
     razorpay_order_id,

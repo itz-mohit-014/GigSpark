@@ -1093,7 +1093,7 @@ export const Users = [
     name: "Jane Smith",
     isSeller: false,
     profile:
-      "https://fiverr-res.cloudinary.com/image/upload/t_profile_original,q_auto,f_auto/v1/attachments/profile/photo/e3d5b78b72f06ad8c4d01a2f9cd65d5e-1683745627349/d7e2e7b3-d2c9-4f19-b912-57e9348e6ea2.jpg",
+      "https://randomuser.me/api/portraits/men/75.jpg",
     location: "United States",
     language: "English",
     headline: "Professional Content Writer",
@@ -1109,7 +1109,7 @@ export const Users = [
     name: "Carlos Rivera",
     isSeller: true,
     profile:
-      "https://fiverr-res.cloudinary.com/image/upload/t_profile_original,q_auto,f_auto/v1/attachments/profile/photo/f3d7e579d823b7b1a4f7ed502dcb79d9-1672195643247/a8735a87-1e49-478b-9095-f1e96c685c1e.jpg",
+      "https://randomuser.me/api/portraits/men/78.jpg",
     location: "Spain",
     language: "Spanish",
     headline: "Graphic Designer and Illustrator",
@@ -1125,7 +1125,7 @@ export const Users = [
     name: "Aisha Khan",
     isSeller: true,
     profile:
-      "https://fiverr-res.cloudinary.com/image/upload/t_profile_original,q_auto,f_auto/v1/attachments/profile/photo/d9c5f89734c81f3c5d2a6c29bfed9876-1668356345678/e1231f2d-6b12-4ed1-b8f6-3e342dc9c7c6.jpg",
+      "https://randomuser.me/api/portraits/women/15.jpg",
     location: "India",
     language: "Hindi, English",
     headline: "Full-Stack Developer",
@@ -1141,7 +1141,7 @@ export const Users = [
     name: "Liam Carter",
     isSeller: false,
     profile:
-      "https://fiverr-res.cloudinary.com/image/upload/t_profile_original,q_auto,f_auto/v1/attachments/profile/photo/b5a4c47349f2b6e5a6a7e123adf45678-1679023461234/1345c6d7-1e57-4907-b9d9-ae94f7f98dfc.jpg",
+      "https://randomuser.me/api/portraits/men/85.jpg",
     location: "Australia",
     language: "English",
     headline: "Digital Marketing Specialist",
@@ -1157,7 +1157,7 @@ export const Users = [
     name: "Emily White",
     isSeller: true,
     profile:
-      "https://fiverr-res.cloudinary.com/image/upload/t_profile_original,q_auto,f_auto/v1/attachments/profile/photo/3f7bdf98765e987654f9a3c5e4f123ab-1682375612435/ed678cde-4b23-45de-8c94-1e8c47f123a6.jpg",
+      "https://randomuser.me/api/portraits/men/81.jpg",
     location: "United Kingdom",
     language: "English",
     headline: "Social Media Manager",
@@ -1173,7 +1173,7 @@ export const Users = [
     name: "Ahmed Hassan",
     isSeller: true,
     profile:
-      "https://fiverr-res.cloudinary.com/image/upload/t_profile_original,q_auto,f_auto/v1/attachments/profile/photo/45678abc9876edc54321-1684325432146/f123c6df-4c87-49ed-9657-cb87654fedca.jpg",
+      "https://randomuser.me/api/portraits/women/75.jpg",
     location: "Pakistan",
     language: "Urdu, English",
     headline: "Video Editor & Animator",
@@ -1189,7 +1189,7 @@ export const Users = [
     name: "Sophia Lee",
     isSeller: false,
     profile:
-      "https://fiverr-res.cloudinary.com/image/upload/t_profile_original,q_auto,f_auto/v1/attachments/profile/photo/2a3b4c5d6e7f8g9h0i-1668432234501/1e2f3g4h5i6j7k8l9m0.jpg",
+      "https://randomuser.me/api/portraits/women/25.jpg",
     location: "South Korea",
     language: "Korean, English",
     headline: "UI/UX Designer",
@@ -1205,7 +1205,7 @@ export const Users = [
     name: "Victor Ivanov",
     isSeller: true,
     profile:
-      "https://fiverr-res.cloudinary.com/image/upload/t_profile_original,q_auto,f_auto/v1/attachments/profile/photo/9f8e7d6c5b4a3b2c1a0-1678459876543/d4e5f6g7h8i9j0k1l2m.jpg",
+      "https://randomuser.me/api/portraits/women/35.jpg",
     location: "Russia",
     language: "Russian, English",
     headline: "Software Engineer",
@@ -1221,7 +1221,7 @@ export const Users = [
     name: "Mei Lin",
     isSeller: false,
     profile:
-      "https://fiverr-res.cloudinary.com/image/upload/t_profile_original,q_auto,f_auto/v1/attachments/profile/photo/1a2b3c4d5e6f7g8h9i0j-1685567890123/d123e456f7g8h9i0j1k.jpg",
+      "https://randomuser.me/api/portraits/men/95.jpg",
     location: "China",
     language: "Mandarin, English",
     headline: "Data Analyst",

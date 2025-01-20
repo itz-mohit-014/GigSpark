@@ -42,7 +42,7 @@ const Message = () => {
       createdAt: new Date(),
       isRead: false,
       text: inputMessage,
-      user: "sender",
+      user: "receiver",
     };
     // just test...
     const currUserMessages = [...User.messages];
