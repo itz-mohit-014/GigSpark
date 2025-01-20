@@ -1,19 +1,18 @@
 import React from "react";
 import Logo from "../ui/Logo";
-import { FaXTwitter, FaFacebook } from "react-icons/fa6";
+import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { IoIosGlobe } from "react-icons/io";
 import darkLogo from "../../assets/logo/logo-dark.png";
 
 const FooterRow = () => {
   const socialMedia = [
-    { title: "Facebook", src: "#" },
-    { title: "Instagram", src: "#" },
-    { title: "LinkedIn", src: "#" },
-    { title: "Twitter", src: "#" },
+    { title: "Instagram", src: "https://www.instagram.com/mohit_893843/" },
+    { title: "LinkedIn", src: "https://www.linkedin.com/in/mohit487/" },
+    { title: "Twitter", src: "https://x.com/itz_mohit_014" },
   ];
 
-  const SocialIcon = [FaFacebook, FaInstagram, FaLinkedin, FaXTwitter];
+  const SocialIcon = [FaInstagram, FaLinkedin, FaXTwitter];
 
   return (
     <div className="max-w-screen-xl mx-auto  gap-4 gap-y-8 flex-wrap flex justify-center md:justify-between items-center">

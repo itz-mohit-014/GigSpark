@@ -5,10 +5,9 @@ import { FaCircleCheck } from "react-icons/fa6";
 const CustomToggle = ({setValue}) => {
   const [isChecked, setIsChecked] = useState(false);
 
-  setValue("isSeller", isChecked)
-  
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
+    setValue("isSeller", !isChecked)
   };
 
   return (

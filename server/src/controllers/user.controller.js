@@ -30,8 +30,9 @@ const signup = AsyncHandler(async (req, res) => {
     password,
     profile: {
       public_id: `${firstName}${lastName}`,
-      url: `https://api.dicebear.com/5.x/initials/svg?seed=mohit%20jangid`,
+      url: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName}%20${lastName}`,
     },
+    ...req.body
   });
   if (!user) throw new ApiError(401, "User registration failed");
 
