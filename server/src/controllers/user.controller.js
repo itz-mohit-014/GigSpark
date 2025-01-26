@@ -115,6 +115,30 @@ const logout = AsyncHandler(async (req, res) => {
     .json(new ApiResponse(200, "User Logout successfully"));
 });
 
+const googleAuthCallback = AsyncHandler(async(req, res) => {
+  try {
+    const user = req.user;
+   const { accessToken, userWithToken, refreshToken } = await generareAccessRefreshToken(user)
+
+    const options = {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None"
+    };
+  
+    const accessTokenExpiry = 24 * 60 * 60 * 1000; // 1 day
+    const refreshTokenExpiry = 7 * 24 * 60 * 60 * 1000; // 7 day
+  
+    return res
+      .status(301)
+      .cookie("accessToken", `Bearer ${accessToken}`, {...options, maxAge:accessTokenExpiry  })
+      .cookie("refreshToken", `Bearer ${refreshToken}`, {...options, maxAge:refreshTokenExpiry  })
+      .redirect("http://localhost:5173"); // redirect to dashboard...
+  } catch (err) {
+    res.status(500).json({ error: "Failed to authenticate user" });
+  }
+})
+
 const generareAccessRefreshToken = async function (user) {
   try {
     const accessToken = await user.generateAccessToken();
@@ -296,6 +320,7 @@ export {
   signup,
   login,
   logout,
+  googleAuthCallback,
   getUserById,
   updateUser,
   uploadProfile,

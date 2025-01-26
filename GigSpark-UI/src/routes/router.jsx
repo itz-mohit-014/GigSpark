@@ -96,6 +96,14 @@ const router = createBrowserRouter(
                 </Suspense>
               ),
             },
+            {
+              path: "/edit/:gigId",
+              element: (
+                <Suspense fallback={<PageLoader />}>
+                  <AddNewGig />
+                </Suspense>
+              ),
+            },
           ],
         },
       ],

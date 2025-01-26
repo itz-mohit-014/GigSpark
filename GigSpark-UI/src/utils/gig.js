@@ -58,4 +58,20 @@ const fetchMyGig = async (filter) => {
   return response?.data;
 }
 
-export { fetchGig, createNewGig, fetchMyGig };
+const deleteGig = async (id) => {
+  const { DELETE_GIG } = Gig;
+  toast.dismiss();
+
+  const response = await  newRequest('delete', DELETE_GIG(id+"lasdj"));
+
+  if (typeof response === "string") {
+
+    (response  !== "Unauthorized request" &&  toast.error(response));
+
+    return null;
+  }
+  toast.success(response?.message);
+  return response?.data;
+}
+
+export { fetchGig, createNewGig, fetchMyGig, deleteGig };

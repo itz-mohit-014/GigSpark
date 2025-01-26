@@ -1,13 +1,13 @@
 import { Router } from "express";
 import { createNewOrder, getAllOrders, verifyPayment } from "../controllers/order.controller.js";
-import { verifyToken } from "../middleware/auth.middleware.js";
+import { isVerifiedEmail, verifyToken } from "../middleware/auth.middleware.js";
 
 const orderRoutes = Router();
 
-orderRoutes.route('/').get(verifyToken, getAllOrders)
+orderRoutes.route('/').get(verifyToken, isVerifiedEmail, getAllOrders)
 
-orderRoutes.route('/new').post(verifyToken, createNewOrder)
+orderRoutes.route('/new').post(verifyToken, isVerifiedEmail, createNewOrder)
 
-orderRoutes.route('/verify').post(verifyToken, verifyPayment)
+orderRoutes.route('/verify').post(verifyToken, isVerifiedEmail, verifyPayment)
 
 export default orderRoutes;

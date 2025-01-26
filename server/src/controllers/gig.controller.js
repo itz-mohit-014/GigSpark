@@ -188,7 +188,7 @@ const updateGigImages = AsyncHandler(async (req, res) => {
 });
 
 const deleteGig = AsyncHandler(async (req, res) => {
-  const { id } = req.body;
+  const { id } = req.params;
   const gigDetails = await Gig.findByIdAndDelete({ _id: id });
   if (!gigDetails) throw new ApiError(404, "Gig not found.");
 

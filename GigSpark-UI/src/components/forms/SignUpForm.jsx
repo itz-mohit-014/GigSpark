@@ -13,6 +13,8 @@ import { User } from "../../services/api";
 import Loading from "../ui/Loading";
 import { signin_signup } from "../../services/authApi";
 import CustomToggle from "../ui/CheckboxToggle";
+import { Link } from "react-router-dom";
+import {BASE_URL} from '../../services/api.js'
 
 export default function SignupForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -108,7 +110,7 @@ export default function SignupForm() {
         </button>
 
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-6 h-[1px] w-full" />
-        {/* <button
+        <Link to={`${BASE_URL}/user/auth/google`}
           className=" relative group/btn flex space-x-2 items-center justify-center px-4 w-full text-black rounded-md h-10 font-medium shadow-input  bg-gray-100 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
           type="submit"
         >
@@ -117,7 +119,8 @@ export default function SignupForm() {
             Google
           </span>
           <BottomGradient />
-        </button> */}
+        </Link>
+        
       </form>
       <p className="text-center font-medium text-gray-500 text-sm font-primary">
         Already have an account?{" "}

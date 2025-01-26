@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_BASE_URL
+export const BASE_URL = import.meta.env.VITE_BASE_URL
 
 export const User = {
     CREATE_ACCOUNT : BASE_URL + "/user/signup",
@@ -21,6 +21,7 @@ export const Gig = {
     ALL_GIGS : BASE_URL + "/gig",
     ADD_NEW_GIG : BASE_URL + "/gig/add-new-gig",
     SINGLE_GIG : (id) => `${BASE_URL}/gig/${id}`,
+    DELETE_GIG : (id) => `${BASE_URL}/gig/${id}`,
     DELETE_GIG_IMAGE : (id, imageId) =>  `${BASE_URL}/gig/${id}/${imageId}`,
     UPDATE_GIG_SERVICE : (id) =>  `${BASE_URL}/gig/${id}/update-services`,
     UPDATE_GIG_IMAGES : (id, imageId) =>  `${BASE_URL}/gig/${id}/update-images`,

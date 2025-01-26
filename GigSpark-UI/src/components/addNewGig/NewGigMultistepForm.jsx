@@ -1,78 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NewGigForm from "../forms/NewGigForm";
 import NewGigServices from "../forms/NewGigServices";
 import PublishGigPopup from "../ui/PublishGigPopup";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
-import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
 import { setCurrentStep } from "../../slices/formSteps";
 import { createNewGig } from "../../utils/gig";
 import { changeLoadingState } from "../../slices/showLoginForm.slice";
 import toast from "react-hot-toast";
-
-// Custom Hook for handling form data
-const useNewGigForm = () => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    getValues,
-    control,
-    formState,
-    setError,
-    clearErrors,
-  } = useForm({
-    defaultValues: {
-      title: "",
-      description: "",
-      keywords: [],
-      coverPicture: [],
-      category: "",
-      services: {
-        serviceTitle: "",
-        serviceDescription: "",
-        price: "",
-        deliveryTime: "",
-        features: [],
-      },
-    },
-  });
-
-  const validateStep = (step, data) => {
-    clearErrors();
-    if (step === 2 || step === 3) {
-      const validateFields = step === 2 ? data : data?.services;
-
-      const emptyFields = Object.entries(validateFields).filter(
-        ([key, inputValues]) => !inputValues?.length
-      );
-
-      // 1 field will always be due to images array which is not required field need to exclude to validate.
-
-      emptyFields.forEach(([fieldName, value]) =>
-        setError(step === 2 ? fieldName : `services.${fieldName}`, {
-          type: "manual",
-          message: `${fieldName} is required`,
-        })
-      );
-
-      return emptyFields.length === 0;
-    }
-    return true;
-  };
-
-  return {
-    register,
-    handleSubmit,
-    setValue,
-    getValues,
-    control,
-    formState,
-    validateStep,
-  };
-};
+import { Gig } from "../../services/api";
+import { newRequest } from "../../services/newRequest";
+import { useNewGigForm } from "../../hooks/useNewGigForm";
 
 const StepButton = ({ label, onClick, disabled, iconLeft, iconRight }) => (
   <button
@@ -89,8 +28,26 @@ const StepButton = ({ label, onClick, disabled, iconLeft, iconRight }) => (
 const NewGigMultistepForm = () => {
   const currentStep = useSelector((store) => store.currentFormStep);
 
-  const dispatch = useDispatch();
+  const [defaultData, setDefaultData] = useState({
+    title: "",
+    description: "",
+    keywords: [],
+    coverPicture: [],
+    category: "",
+    services: {
+      serviceTitle: "",
+      serviceDescription: "",
+      price: "",
+      deliveryTime: "",
+      features: [],
+    },
+  })
+
+  const dispatch = useDispatch();  
   const navigate = useNavigate();
+
+  const {gigId} = useParams();
+  const { SINGLE_GIG } = Gig
 
   const {
     register,
@@ -100,38 +57,59 @@ const NewGigMultistepForm = () => {
     control,
     formState: { errors },
     validateStep,
+    removeKeyword,
+    appendKeyword,
+    removeCoverPicture,
+    appendCoverPicture,
+    removeImages,
+    appendImages,
+    removeFeatures,
+    appendFeatures,
   } = useNewGigForm();
+  // } = useNewGigForm(defaultData);
 
   const handleNextStep = (step) => {
     const data = getValues();
-
-    if (step < 1 || step > 3 || !validateStep(step, data)) return;
+    
+    if(validateStep(step, data)) return;
 
     dispatch(setCurrentStep(step));
   };
 
   const handleCreateNewGig = async (data) => {
+    
     dispatch(changeLoadingState(true));
-    toast.dismiss()
+    
+    toast.dismiss();
+
     const toastId = toast.loading("Creating New Gig...");
     const formData = new FormData();
 
     // Append data to FormData
     Object.entries(data).forEach(([key, value]) => {
       if (Array.isArray(value)) {
+
         value.forEach((item) => formData.append(key, item));
+      
       } else {
+        
         formData.append(
           key,
-          typeof value === "object" ? JSON.stringify(value) : value
+          typeof value === "object" 
+          ? JSON.stringify(value) 
+          : value
         );
       }
     });
 
     const response = await createNewGig(formData);
+
     toast.success(response?.message, { id: toastId });
+    
     dispatch(changeLoadingState(false));
+    
     navigate("/myGigs");
+    
     dispatch(setCurrentStep(1));
   };
 
@@ -143,15 +121,69 @@ const NewGigMultistepForm = () => {
       errors={errors}
       getValues={getValues}
       control={control}
+      removeKeyword={removeKeyword}
+      removeImages={removeImages}
+      removeCoverPicture={removeCoverPicture}
+      appendKeyword={appendKeyword}
     />,
     <NewGigServices
       key="step2"
       register={register}
       errors={errors}
       control={control}
+      getValues={getValues}
+      remove={removeFeatures}
+      append={appendFeatures}
     />,
     <PublishGigPopup key="step3" getValues={getValues} />,
   ];
+
+  useEffect(() => {
+    ;( 
+      async() => {
+
+        if(!gigId) return ;        
+        const response = await newRequest('get', SINGLE_GIG(gigId));
+        
+        const {
+          title,
+          description,
+          keywords,
+          coverPicture,
+          images,
+          category,
+          services : {
+            serviceTitle,
+            serviceDescription,
+            price,
+            deliveryTime,
+            revisions,
+            features,
+          }
+        } = response?.data;
+        
+        const prefieldData = {
+          title,
+          description,
+          keywords,
+          coverPicture,
+          images,
+          category,
+          services : {
+            serviceTitle,
+            serviceDescription,
+            price,
+            deliveryTime,
+            revisions,
+            features,
+          }
+        }
+
+        setDefaultData(prefieldData)
+      }
+
+    )()
+  },[])
 
   return (
     <div className="border-2 border-gray-200 rounded-lg p-6 shadow-xl">

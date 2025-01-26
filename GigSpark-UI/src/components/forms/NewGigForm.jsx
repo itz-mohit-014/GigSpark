@@ -18,7 +18,9 @@ const NewGigForm = ({
   removeCoverPicture,
   appendKeyword,
 }) => {
+
   const gigDetails = getValues();
+  
   const [keywords, setKeywords] = useState(gigDetails?.keywords || []);
 
   const [selectValue, setSelectedValue] = useState(gigDetails?.category);

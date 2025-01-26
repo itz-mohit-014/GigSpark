@@ -10,15 +10,33 @@ import {
   deleteUser,
   generateUserProfileByName,
   regenerateTokens,
+  googleAuthCallback,
 } from "../controllers/user.controller.js";
 import { verifyToken } from "../middleware/auth.middleware.js"
 import { Upload } from "../middleware/multer.js";
+import passport from "passport";
 
 export const userRoutes = Router();
 
 // public routes
 userRoutes.route("/signup").post(signup);
 userRoutes.route("/login").post(login);
+
+// Google authentication
+userRoutes.route("/auth/google")
+.get( 
+  passport
+  .authenticate("google", { scope: ["profile", "email"],  session: false }
+));
+
+userRoutes.route("/auth/google/callback")
+.get(
+  passport
+  .authenticate('google', {failureRedirect:"/", session:false}),
+  googleAuthCallback
+);
+
+// public routes
 userRoutes.route("/profileImage?").get(generateUserProfileByName);
 userRoutes.route("/regenrate-tokens").post(regenerateTokens);
 

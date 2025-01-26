@@ -28,3 +28,41 @@ export const verifyToken = AsyncHandler(async (req, res, next) => {
     throw new ApiError(401, error.message || "Invalid Access Token");
   }
 });
+
+
+export const isVerifiedEmail = AsyncHandler(async(req, res) => {
+  const { email } = req.user;
+
+  if(!email) throw new ApiError(401, "Email is not verified, YET!! 🫠");
+
+  next();
+
+});
+
+export const googleAuthVerifier = async (accessToken, refreshToken, profile, done) => {
+  try {
+
+    let user = await User.findOne({ email: profile.emails[0].value});
+    
+    if (!user) {
+    
+      user = await User.create({
+        firstName: profile?.name?.givenName,
+        lastName: profile?.name?.familyName,
+        email: profile.emails[0].value,
+        password: `${profile.emails[0]?.value}${profile.id}`,
+        isVerified:profile.emails[0].verified,
+        profile:{
+          public_id:profile?.id,
+          url:profile?.photos?.[0].value
+        }
+      });
+    
+    }
+
+    return done(null, user);
+  } catch (err) {
+    console.log(err)
+    return done(err, null);
+  }
+}
