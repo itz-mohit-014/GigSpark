@@ -133,7 +133,7 @@ const googleAuthCallback = AsyncHandler(async(req, res) => {
       .status(301)
       .cookie("accessToken", `Bearer ${accessToken}`, {...options, maxAge:accessTokenExpiry  })
       .cookie("refreshToken", `Bearer ${refreshToken}`, {...options, maxAge:refreshTokenExpiry  })
-      .redirect("http://localhost:5173"); // redirect to dashboard...
+      .redirect("https://gig-spark.vercel.app"); // redirect to dashboard...
   } catch (err) {
     res.status(500).json({ error: "Failed to authenticate user" });
   }
