@@ -28,7 +28,7 @@ const signup = AsyncHandler(async (req, res) => {
     lastName,
     email,
     password,
-    profile: {
+    profile: req.body.profile ?? {
       public_id: `${firstName}${lastName}`,
       url: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName}%20${lastName}`,
     },
@@ -128,12 +128,14 @@ const googleAuthCallback = AsyncHandler(async(req, res) => {
   
     const accessTokenExpiry = 24 * 60 * 60 * 1000; // 1 day
     const refreshTokenExpiry = 7 * 24 * 60 * 60 * 1000; // 7 day
-  
+    
+    const redirectUrl = `${process.env.CLIENT_URL}/auth/google?profile=${encodeURIComponent(JSON.stringify(userWithToken))}`;
+    
     return res
       .status(301)
       .cookie("accessToken", `Bearer ${accessToken}`, {...options, maxAge:accessTokenExpiry  })
       .cookie("refreshToken", `Bearer ${refreshToken}`, {...options, maxAge:refreshTokenExpiry  })
-      .redirect("https://gig-spark.vercel.app"); // redirect to dashboard...
+      .redirect(redirectUrl); // redirect to dashboard...
   } catch (err) {
     res.status(500).json({ error: "Failed to authenticate user" });
   }

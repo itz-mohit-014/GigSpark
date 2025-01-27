@@ -42,22 +42,23 @@ export const isVerifiedEmail = AsyncHandler(async(req, res) => {
 export const googleAuthVerifier = async (accessToken, refreshToken, profile, done) => {
   try {
 
-    let user = await User.findOne({ email: profile.emails[0].value});
+    const userDataFromGoogle = profile?._json
+
+    let user = await User.findOne({ email: userDataFromGoogle?.email});
     
     if (!user) {
     
       user = await User.create({
-        firstName: profile?.name?.givenName,
-        lastName: profile?.name?.familyName,
-        email: profile.emails[0].value,
-        password: `${profile.emails[0]?.value}${profile.id}`,
-        isVerified:profile.emails[0].verified,
+        firstName: userDataFromGoogle.given_name,
+        lastName: userDataFromGoogle?.family_name,
+        email: userDataFromGoogle.email,
+        password: `${userDataFromGoogle.email}${userDataFromGoogle.sub}`,
+        isVerified:userDataFromGoogle.email_verified,
         profile:{
-          public_id:profile?.id,
-          url:profile?.photos?.[0].value
+          public_id:userDataFromGoogle.sub,
+          url:userDataFromGoogle.picture
         }
       });
-    
     }
 
     return done(null, user);

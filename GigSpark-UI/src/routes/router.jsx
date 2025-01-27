@@ -11,6 +11,7 @@ import ScrollToTop from "../components/scrollToTop/ScrollToTop";
 import ProtectedRoute from "../components/protected/ProtectedRoute";
 import PageLoader from "../components/ui/PageLoader";
 import ProfilePage from "../pages/profile/ProfilePage";
+import GoogleAuthRedirect from "../components/auth/GoogleAuthRedirect";
 
 const Home = lazy(() => import("../pages/home/Home"));
 const AddNewGig = lazy(() => import("../pages/addNewGig/AddNewGig"));
@@ -67,6 +68,10 @@ const router = createBrowserRouter(
         {
           path: "profile/:userId",
           element: <ProfilePage />,
+        },
+        {
+          path:"/auth/google",
+          element:<GoogleAuthRedirect/>
         },
         {
           path: "/",

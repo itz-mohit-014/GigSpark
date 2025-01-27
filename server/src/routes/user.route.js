@@ -26,13 +26,13 @@ userRoutes.route("/login").post(login);
 userRoutes.route("/auth/google")
 .get( 
   passport
-  .authenticate("google", { scope: ["profile", "email"],  session: false }
+  .authenticate("google", { scope: ["profile", "email"] }
 ));
 
 userRoutes.route("/auth/google/callback")
 .get(
   passport
-  .authenticate('google', {failureRedirect:"/", session:false}),
+  .authenticate('google', { failureRedirect: process.env.CLIENT_URL, session: false }),
   googleAuthCallback
 );
 
