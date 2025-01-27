@@ -17,7 +17,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/api/v1": "http://localhost:4000",
+      "/api/v1": "https://gigspark.onrender.com",
     },
   }
 });
