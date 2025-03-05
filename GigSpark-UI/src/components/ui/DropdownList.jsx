@@ -18,7 +18,7 @@ const DropdownList = ({ lists, label, onChange, value, Heading, errors = null })
         htmlFor={label}
         className={"text-lg text-gray-500"}
       />}
-      <Select onValueChange={onChange} >
+      <Select onValueChange={onChange} defaultValue={value}>
         <SelectTrigger className="w-full border-gray-300 shadow-input border-2 text-base">
           <SelectValue placeholder={Heading} />
         </SelectTrigger>

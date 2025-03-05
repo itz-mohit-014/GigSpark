@@ -87,7 +87,7 @@ const NewGigMultistepForm = () => {
 
     // Append data to FormData
     Object.entries(data).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
+      if (Array.isArray(value) && key !== "keywords") {
 
         value.forEach((item) => formData.append(key, item));
       
@@ -102,9 +102,9 @@ const NewGigMultistepForm = () => {
       }
     });
 
-    const response = await createNewGig(formData);
+    const response = await createNewGig(formData, toastId);
 
-    toast.success(response?.message, { id: toastId });
+    console.log(response);
     
     dispatch(changeLoadingState(false));
     

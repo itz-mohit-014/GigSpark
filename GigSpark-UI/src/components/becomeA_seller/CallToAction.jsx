@@ -15,7 +15,7 @@ const CallToAction = () => {
         <GetStartedBtn />
       </div>
        <div className="absolute bottom-[-60%] left-1/2 -translate-x-1/2 aspect-square h-96 w-96 transform bg-gradient-to-r from-blue-500 to-teal-500 bg-red-500 rounded-full blur-3xl opacity-60 shadow-[0px_0px_500px_50px_#3b82f6]" />
-      <Meteors number={30}/>
+      <Meteors number={50}/>
     </div>
   );
 };

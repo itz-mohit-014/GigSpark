@@ -30,13 +30,12 @@ export const verifyToken = AsyncHandler(async (req, res, next) => {
 });
 
 
-export const isVerifiedEmail = AsyncHandler(async(req, res) => {
-  const { email } = req.user;
+export const isVerifiedEmail = AsyncHandler(async(req, res, next) => {
+  const { isVerified } = req.user;
 
-  if(!email) throw new ApiError(401, "Email is not verified, YET!! 🫠");
+  // if(!isVerified) throw new ApiError(401, "Email is not verified, YET!! 🫠");
 
   next();
-
 });
 
 export const googleAuthVerifier = async (accessToken, refreshToken, profile, done) => {

@@ -8,7 +8,7 @@ const PopularCategory = () => {
   const AllCategories = useSelector((store) => store?.category);
 
   return (
-    <section className="w-full p-4 sm:p-6">
+    <section className="w-full p-4 sm:p-6" data-aos="fade-up">
       <div className="max-w-screen-xl mx-auto">
         <section className="">
           <div className="bg-inherit">

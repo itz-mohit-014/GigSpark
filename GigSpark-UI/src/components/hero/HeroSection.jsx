@@ -23,7 +23,6 @@ const Hero = () => {
 
   return (
     <section className="overflow-x-hidden relative w-full h-[calc(100dvh-76px)] text-blue-50 bg-gray-950">
-      {/* <BackgroundBeams className="h-[calc(100dvh-86px)]" /> */}
 
       <LampDemo>
         <div className={`flex flex-col gap-3 sm:gap-4 justify-center w-full`}>

@@ -19,9 +19,8 @@ const fetchGig = async (id) => {
   return response?.data;
 };
 
-const createNewGig = async (data) => {
+const createNewGig = async (data, toastId) => {
   const { ADD_NEW_GIG } = Gig;
-  toast.dismiss();
 
   const response = await newRequest("post", ADD_NEW_GIG, data, {
     headers: {
@@ -30,10 +29,10 @@ const createNewGig = async (data) => {
   });
   
   if (typeof response === "string") {
-    (response  !== "Unauthorized request" &&  toast.error(response));
+    (response  !== "Unauthorized request" &&  toast.error(response, {id: toastId}));
     return;
   }
-  toast.success(response?.message);
+  toast.success(response?.message, {id: toastId});
   return response;
 };
 
@@ -62,7 +61,7 @@ const deleteGig = async (id) => {
   const { DELETE_GIG } = Gig;
   toast.dismiss();
 
-  const response = await  newRequest('delete', DELETE_GIG(id+"lasdj"));
+  const response = await  newRequest('delete', DELETE_GIG(id));
 
   if (typeof response === "string") {
 
