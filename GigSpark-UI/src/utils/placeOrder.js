@@ -32,8 +32,8 @@ const handlePayment = async (productId, email) => {
 
 const handlePaymentVerify = async (orderDetails, name, gigId) => {
   const { VERIFY_PAYMENT } = Payment;
-  const RAZORPAY_KEY_ID = import.meta.env.RAZORPAY_KEY_ID;
-
+  const RAZORPAY_KEY_ID = import.meta.env.VITE_RAZORPAY_KEY_ID;
+  
   const options = {
     key: RAZORPAY_KEY_ID,
     amount: orderDetails.amount,
