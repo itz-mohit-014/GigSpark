@@ -18,6 +18,40 @@ const getAllCategories = AsyncHandler(async (req, res) => {
     );
 });
 
+const findCategoriesByKey = AsyncHandler(async (req, res) => {
+  const { keyword } = req.params; // fixed: was `req.json` before
+
+  if (!keyword || typeof keyword !== "string") {
+    throw new ApiError(400, "Search keyword is required");
+  }
+
+  const searchCategory = await Category.findOne({
+    $or: [
+      { name: { $regex: keyword, $options: "i" } },
+      { description: { $regex: keyword, $options: "i" } }
+    ]
+  }).populate({
+    path:"allGigs",
+    populate:[
+      { 
+        path: 'author', 
+        select:"firstName lastName profile" 
+      },
+      { 
+        path: 'services', 
+        select:"price" 
+       }
+    ]
+  });
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(200, searchCategory, "Top matching category fetched")
+    );
+
+})
+
 const getSingleCategory = AsyncHandler(async (req, res) => {
   const { id } = req.params;
   const currentCategory = await Category.findById(id)
@@ -129,4 +163,5 @@ export {
   addNewCategory,
   updateCategoryDetails,
   deleteCategory,
+  findCategoriesByKey
 };

@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   addNewCategory,
   deleteCategory,
+  findCategoriesByKey,
   getAllCategories,
   getSingleCategory,
   updateCategoryDetails,
@@ -12,6 +13,7 @@ import { Upload } from "../middleware/multer.js";
 const categoryRoutes = Router();
 
 categoryRoutes.route("/").get(getAllCategories);
+categoryRoutes.route("/search/:keyword").get(findCategoriesByKey);
 categoryRoutes
 .route("/:id")
 .get(getSingleCategory)

@@ -5,20 +5,28 @@ import Button from "../ui/Button.jsx";
 import BrandsIconCarousel from "../brandsIconsCarousel/BrandsIconsCarousel.jsx";
 import LampDemo from "../ui/lamp.jsx";
 import { BackgroundBeams } from "../ui/aurora-background.jsx";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Hero = () => {
   const [value, setValue] = useState("");
 
   //current populat categori will be even index under 10; (starting 5 even index)
   const AllCategories = useSelector((store) => store?.category);
+  const navigate = useNavigate();
 
-  const handleTagClick = (tagName) => {
-    console.log(tagName);
+  const handleTagClick = (catName, id) => {
+    navigate(`/gigs/${catName.split(" ").join("-").toLowerCase()}?source=${id}`);
   };
 
-  const handleSearch = (e) => {
-    setValue(e.target.value);
-    // further action.
+  const handleSearchCategory = () => {
+    if(!value.trim()){
+      toast.dismiss();
+      toast.error("please enter saerch value")
+      return ;
+    }
+
+    navigate(`gigs/search/?source=${value}`)
   };
 
   return (
@@ -35,15 +43,13 @@ const Hero = () => {
             <input
               type="search"
               value={value}
-              onChange={handleSearch}
+              onChange={(e) => setValue(e.target.value)}
               name="category-search"
               className="p-3 outline-none border-none bg-blue-50 text-blue-950 text-sm sm:text-base pl-4 pr-12 sm:pl-12 sm:pr-28 w-full"
-              placeholder={`Try "Building mobile app"`}
+              placeholder={`Try "Building Wordpress site"`}
             />
             <Button
-              onClick={() => {
-                console.log("search btn");
-              }}
+              onClick={handleSearchCategory}
               className="hidden sm:inline-block absolute right-0 h-full text-blue-50 bg-emerald-600 hover:bg-emerald-700 px-6 border-none"
               children={"Search"}
               disabled={false}
@@ -59,7 +65,7 @@ const Hero = () => {
                     index <= 10 && (
                       <button
                         key={cat?._id}
-                        onClick={() => handleTagClick(cat?._id)}
+                        onClick={() => handleTagClick(cat.name, cat?._id)}
                         className="relative inline-flex h-7 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
                       >
                         <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />

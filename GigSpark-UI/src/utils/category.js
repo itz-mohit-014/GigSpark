@@ -32,4 +32,18 @@ const getCurrentCategoryWithAllGigs = async (id) => {
   return response;
 };
 
-export { fetchAllCategory, getCurrentCategoryWithAllGigs };
+const searchCategoryWithKeyword = async (keyword) => {
+  const { CATEGORY_BY_KEYWORD } = Category;
+  toast.dismiss();
+
+  const response = await newRequest("get", CATEGORY_BY_KEYWORD(keyword), null);
+
+  if (typeof response === "string") {
+    response !== "Unauthorized request" &&  toast.error(response);
+    return;
+  }
+  toast.success(response?.message);
+  return response;
+};
+
+export { fetchAllCategory, getCurrentCategoryWithAllGigs, searchCategoryWithKeyword };

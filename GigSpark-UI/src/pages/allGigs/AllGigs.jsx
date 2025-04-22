@@ -5,7 +5,7 @@ import SortFilter from "./SortFilter";
 import Breadcrumbs from "../../components/Breadcrumb/Breadcrumb";
 import useUrlParse from "../../hooks/useURLParse";
 import { useLocation } from "react-router-dom";
-import { getCurrentCategoryWithAllGigs } from "../../utils/category";
+import { getCurrentCategoryWithAllGigs, searchCategoryWithKeyword } from "../../utils/category";
 import AllGigsShimmerUi from "../../components/ui/shimmerUI/AllGigs";
 import EmptyList from "../../components/emptyList/EmptyList";
 
@@ -20,7 +20,15 @@ const AllGigs = () => {
   const [categoryInfo, setCategoryInfo] = useState(null);
 
   const getCategoryWithGigs = async () => {
-    const response = await getCurrentCategoryWithAllGigs(id);
+    let response ;
+
+    if(!pathname.includes("/search/")){
+      response = await getCurrentCategoryWithAllGigs(id);
+    }else {
+      const decodedKeyword = decodeURIComponent(id)
+      response = await searchCategoryWithKeyword(decodedKeyword);
+    }
+
     const categoryData = response?.data;
 
     setCategoryInfo(categoryData);

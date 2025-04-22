@@ -15,6 +15,7 @@ export const Category = {
     GET_ALL_CATEGORY : BASE_URL + "/category",
     ADD_NEW_CATEGORY : BASE_URL + "/category/add-new",
     SINGLE_CATEGORY : (id) => `${BASE_URL}/category/${id}`,
+    CATEGORY_BY_KEYWORD : (keyword) => `${BASE_URL}/category/search/${keyword}`,
 }
 
 export const Gig = {
