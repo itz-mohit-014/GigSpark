@@ -31,7 +31,7 @@ const VideoSection = () => {
             </a>
           </p>
           <div className="rounded-2xl shadow-2xl overflow-hidden bg-gradient-to-r from-slate-700 to-slate-400 h-full">
-            <Video src={"./video/feature-video.mkv"} className="object-cover h-full w-full"/>
+            <Video src={"./video/feature-video.mp4"} className="object-cover h-full w-full"/>
           </div>
         </div>
       </ContainerScroll>

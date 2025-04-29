@@ -1,6 +1,6 @@
 import React from "react";
 
-const Video = ({ src, className = "", controls = true }) => {
+const Video = ({ src, className = "", controls = false }) => {
   return (
     <video
       className={`aspect-video ${className}`}
